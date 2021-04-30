@@ -176,7 +176,7 @@
           ;
 
         labelnoeud:
-          LABELN {$1}
+          ID {$1}
           ;
 
 

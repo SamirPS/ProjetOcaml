@@ -53,8 +53,6 @@
           | r e m o v e spa n o d e {REMOVE}
           | r e m o v e spa e d g e spa f r o m  {REMOVEEDGE}
           | m o v e   {MOVE}
-          | ['a'-'z' 'A'-'Z']['a'-'z' 'A'-'Z' '0'-'9' ]+ as lxm {ID(lxm)}
-
-          | ['a'-'z' 'A'-'Z']+ as lxm { LABELN( lxm) }
+          | ['a'-'z' 'A'-'Z' '0'-'9' ]+ as lxm {ID(lxm)}
           | ['0'-'9']+ as lxm { NUM(lxm) }
           | eof            { raise Eof }
