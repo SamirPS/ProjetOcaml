@@ -1,0 +1,10 @@
+create node it at 100 300  
+create node zero at 200 300
+create node un at 200 200
+create node fe at 300 300
+CREATE EDGE FROM it TO zero LABEL un
+CREATE EDGE FROM zero to zero LABEL b
+create edge from zero to un label c
+create edge from un to zero label d
+create edge from zero to fe label e
+dump lol
