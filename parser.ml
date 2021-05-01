@@ -101,7 +101,7 @@ let _ = parse_error;;
 
         let rec printlist e  = 
               match e with
-               [] -> Printf.printf "fini"
+               [] -> Printf.printf "\n"
               | h :: t -> (match h with 
                         |Noeud(x,y,z,k)  -> Printf.printf "%s %s %s %s" x y z  k ; printlist t 
                         |Edge(x,y,z,k)  -> Printf.printf "%s %s" x y ; printlist t ) ;;

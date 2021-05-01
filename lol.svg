@@ -10,9 +10,11 @@
 <path fill="none"  d="M200 300 Q 149 329 100 300" stroke="black"></path> 
   <text x="149" y="329" fill="black" text-anchor="middle"> a </text> 
  <path fill="none"  d="M200 300 Q 200 270 200 300" stroke="black"></path> 
-  <text x="200" y="270" fill="black" text-anchor="middle"> a </text> 
+  <text x="200" y="270" fill="black" text-anchor="middle"> b </text> 
  <path fill="none"  d="M200 200 Q 229 250 200 300" stroke="black"></path> 
-  <text x="229" y="250" fill="black" text-anchor="middle"> b </text> 
+  <text x="229" y="250" fill="black" text-anchor="middle"> a </text> 
+ <path fill="none"  d="M200 200 Q 229 250 200 300" stroke="black"></path> 
+  <text x="229" y="250" fill="black" text-anchor="middle"> a </text> 
  <path fill="none"  d="M300 300 Q 249 329 200 300" stroke="black"></path> 
   <text x="249" y="329" fill="black" text-anchor="middle"> a </text> 
  </svg>
