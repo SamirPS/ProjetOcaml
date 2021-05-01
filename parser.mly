@@ -10,7 +10,6 @@
         let nodelist = ref [] ;;
         let transition = ref [];;
 
-
         let python_split x =
           String.split_on_char  ' ' x
           |> List.filter (fun x -> x <> "")
@@ -49,6 +48,12 @@
               | Edge(x,y,z,t) -> [Edge(createid x,createid y,z,t)]
               | Noeud(x,y,z,t) -> [Noeud(createid x,y,z,t)] ;;
 
+        let rec containsele x l = match l with
+            | [] -> false
+            | Noeud(a,b,c,d)::q when a=x -> true
+            | t::q -> containsele x q ;;
+
+
         let deleten e l =
           let rec go l acc = match l with
             | [] -> List.rev acc
@@ -56,12 +61,28 @@
             | x::xs -> go xs (x::acc)
           in go l [];;
 
+        let removenoeud e l = 
+            match containsele e l with
+            |false ->failwith "Impossible à supprimer" 
+            | _ -> deleten e l ;;
+
+        let rec containte x y l  = 
+            match l with
+            | [] -> false
+            | Edge(a,b,c,d)::q when a=x && b=y -> true
+            | t::q -> containte x y q ;;
+
         let deletee e f l =
         let rec go l acc = match l with
           | [] -> List.rev acc
           | Edge(a,b,c,d)::xs when (createid e = a) && (createid f = b) -> go xs acc
           | x::xs -> go xs (x::acc)
         in go l [];;
+
+        let removetransition e f l =
+          match containte e f l with
+            |false ->failwith "Impossible à supprimer"
+            | _ -> deletee e f l ;;
 
         let moveall numun numdeux l =
         let rec go l acc = match l with
@@ -214,12 +235,10 @@
           | CREATEFROM ID TO ID   attributf LABEL labelnoeud { transition := add (Edge($2,$4,$7,$5))  @ !transition }
           | CREATEFROM ID TO ID   attributf LABEL labelnoeud  attributf { transition := add (Edge($2,$4,$7,$5 ^ (" "^ $8)))  @ !transition }
 
-          | REMOVE ID { nodelist := deleten $2 !nodelist  }
-          | REMOVEEDGE ID TO ID {  transition := deletee $2 $4  !transition }
+          | REMOVE ID { nodelist := removenoeud $2 !nodelist  }
+          | REMOVEEDGE ID TO ID {  transition := removetransition $2 $4  !transition }
           
           |  MOVE numero numero {nodelist := moveall $2 $3 !nodelist}
           |  MOVE ID numero numero {nodelist := moveallid $2 $3 $4 !nodelist}
           
         ;
-
-        
