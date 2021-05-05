@@ -53,6 +53,7 @@
           | r e m o v e spa n o d e {REMOVE}
           | r e m o v e spa e d g e spa f r o m  {REMOVEEDGE}
           | m o v e   {MOVE}
+          | r e n a m e {RENAME}
           | ['0'-'9']+ as lxm { NUM(lxm) }
           | ['a'-'z' 'A'-'Z' '0'-'9' ]+ as lxm {ID(lxm)}
           | eof            { raise Eof }

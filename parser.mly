@@ -15,6 +15,8 @@
           |> List.filter (fun x -> x <> "")
         ;;
 
+
+      
       let rec getvalue valeur default liste =
         match liste with
         |[] -> default 
@@ -99,6 +101,24 @@
 
         in go l [];;
 
+        let renamen  ancien nouveau l =
+        let rec go l acc = match l with
+          | [] -> List.rev acc
+          | Noeud(a,b,c,d)::xs when a = (createid ancien) -> go xs (Noeud(nouveau,b,c,d) :: acc)
+          | x::xs -> go xs  (x::acc)
+
+        in go l [];;
+
+        let renamet  ancien nouveau l =
+        let rec go l acc = match l with
+          | [] -> List.rev acc
+          | Edge(a,b,c,d)::xs when (a = createid ancien) && (b = createid ancien) -> go xs (Edge(nouveau,nouveau,c,d) :: acc)
+          | Edge(a,b,c,d)::xs when (a = createid ancien)  -> go xs (Edge(nouveau,b,c,d) :: acc)
+          | Edge(a,b,c,d)::xs when  (b = createid ancien) -> go xs (Edge(b,nouveau,c,d) :: acc)
+          | x::xs -> go xs  (x::acc)
+
+        in go l [];;
+
         let rec printlist e  = 
               match e with
                [] -> Printf.printf "\n"
@@ -171,7 +191,7 @@
         %token <string> NUM
         %token <string> LABELN
 
-        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE
+        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME
         %token EOL
                 
         
@@ -240,5 +260,7 @@
           
           |  MOVE numero numero {nodelist := moveall $2 $3 !nodelist}
           |  MOVE ID numero numero {nodelist := moveallid $2 $3 $4 !nodelist}
-          
+
+          | RENAME ID TO ID {nodelist:= renamen $2 $4 !nodelist ; transition:= renamet $2 $4 !transition ;}
+        
         ;
