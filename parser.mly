@@ -266,7 +266,7 @@
         %token <string> NUM
         %token <string> LABELN
 
-        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH
+        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH 
         %token EOL N S E O NW NE SW SE
         
                 
@@ -286,7 +286,7 @@
         display:
 
             | DUMP               { printlist (!nodelist @ !transition) }
-            | DUMP ID               { createfile  $2  !nodelist !transition}
+            | DUMP vrailabel    { createfile  $2  !nodelist !transition}
         ;
         numero:
             NUM {$1}
@@ -294,20 +294,24 @@
 
         labelnoeud:
            ID {$1}
+          
           ;
 
+        vrailabel:
+         LABELN {String.sub $1 1 ((String.length $1) -2)  } ;
 
         attribut:
-          | LABEL labelnoeud   {" LABEL: " ^ $2 }
-          | COLOR labelnoeud  {" COLOR: " ^ $2 }
-          | BGCOLOR labelnoeud  {" BGCOLOR: " ^ $2 }
+          | LABEL vrailabel   {" LABEL: " ^ $2 }
+          | COLOR vrailabel  {" COLOR: " ^ $2 }
+          | BGCOLOR vrailabel  {" BGCOLOR: " ^ $2 }
           | INITIAL direction {" INITIAL: " ^ $2 }
           | FINAL direction {" FINAL: " ^ $2 }
           | SIZE numero  {" SIZE: " ^ $2}
-          | LABEL labelnoeud attribut  {" LABEL: " ^ $2 ^ $3 }
-          | COLOR labelnoeud  attribut {" COLOR: " ^ $2 ^ $3 }
+
+          | LABEL vrailabel attribut  {" LABEL: " ^ $2 ^ $3 }
+          | COLOR vrailabel  attribut {" COLOR: " ^ $2 ^ $3 }
           | SIZE numero attribut  {" BGCOLOR: " ^ $2 ^ $3 }
-          | BGCOLOR labelnoeud attribut  {" INITIAL: " ^ $2 ^ $3 }
+          | BGCOLOR vrailabel attribut  {" INITIAL: " ^ $2 ^ $3 }
           | INITIAL direction attribut { " FINAL: " ^ $2 ^ $3 }
           | FINAL direction  attribut { " SIZE: " ^ $2 ^ $3 }
           
@@ -322,45 +326,44 @@
         | NE {"Nord Est"}
         | SW {"Sud Ouest"}
         | SE {"Sud Est"}
+
         attributf:
-          | COLOR labelnoeud  {" COLOR: " ^ $2 }
-          | BGCOLOR labelnoeud   { " BGCOLOR: " ^ $2 }
+          | COLOR vrailabel  {" COLOR: " ^ $2 }
           | PATH labelnoeud {" PATH: " ^ $2}
           | AT numero numero  {" POSITION: " ^ $2^":"^ $3}
 
 
-          | COLOR labelnoeud  attributf {" COLOR: " ^ $2 ^ $3 }      
-          | BGCOLOR labelnoeud attributf  {" BGCOLOR: " ^ $2 ^ $3 }   
+          | COLOR vrailabel  attributf {" COLOR: " ^ $2 ^ $3 }      
           | PATH labelnoeud attributf {" PATH: " ^ $2 ^ $3}
           | AT numero numero  attributf {" POSITION: " ^ $2^":"^ $3 ^ $4}
         ;
 
         attributet:
 
-          | LABEL labelnoeud {" LABEL: " ^ $2 }
-          | COLOR labelnoeud  {" COLOR: " ^ $2 }
+          | LABEL vrailabel {" LABEL: " ^ $2 }
+          | COLOR vrailabel  {" COLOR: " ^ $2 }
           | PATH labelnoeud {" PATH: " ^ $2}
-          | LABEL labelnoeud AT numero numero {" POSITION: " ^ $4^":"^ $5}
+          | LABEL vrailabel AT numero numero {" POSITION: " ^ $4^":"^ $5}
 
-          | COLOR labelnoeud  attributet {" COLOR: " ^ $2 ^ $3 }      
+          | COLOR vrailabel  attributet {" COLOR: " ^ $2 ^ $3 }      
           | PATH labelnoeud attributet {" PATH: " ^ $2 ^ $3}
-          | LABEL labelnoeud attributet {" LABEL: " ^ $2 ^ $3 }
-          | LABEL labelnoeud AT numero numero  attributet {" POSITION: " ^ $4^":"^ $5 ^ $6}
+          | LABEL vrailabel attributet {" LABEL: " ^ $2 ^ $3 }
+          | LABEL vrailabel AT numero numero  attributet {" POSITION: " ^ $4^":"^ $5 ^ $6}
         ;
 
         attributen:
-          | LABEL labelnoeud   {" LABEL: " ^ $2 }
-          | COLOR labelnoeud  {" COLOR: " ^ $2 }
-          | BGCOLOR labelnoeud  {" BGCOLOR: " ^ $2 }
+          | LABEL vrailabel   {" LABEL: " ^ $2 }
+          | COLOR vrailabel  {" COLOR: " ^ $2 }
+          | BGCOLOR vrailabel  {" BGCOLOR: " ^ $2 }
           | INITIAL direction {" INITIAL: " ^ $2 }
           | FINAL direction {" FINAL: " ^ $2 }
           | SIZE numero  {" SIZE: " ^ $2}
           | AT numero numero {" X: " ^ $2 ^ " Y: " ^ $3 }
 
-          | LABEL labelnoeud attributen  {" LABEL: " ^ $2 ^ $3 }
-          | COLOR labelnoeud  attributen {" COLOR: " ^ $2 ^ $3 }
+          | LABEL vrailabel attributen  {" LABEL: " ^ $2 ^ $3 }
+          | COLOR vrailabel  attributen {" COLOR: " ^ $2 ^ $3 }
           | SIZE numero attributen  {" BGCOLOR: " ^ $2 ^ $3 }
-          | BGCOLOR labelnoeud attributen  {" INITIAL: " ^ $2 ^ $3 }
+          | BGCOLOR vrailabel attributen  {" INITIAL: " ^ $2 ^ $3 }
           | INITIAL direction attributen { " FINAL: " ^ $2 ^ $3 }
           | FINAL direction  attributen { " SIZE: " ^ $2 ^ $3 }
           | AT numero numero attributen {" X: " ^ $2 ^ " Y: " ^ $3 ^ $4 }
@@ -375,10 +378,10 @@
           | CREATENODE ID   AT numero numero {  nodelist := add (Noeud($2, ( $4), ( $5),"")) @ !nodelist}
 
           
-          | CREATEFROM ID TO ID  LABEL labelnoeud { transition := add (Edge($2,$4,$6,"")) @ !transition }
-          | CREATEFROM ID TO ID  LABEL labelnoeud attributf { transition := add (Edge($2,$4,$6,$7)) @ !transition }
-          | CREATEFROM ID TO ID   attributf LABEL labelnoeud { transition := add (Edge($2,$4,$7,$5))  @ !transition }
-          | CREATEFROM ID TO ID   attributf LABEL labelnoeud  attributf { transition := add (Edge($2,$4,$7,$5 ^ (" "^ $8)))  @ !transition }
+          | CREATEFROM ID TO ID  LABEL vrailabel { transition := add (Edge($2,$4,$6,"")) @ !transition }
+          | CREATEFROM ID TO ID  LABEL vrailabel attributf { transition := add (Edge($2,$4,$6,$7)) @ !transition }
+          | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := add (Edge($2,$4,$7,$5))  @ !transition }
+          | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := add (Edge($2,$4,$7,$5 ^ (" "^ $8)))  @ !transition }
 
           | EDITEDGE ID TO ID WITH attributet { transition := editt $2 $4 $6  !transition }
           | EDIT ID WITH attributen {nodelist := editn $2 $4 !nodelist }
