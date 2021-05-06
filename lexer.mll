@@ -58,6 +58,15 @@
           | e d i t {EDIT}
           | e d i t spa e d g e spa f r o m {EDITEDGE}
           | p a t h {PATH}
+          | n o r d  {N}
+          | s u d {S}
+          | e a s t {E}
+          | w e s t {O}
+          | n o r d spa w e s t {NW}
+          | n o r d spa e a s t {NE}
+          | s u d spa w e s t {SW}
+          | s u d spa e a s t {SE}
           | ['0'-'9']+ as lxm { NUM(lxm) }
           | ['a'-'z' 'A'-'Z' '0'-'9' ]+ as lxm {ID(lxm)}
           | eof            { raise Eof }
+

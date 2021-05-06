@@ -267,7 +267,7 @@
         %token <string> LABELN
 
         %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH
-        %token EOL
+        %token EOL N S E O NW NE SW SE
         
                 
         
@@ -301,20 +301,27 @@
           | LABEL labelnoeud   {" LABEL: " ^ $2 }
           | COLOR labelnoeud  {" COLOR: " ^ $2 }
           | BGCOLOR labelnoeud  {" BGCOLOR: " ^ $2 }
-          | INITIAL labelnoeud {" INITIAL: " ^ $2 }
-          | FINAL labelnoeud {" FINAL: " ^ $2 }
+          | INITIAL direction {" INITIAL: " ^ $2 }
+          | FINAL direction {" FINAL: " ^ $2 }
           | SIZE numero  {" SIZE: " ^ $2}
           | LABEL labelnoeud attribut  {" LABEL: " ^ $2 ^ $3 }
           | COLOR labelnoeud  attribut {" COLOR: " ^ $2 ^ $3 }
           | SIZE numero attribut  {" BGCOLOR: " ^ $2 ^ $3 }
           | BGCOLOR labelnoeud attribut  {" INITIAL: " ^ $2 ^ $3 }
-          | INITIAL labelnoeud attribut { " FINAL: " ^ $2 ^ $3 }
-          | FINAL labelnoeud  attribut { " SIZE: " ^ $2 ^ $3 }
+          | INITIAL direction attribut { " FINAL: " ^ $2 ^ $3 }
+          | FINAL direction  attribut { " SIZE: " ^ $2 ^ $3 }
           
         ;
 
-        
-
+        direction :
+        | N {"Nord"}
+        | S {"Sud"}
+        | E {"Est"}
+        | O {"Ouest"}
+        | NW {"Nord West"}
+        | NE {"Nord Est"}
+        | SW {"Sud Ouest"}
+        | SE {"Sud Est"}
         attributf:
           | COLOR labelnoeud  {" COLOR: " ^ $2 }
           | BGCOLOR labelnoeud   { " BGCOLOR: " ^ $2 }
@@ -345,8 +352,8 @@
           | LABEL labelnoeud   {" LABEL: " ^ $2 }
           | COLOR labelnoeud  {" COLOR: " ^ $2 }
           | BGCOLOR labelnoeud  {" BGCOLOR: " ^ $2 }
-          | INITIAL labelnoeud {" INITIAL: " ^ $2 }
-          | FINAL labelnoeud {" FINAL: " ^ $2 }
+          | INITIAL direction {" INITIAL: " ^ $2 }
+          | FINAL direction {" FINAL: " ^ $2 }
           | SIZE numero  {" SIZE: " ^ $2}
           | AT numero numero {" X: " ^ $2 ^ " Y: " ^ $3 }
 
@@ -354,8 +361,8 @@
           | COLOR labelnoeud  attributen {" COLOR: " ^ $2 ^ $3 }
           | SIZE numero attributen  {" BGCOLOR: " ^ $2 ^ $3 }
           | BGCOLOR labelnoeud attributen  {" INITIAL: " ^ $2 ^ $3 }
-          | INITIAL labelnoeud attributen { " FINAL: " ^ $2 ^ $3 }
-          | FINAL labelnoeud  attributen { " SIZE: " ^ $2 ^ $3 }
+          | INITIAL direction attributen { " FINAL: " ^ $2 ^ $3 }
+          | FINAL direction  attributen { " SIZE: " ^ $2 ^ $3 }
           | AT numero numero attributen {" X: " ^ $2 ^ " Y: " ^ $3 ^ $4 }
           
         ;

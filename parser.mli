@@ -22,6 +22,14 @@ type token =
   | EDITEDGE
   | PATH
   | EOL
+  | N
+  | S
+  | E
+  | O
+  | NW
+  | NE
+  | SW
+  | SE
 
 val main :
   (Lexing.lexbuf  -> token) -> Lexing.lexbuf -> unit 
