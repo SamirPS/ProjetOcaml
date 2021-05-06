@@ -31,7 +31,7 @@
         let x=['x' 'X']
         let y=['y' 'Y']
         let z=['z' 'Z']
-        let spa =[' ']
+        let spa =[' ' '\t']+
 
        
 
