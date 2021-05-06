@@ -90,6 +90,47 @@
 
           in go l [];;
 
+                                                                    
+                                                                      
+
+
+        let editn  idun attributd l =
+          let rec go l acc = match l with
+            | [] -> List.rev acc
+            | Noeud(a,b,c,d)::xs when (a= createid idun ) ->                       let x = b in 
+                                                                                   let y = c in 
+                                                                                   let label = getvalue "LABEL:" "" (python_split d) in
+                                                                                   let color = getvalue "COLOR:" "" (python_split d) in
+                                                                                   let bgcolor = getvalue "BGCOLOR:" "" (python_split d) in
+                                                                                   let size = getvalue "SIZE:" "" (python_split d) in
+                                                                                   let initial = getvalue "INITIAL:" "" (python_split d) in
+                                                                                   let final = getvalue "FINAL:" "" (python_split d) in
+                                                                                   
+
+                                                                                   let xe = getvalue "X:" x (python_split attributd) in 
+                                                                                   let ye = getvalue "Y:" y (python_split attributd) in 
+                                                                                   let labele = getvalue "LABEL:" label (python_split attributd) in
+                                                                                   let colore = getvalue "COLOR:" color (python_split attributd) in
+                                                                                   let bgcolore = getvalue "BGCOLOR:" bgcolor (python_split attributd) in
+                                                                                   let sizee = getvalue "SIZE:" size (python_split attributd) in
+                                                                                   let initiale = getvalue "INITIAL:" initial (python_split attributd) in
+                                                                                   let finale = getvalue "FINAL:" final (python_split attributd ) in
+
+                                                                                   let attfinal = ref "" in 
+
+                                                                                   if  not (labele = "") then attfinal:= " LABEL: " ^ labele ^ !attfinal; 
+                                                                                   if not (colore = "") then attfinal:= " COLOR: " ^ colore ^ !attfinal;
+                                                                                   if not (bgcolore = "") then attfinal:= " BGCOLOR: " ^ bgcolore ^ !attfinal;
+                                                                                   if  not (sizee = "") then attfinal:= " SIZE: " ^ sizee ^ !attfinal; 
+                                                                                   if not (initiale = "") then attfinal:= " INITIAL: " ^ initiale ^ !attfinal;
+                                                                                   if not (finale = "") then attfinal:= " FINAL: " ^ finale ^ !attfinal;
+
+                                                                                   go xs (Noeud(a,xe,ye,!attfinal)::acc)                
+            | Edge(a,b,c,d)::xs -> go xs acc
+            | x::xs -> go xs (x::xs)
+
+          in go l [];;
+
         let deleten e l =
           let rec go l acc = match l with
             | [] -> List.rev acc
@@ -299,6 +340,25 @@
           | LABEL labelnoeud attributet {" LABEL: " ^ $2 ^ $3 }
           | LABEL labelnoeud AT numero numero  attributet {" POSITION: " ^ $4^":"^ $5 ^ $6}
         ;
+
+        attributen:
+          | LABEL labelnoeud   {" LABEL: " ^ $2 }
+          | COLOR labelnoeud  {" COLOR: " ^ $2 }
+          | BGCOLOR labelnoeud  {" BGCOLOR: " ^ $2 }
+          | INITIAL labelnoeud {" INITIAL: " ^ $2 }
+          | FINAL labelnoeud {" FINAL: " ^ $2 }
+          | SIZE numero  {" SIZE: " ^ $2}
+          | AT numero numero {" X: " ^ $2 ^ " Y: " ^ $3 }
+
+          | LABEL labelnoeud attributen  {" LABEL: " ^ $2 ^ $3 }
+          | COLOR labelnoeud  attributen {" COLOR: " ^ $2 ^ $3 }
+          | SIZE numero attributen  {" BGCOLOR: " ^ $2 ^ $3 }
+          | BGCOLOR labelnoeud attributen  {" INITIAL: " ^ $2 ^ $3 }
+          | INITIAL labelnoeud attributen { " FINAL: " ^ $2 ^ $3 }
+          | FINAL labelnoeud  attributen { " SIZE: " ^ $2 ^ $3 }
+          | AT numero numero attributen {" X: " ^ $2 ^ " Y: " ^ $3 ^ $4 }
+          
+        ;
         
         noeud:
 
@@ -314,6 +374,7 @@
           | CREATEFROM ID TO ID   attributf LABEL labelnoeud  attributf { transition := add (Edge($2,$4,$7,$5 ^ (" "^ $8)))  @ !transition }
 
           | EDITEDGE ID TO ID WITH attributet { transition := editt $2 $4 $6  !transition }
+          | EDIT ID WITH attributen {nodelist := removenoeud $2 !nodelist }
 
           | REMOVE ID { nodelist := removenoeud $2 !nodelist  }
           | REMOVEEDGE ID TO ID {  transition := removetransition $2 $4  !transition }
