@@ -374,7 +374,7 @@
           | CREATEFROM ID TO ID   attributf LABEL labelnoeud  attributf { transition := add (Edge($2,$4,$7,$5 ^ (" "^ $8)))  @ !transition }
 
           | EDITEDGE ID TO ID WITH attributet { transition := editt $2 $4 $6  !transition }
-          | EDIT ID WITH attributen {nodelist := removenoeud $2 !nodelist }
+          | EDIT ID WITH attributen {nodelist := editn $2 $4 !nodelist }
 
           | REMOVE ID { nodelist := removenoeud $2 !nodelist  }
           | REMOVEEDGE ID TO ID {  transition := removetransition $2 $4  !transition }

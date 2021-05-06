@@ -150,6 +150,7 @@ let _ = parse_error;;
                                                                                    if  not (sizee = "") then attfinal:= " SIZE: " ^ sizee ^ !attfinal; 
                                                                                    if not (initiale = "") then attfinal:= " INITIAL: " ^ initiale ^ !attfinal;
                                                                                    if not (finale = "") then attfinal:= " FINAL: " ^ finale ^ !attfinal;
+                                                                                   Printf.printf "%s" attributd;
 
                                                                                    go xs (Noeud(a,xe,ye,!attfinal)::acc)                
             | Edge(a,b,c,d)::xs -> go xs acc
@@ -286,7 +287,7 @@ let _ = parse_error;;
       close_out fic2;;
 
       
-# 290 "parser.ml"
+# 291 "parser.ml"
 let yytransl_const = [|
   260 (* CREATENODE *);
   261 (* CREATEFROM *);
@@ -479,249 +480,249 @@ let yyact = [|
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : unit) in
     Obj.repr(
-# 281 "parser.mly"
+# 282 "parser.mly"
                                         (    )
-# 485 "parser.ml"
+# 486 "parser.ml"
                : unit ))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 1 : 'display) in
     Obj.repr(
-# 282 "parser.mly"
+# 283 "parser.mly"
                                      (  )
-# 492 "parser.ml"
+# 493 "parser.ml"
                : unit ))
 ; (fun __caml_parser_env ->
     Obj.repr(
-# 288 "parser.mly"
+# 289 "parser.mly"
                                  ( printlist (!nodelist @ !transition) )
-# 498 "parser.ml"
+# 499 "parser.ml"
                : 'display))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 289 "parser.mly"
+# 290 "parser.mly"
                                     ( createfile  _2  !nodelist !transition)
-# 505 "parser.ml"
+# 506 "parser.ml"
                : 'display))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 292 "parser.mly"
+# 293 "parser.mly"
                 (_1)
-# 512 "parser.ml"
+# 513 "parser.ml"
                : 'numero))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 296 "parser.mly"
+# 297 "parser.mly"
               (_1)
-# 519 "parser.ml"
+# 520 "parser.ml"
                : 'labelnoeud))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
-# 301 "parser.mly"
-                               (" LABEL: " ^ _2 )
-# 526 "parser.ml"
-               : 'attribut))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
-    Obj.repr(
 # 302 "parser.mly"
-                              (" COLOR: " ^ _2 )
-# 533 "parser.ml"
+                               (" LABEL: " ^ _2 )
+# 527 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
 # 303 "parser.mly"
-                                (" BGCOLOR: " ^ _2 )
-# 540 "parser.ml"
+                              (" COLOR: " ^ _2 )
+# 534 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
 # 304 "parser.mly"
-                               (" INITIAL: " ^ _2 )
-# 547 "parser.ml"
+                                (" BGCOLOR: " ^ _2 )
+# 541 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
 # 305 "parser.mly"
+                               (" INITIAL: " ^ _2 )
+# 548 "parser.ml"
+               : 'attribut))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
+    Obj.repr(
+# 306 "parser.mly"
                              (" FINAL: " ^ _2 )
-# 554 "parser.ml"
+# 555 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 306 "parser.mly"
-                         (" SIZE: " ^ _2)
-# 561 "parser.ml"
-               : 'attribut))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
-    Obj.repr(
 # 307 "parser.mly"
-                                       (" LABEL: " ^ _2 ^ _3 )
-# 569 "parser.ml"
+                         (" SIZE: " ^ _2)
+# 562 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 308 "parser.mly"
-                                       (" COLOR: " ^ _2 ^ _3 )
-# 577 "parser.ml"
-               : 'attribut))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
-    Obj.repr(
-# 309 "parser.mly"
-                                  (" BGCOLOR: " ^ _2 ^ _3 )
-# 585 "parser.ml"
+                                       (" LABEL: " ^ _2 ^ _3 )
+# 570 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
+# 309 "parser.mly"
+                                       (" COLOR: " ^ _2 ^ _3 )
+# 578 "parser.ml"
+               : 'attribut))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
+    Obj.repr(
 # 310 "parser.mly"
-                                         (" INITIAL: " ^ _2 ^ _3 )
-# 593 "parser.ml"
+                                  (" BGCOLOR: " ^ _2 ^ _3 )
+# 586 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 311 "parser.mly"
-                                        ( " FINAL: " ^ _2 ^ _3 )
-# 601 "parser.ml"
+                                         (" INITIAL: " ^ _2 ^ _3 )
+# 594 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 312 "parser.mly"
+                                        ( " FINAL: " ^ _2 ^ _3 )
+# 602 "parser.ml"
+               : 'attribut))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
+    Obj.repr(
+# 313 "parser.mly"
                                        ( " SIZE: " ^ _2 ^ _3 )
-# 609 "parser.ml"
+# 610 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
-# 319 "parser.mly"
-                              (" COLOR: " ^ _2 )
-# 616 "parser.ml"
-               : 'attributf))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
-    Obj.repr(
 # 320 "parser.mly"
-                                 ( " BGCOLOR: " ^ _2 )
-# 623 "parser.ml"
+                              (" COLOR: " ^ _2 )
+# 617 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
 # 321 "parser.mly"
+                                 ( " BGCOLOR: " ^ _2 )
+# 624 "parser.ml"
+               : 'attributf))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
+    Obj.repr(
+# 322 "parser.mly"
                             (" PATH: " ^ _2)
-# 630 "parser.ml"
+# 631 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 322 "parser.mly"
+# 323 "parser.mly"
                               (" POSITION: " ^ _2^":"^ _3)
-# 638 "parser.ml"
-               : 'attributf))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
-    Obj.repr(
-# 325 "parser.mly"
-                                        (" COLOR: " ^ _2 ^ _3 )
-# 646 "parser.ml"
+# 639 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
 # 326 "parser.mly"
-                                          (" BGCOLOR: " ^ _2 ^ _3 )
-# 654 "parser.ml"
+                                        (" COLOR: " ^ _2 ^ _3 )
+# 647 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
 # 327 "parser.mly"
+                                          (" BGCOLOR: " ^ _2 ^ _3 )
+# 655 "parser.ml"
+               : 'attributf))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
+    Obj.repr(
+# 328 "parser.mly"
                                       (" PATH: " ^ _2 ^ _3)
-# 662 "parser.ml"
+# 663 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
-# 328 "parser.mly"
+# 329 "parser.mly"
                                         (" POSITION: " ^ _2^":"^ _3 ^ _4)
-# 671 "parser.ml"
+# 672 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
-# 333 "parser.mly"
-                             (" LABEL: " ^ _2 )
-# 678 "parser.ml"
-               : 'attributet))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
-    Obj.repr(
 # 334 "parser.mly"
-                              (" COLOR: " ^ _2 )
-# 685 "parser.ml"
+                             (" LABEL: " ^ _2 )
+# 679 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
 # 335 "parser.mly"
+                              (" COLOR: " ^ _2 )
+# 686 "parser.ml"
+               : 'attributet))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
+    Obj.repr(
+# 336 "parser.mly"
                             (" PATH: " ^ _2)
-# 692 "parser.ml"
+# 693 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 3 : 'labelnoeud) in
     let _4 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _5 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 336 "parser.mly"
+# 337 "parser.mly"
                                               (" POSITION: " ^ _4^":"^ _5)
-# 701 "parser.ml"
-               : 'attributet))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
-    Obj.repr(
-# 338 "parser.mly"
-                                         (" COLOR: " ^ _2 ^ _3 )
-# 709 "parser.ml"
+# 702 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
     Obj.repr(
 # 339 "parser.mly"
-                                       (" PATH: " ^ _2 ^ _3)
-# 717 "parser.ml"
+                                         (" COLOR: " ^ _2 ^ _3 )
+# 710 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
     Obj.repr(
 # 340 "parser.mly"
+                                       (" PATH: " ^ _2 ^ _3)
+# 718 "parser.ml"
+               : 'attributet))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
+    Obj.repr(
+# 341 "parser.mly"
                                         (" LABEL: " ^ _2 ^ _3 )
-# 725 "parser.ml"
+# 726 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 4 : 'labelnoeud) in
@@ -729,116 +730,116 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
     Obj.repr(
-# 341 "parser.mly"
+# 342 "parser.mly"
                                                           (" POSITION: " ^ _4^":"^ _5 ^ _6)
-# 735 "parser.ml"
+# 736 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
-# 345 "parser.mly"
-                               (" LABEL: " ^ _2 )
-# 742 "parser.ml"
-               : 'attributen))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
-    Obj.repr(
 # 346 "parser.mly"
-                              (" COLOR: " ^ _2 )
-# 749 "parser.ml"
+                               (" LABEL: " ^ _2 )
+# 743 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
 # 347 "parser.mly"
-                                (" BGCOLOR: " ^ _2 )
-# 756 "parser.ml"
+                              (" COLOR: " ^ _2 )
+# 750 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
 # 348 "parser.mly"
-                               (" INITIAL: " ^ _2 )
-# 763 "parser.ml"
+                                (" BGCOLOR: " ^ _2 )
+# 757 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
 # 349 "parser.mly"
+                               (" INITIAL: " ^ _2 )
+# 764 "parser.ml"
+               : 'attributen))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
+    Obj.repr(
+# 350 "parser.mly"
                              (" FINAL: " ^ _2 )
-# 770 "parser.ml"
+# 771 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 350 "parser.mly"
+# 351 "parser.mly"
                          (" SIZE: " ^ _2)
-# 777 "parser.ml"
+# 778 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 351 "parser.mly"
+# 352 "parser.mly"
                              (" X: " ^ _2 ^ " Y: " ^ _3 )
-# 785 "parser.ml"
-               : 'attributen))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
-    Obj.repr(
-# 353 "parser.mly"
-                                         (" LABEL: " ^ _2 ^ _3 )
-# 793 "parser.ml"
+# 786 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
 # 354 "parser.mly"
-                                         (" COLOR: " ^ _2 ^ _3 )
-# 801 "parser.ml"
-               : 'attributen))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
-    Obj.repr(
-# 355 "parser.mly"
-                                    (" BGCOLOR: " ^ _2 ^ _3 )
-# 809 "parser.ml"
+                                         (" LABEL: " ^ _2 ^ _3 )
+# 794 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
+# 355 "parser.mly"
+                                         (" COLOR: " ^ _2 ^ _3 )
+# 802 "parser.ml"
+               : 'attributen))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
+    Obj.repr(
 # 356 "parser.mly"
-                                           (" INITIAL: " ^ _2 ^ _3 )
-# 817 "parser.ml"
+                                    (" BGCOLOR: " ^ _2 ^ _3 )
+# 810 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
 # 357 "parser.mly"
-                                          ( " FINAL: " ^ _2 ^ _3 )
-# 825 "parser.ml"
+                                           (" INITIAL: " ^ _2 ^ _3 )
+# 818 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
 # 358 "parser.mly"
+                                          ( " FINAL: " ^ _2 ^ _3 )
+# 826 "parser.ml"
+               : 'attributen))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
+    Obj.repr(
+# 359 "parser.mly"
                                          ( " SIZE: " ^ _2 ^ _3 )
-# 833 "parser.ml"
+# 834 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
-# 359 "parser.mly"
+# 360 "parser.mly"
                                         (" X: " ^ _2 ^ " Y: " ^ _3 ^ _4 )
-# 842 "parser.ml"
+# 843 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 4 : string) in
@@ -846,9 +847,9 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
-# 365 "parser.mly"
+# 366 "parser.mly"
                                                      ( nodelist := add (Noeud(_2, ( _4), ( _5),_6)) @ !nodelist )
-# 852 "parser.ml"
+# 853 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 4 : string) in
@@ -856,9 +857,9 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 366 "parser.mly"
+# 367 "parser.mly"
                                                       ( nodelist := add (Noeud(_2, ( _5), ( _6),_3)) @ !nodelist )
-# 862 "parser.ml"
+# 863 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 5 : string) in
@@ -867,27 +868,27 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
-# 367 "parser.mly"
+# 368 "parser.mly"
                                                                 ( nodelist := add (Noeud(_2, ( _5), ( _6),_3 ^ (" "  ^ _7))) @ !nodelist )
-# 873 "parser.ml"
+# 874 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 3 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _5 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 368 "parser.mly"
+# 369 "parser.mly"
                                              (  nodelist := add (Noeud(_2, ( _4), ( _5),"")) @ !nodelist)
-# 882 "parser.ml"
+# 883 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 4 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
-# 371 "parser.mly"
+# 372 "parser.mly"
                                                   ( transition := add (Edge(_2,_4,_6,"")) @ !transition )
-# 891 "parser.ml"
+# 892 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 5 : string) in
@@ -895,9 +896,9 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
-# 372 "parser.mly"
+# 373 "parser.mly"
                                                             ( transition := add (Edge(_2,_4,_6,_7)) @ !transition )
-# 901 "parser.ml"
+# 902 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 5 : string) in
@@ -905,9 +906,9 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 2 : 'attributf) in
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'labelnoeud) in
     Obj.repr(
-# 373 "parser.mly"
+# 374 "parser.mly"
                                                              ( transition := add (Edge(_2,_4,_7,_5))  @ !transition )
-# 911 "parser.ml"
+# 912 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 6 : string) in
@@ -916,66 +917,66 @@ let yyact = [|
     let _7 = (Parsing.peek_val __caml_parser_env 1 : 'labelnoeud) in
     let _8 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
-# 374 "parser.mly"
+# 375 "parser.mly"
                                                                         ( transition := add (Edge(_2,_4,_7,_5 ^ (" "^ _8)))  @ !transition )
-# 922 "parser.ml"
+# 923 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 4 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
     Obj.repr(
-# 376 "parser.mly"
+# 377 "parser.mly"
                                               ( transition := editt _2 _4 _6  !transition )
-# 931 "parser.ml"
+# 932 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
-# 377 "parser.mly"
-                                    (nodelist := removenoeud _2 !nodelist )
-# 939 "parser.ml"
+# 378 "parser.mly"
+                                    (nodelist := editn _2 _4 !nodelist )
+# 940 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 379 "parser.mly"
+# 380 "parser.mly"
                       ( nodelist := removenoeud _2 !nodelist  )
-# 946 "parser.ml"
+# 947 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 380 "parser.mly"
+# 381 "parser.mly"
                                 (  transition := removetransition _2 _4  !transition )
-# 954 "parser.ml"
+# 955 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 382 "parser.mly"
+# 383 "parser.mly"
                                 (nodelist := moveall _2 _3 !nodelist)
-# 962 "parser.ml"
+# 963 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 383 "parser.mly"
+# 384 "parser.mly"
                                    (nodelist := moveallid _2 _3 _4 !nodelist)
-# 971 "parser.ml"
+# 972 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 385 "parser.mly"
+# 386 "parser.mly"
                             (nodelist:= renamen _2 _4 !nodelist ; transition:= renamet _2 _4 !transition ;)
-# 979 "parser.ml"
+# 980 "parser.ml"
                : unit))
 (* Entry main *)
 ; (fun __caml_parser_env -> raise (Parsing.YYexit (Parsing.peek_val __caml_parser_env 0)))
