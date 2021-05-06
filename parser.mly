@@ -244,13 +244,32 @@
                                   ("<text x=\"" ^y^ "\" y=\"" ^ z ^ "\" dominant-baseline=\"middle \" fill=\"" ^ color ^"\" > "^ label ^" </text> \n") ^ monstr)
             | _ -> ""^monstr;;
 
-    let rec transitionfile noeud transi monstr = 
+    let rec transitionfile noeud transi monstr  = 
             match transi with 
             |[] -> monstr;
-            |Edge(x,y,z,t)::q -> let info =  calcularc x y  noeud  z in  
+            |Edge(x,y,z,t)::q when (contains t "PATH" = false)-> let info =  calcularc x y  noeud  z in  
                                   transitionfile noeud  q  ( info ^ monstr)
-            | _ -> ""^monstr;;
+            
+            |Edge(x,y,z,t)::q  -> let info = getvalue "PATH:" "30" (python_split t)  in
+                                  let infosur =  (String.concat " " (String.split_on_char '_' info)) in 
+                                  let node = getnode x y noeud in
+                                  let Noeud(a,b,c,d) = List.hd node in
+                                  let Noeud(e,f,g,h) = List.hd (List.rev node) in 
+                                  let p1x = float_of_string b in 
+                                  let p1y = float_of_string c in 
+                                  let p2x = float_of_string f in 
+                                  let p2y = float_of_string g in 
 
+                                  let mpx =(  ( p2x) +. ( p1x) ) *. 0.5 in
+                                  let mpy = (  ( p2y) +. ( p1y) ) *. 0.5 in 
+                                  let theta = (atan2 (p2y-.p1y) (p2x-.p1x)) -. (3.14 *. 0.5) in 
+                                  let offset =  30.0 in 
+                                  let c1x = mpx +. offset *. cos(theta) in
+                                  let c1y = mpy +. offset *. sin(theta) in
+                                  let fill = "<path fill=\"none\"  d=\"" ^ infosur ^ "\" stroke=\"black\"></path> \n " in 
+                                  let label = "<text x=\"" ^ string_of_int ( int_of_float c1x )  ^ "\" y=\"" ^ string_of_int ( int_of_float c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^z^ " </text> \n " in 
+                                  transitionfile noeud  q  (  (fill ^label) ^ monstr)
+            | _ -> ""^monstr;;
 
     let createfile name liste secondl =
       let fic2 = open_out (name^".svg") in
@@ -329,12 +348,12 @@
 
         attributf:
           | COLOR vrailabel  {" COLOR: " ^ $2 }
-          | PATH labelnoeud {" PATH: " ^ $2}
+          | PATH vrailabel {" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' $2))}
           | AT numero numero  {" POSITION: " ^ $2^":"^ $3}
 
 
           | COLOR vrailabel  attributf {" COLOR: " ^ $2 ^ $3 }      
-          | PATH labelnoeud attributf {" PATH: " ^ $2 ^ $3}
+          | PATH vrailabel attributf {" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' $2)) ^ $3}
           | AT numero numero  attributf {" POSITION: " ^ $2^":"^ $3 ^ $4}
         ;
 
@@ -342,11 +361,11 @@
 
           | LABEL vrailabel {" LABEL: " ^ $2 }
           | COLOR vrailabel  {" COLOR: " ^ $2 }
-          | PATH labelnoeud {" PATH: " ^ $2}
+          | PATH vrailabel {" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' $2))}
           | LABEL vrailabel AT numero numero {" POSITION: " ^ $4^":"^ $5}
 
           | COLOR vrailabel  attributet {" COLOR: " ^ $2 ^ $3 }      
-          | PATH labelnoeud attributet {" PATH: " ^ $2 ^ $3}
+          | PATH vrailabel attributet {" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' $2)) ^ $3}
           | LABEL vrailabel attributet {" LABEL: " ^ $2 ^ $3 }
           | LABEL vrailabel AT numero numero  attributet {" POSITION: " ^ $4^":"^ $5 ^ $6}
         ;
