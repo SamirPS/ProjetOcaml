@@ -6,3 +6,4 @@ ocamlc -c parser.ml str.cma
 ocamlc -c main.ml str.cma
 ocamlc -o calc lexer.cmo parser.cmo main.cmo
 rm *.cmo
+rm *.cmi
