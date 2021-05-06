@@ -66,6 +66,17 @@
 
           in go l [];;
 
+        let editt e l =
+          let rec go l acc = match l with
+            | [] -> List.rev acc
+            | Edge(a,b,c,d)::xs -> ( match e with 
+                                      |Edge(w,x,y,z) when (createid a = createid w) && (createid b = createid x) -> go xs ( (add (Edge(w,x,y,z))) @ acc)
+                                      | _ -> go xs (Edge(a,b,c,d)::acc)
+                                    )
+            | Noeud(a,b,c,d)::xs -> go xs acc
+
+          in go l [];;
+
         let deleten e l =
           let rec go l acc = match l with
             | [] -> List.rev acc
@@ -134,7 +145,7 @@
                [] -> Printf.printf "\n"
               | h :: t -> (match h with 
                         |Noeud(x,y,z,k)  -> Printf.printf "%s %s %s %s \n " x y z  k ; printlist t 
-                        |Edge(x,y,z,k)  -> Printf.printf "%s %s \n" x y ; printlist t ) ;;
+                        |Edge(x,y,z,k)  -> Printf.printf "%s %s %s %s \n" x y z k ; printlist t ) ;;
 
       let getnode idun ideux l =
         let rec search l acc = match l with
@@ -201,7 +212,7 @@
         %token <string> NUM
         %token <string> LABELN
 
-        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT
+        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE
         %token EOL
                 
         
@@ -268,8 +279,14 @@
           | EDIT ID  WITH AT numero numero {  nodelist := editn (Noeud($2, ( $5), ( $6),""))  !nodelist}
           
           | CREATEFROM ID TO ID  LABEL labelnoeud { transition := add (Edge($2,$4,$6,"")) @ !transition }
+          | CREATEFROM ID TO ID  LABEL labelnoeud attributf { transition := add (Edge($2,$4,$6,$7)) @ !transition }
           | CREATEFROM ID TO ID   attributf LABEL labelnoeud { transition := add (Edge($2,$4,$7,$5))  @ !transition }
           | CREATEFROM ID TO ID   attributf LABEL labelnoeud  attributf { transition := add (Edge($2,$4,$7,$5 ^ (" "^ $8)))  @ !transition }
+
+          | EDITEDGE ID TO ID WITH LABEL labelnoeud { transition := editt (Edge($2,$4,$7,""))  !transition }
+          | EDITEDGE ID TO ID WITH LABEL labelnoeud  attributf { transition := editt (Edge($2,$4,$7,$8))  !transition }
+          | EDITEDGE ID TO ID  WITH attributf LABEL labelnoeud { transition := editt (Edge($2,$4,$8,$6))   !transition }
+          | EDITEDGE ID TO ID    WITH attributf LABEL labelnoeud  attributf { transition := editt (Edge($2,$4,$8,$6 ^ (" "^ $9)))   !transition }
 
           | REMOVE ID { nodelist := removenoeud $2 !nodelist  }
           | REMOVEEDGE ID TO ID {  transition := removetransition $2 $4  !transition }

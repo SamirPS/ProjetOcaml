@@ -19,6 +19,7 @@ type token =
   | RENAME
   | WITH
   | EDIT
+  | EDITEDGE
   | EOL
 
 val main :

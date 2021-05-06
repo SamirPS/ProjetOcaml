@@ -56,6 +56,7 @@
           | r e n a m e {RENAME}
           | w i t h {WITH}
           | e d i t {EDIT}
+          | e d i t spa e d g e spa f r o m {EDITEDGE}
           | ['0'-'9']+ as lxm { NUM(lxm) }
           | ['a'-'z' 'A'-'Z' '0'-'9' ]+ as lxm {ID(lxm)}
           | eof            { raise Eof }
