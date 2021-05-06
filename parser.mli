@@ -20,6 +20,7 @@ type token =
   | WITH
   | EDIT
   | EDITEDGE
+  | PATH
   | EOL
 
 val main :

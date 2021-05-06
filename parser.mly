@@ -212,7 +212,7 @@
         %token <string> NUM
         %token <string> LABELN
 
-        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE
+        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH
         %token EOL
                 
         
@@ -262,8 +262,10 @@
         attributf:
           | COLOR labelnoeud  {" COLOR: " ^ $2 }
           | BGCOLOR labelnoeud   { " BGCOLOR: " ^ $2 }
+          | PATH labelnoeud {" PATH: " ^ $2}
           | COLOR labelnoeud  attributf {" COLOR: " ^ $2 ^ $3 }      
           | BGCOLOR labelnoeud attributf  {" BGCOLOR: " ^ $2 ^ $3 }   
+          | PATH labelnoeud attributf {" PATH: " ^ $2 ^ $3}
         ;
         
         noeud:

@@ -57,6 +57,7 @@
           | w i t h {WITH}
           | e d i t {EDIT}
           | e d i t spa e d g e spa f r o m {EDITEDGE}
+          | p a t h {PATH}
           | ['0'-'9']+ as lxm { NUM(lxm) }
           | ['a'-'z' 'A'-'Z' '0'-'9' ]+ as lxm {ID(lxm)}
           | eof            { raise Eof }
