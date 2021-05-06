@@ -239,6 +239,7 @@
 
         labelnoeud:
           ID {$1}
+          |ID AT numero numero {" POSITION: " ^ $3^":"^ $4}
           ;
 
 
