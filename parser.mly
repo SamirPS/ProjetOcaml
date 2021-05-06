@@ -55,6 +55,16 @@
             | Noeud(a,b,c,d)::q when a=x -> true
             | t::q -> containsele x q ;;
 
+        let editn e l =
+          let rec go l acc = match l with
+            | [] -> List.rev acc
+            | Noeud(a,b,c,d)::xs -> ( match e with 
+                                      |Noeud(w,x,y,z) when createid a = createid w -> go xs ( (add (Noeud(w,x,y,z))) @ acc)
+                                      | _ -> go xs (Noeud(a,b,c,d)::acc)
+                                    )
+            | Edge(a,b,c,d)::xs -> go xs acc
+
+          in go l [];;
 
         let deleten e l =
           let rec go l acc = match l with
@@ -191,7 +201,7 @@
         %token <string> NUM
         %token <string> LABELN
 
-        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME
+        %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT
         %token EOL
                 
         
@@ -250,6 +260,12 @@
           | CREATENODE ID   attribut AT numero numero { nodelist := add (Noeud($2, ( $5), ( $6),$3)) @ !nodelist }
           | CREATENODE ID   attribut AT numero numero  attribut { nodelist := add (Noeud($2, ( $5), ( $6),$3 ^ (" "  ^ $7))) @ !nodelist }
           | CREATENODE ID   AT numero numero {  nodelist := add (Noeud($2, ( $4), ( $5),"")) @ !nodelist}
+
+
+          | EDIT ID  WITH  AT numero numero attribut { nodelist := editn  (Noeud($2, ( $5), ( $6),$7))  !nodelist }
+          | EDIT ID  WITH attribut AT numero numero { nodelist := editn (Noeud($2, ( $6), ( $7),$4))  !nodelist }
+          | EDIT ID  WITH attribut AT numero numero  attribut { nodelist := editn (Noeud($2, ( $6), ( $7),$4 ^ (" "  ^ $8)))  !nodelist }
+          | EDIT ID  WITH AT numero numero {  nodelist := editn (Noeud($2, ( $5), ( $6),""))  !nodelist}
           
           | CREATEFROM ID TO ID  LABEL labelnoeud { transition := add (Edge($2,$4,$6,"")) @ !transition }
           | CREATEFROM ID TO ID   attributf LABEL labelnoeud { transition := add (Edge($2,$4,$7,$5))  @ !transition }

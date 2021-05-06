@@ -17,6 +17,8 @@ type token =
   | REMOVEEDGE
   | MOVE
   | RENAME
+  | WITH
+  | EDIT
   | EOL
 
 val main :
