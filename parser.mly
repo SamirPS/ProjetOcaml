@@ -66,14 +66,27 @@
 
           in go l [];;
 
-        let editt e l =
+        let editt  idun iddeux attributd l =
           let rec go l acc = match l with
             | [] -> List.rev acc
-            | Edge(a,b,c,d)::xs -> ( match e with 
-                                      |Edge(w,x,y,z) when (createid a = createid w) && (createid b = createid x) -> go xs ( (add (Edge(w,x,y,z))) @ acc)
-                                      | _ -> go xs (Edge(a,b,c,d)::acc)
-                                    )
+            | Edge(a,b,c,d)::xs when (a= createid idun ) && (b=createid iddeux) ->  let color = getvalue "COLOR:" "" (python_split d) in 
+                                                                                   let label = c in 
+                                                                                   let position = getvalue "POSITION:" "" (python_split d) in
+                                                                                   let path = getvalue "PATH:" "" (python_split d) in
+
+                                                                                   let colore = getvalue "COLOR:" color (python_split attributd) in 
+                                                                                   let labele = getvalue "LABEL:" label (python_split attributd) in 
+                                                                                   let positione = getvalue "POSITION:" position (python_split attributd) in
+                                                                                   let pathe =  getvalue "PATH:" path (python_split attributd) in 
+
+                                                                                   let attfinal = ref "" in 
+                                                                                   if  not (colore = "") then attfinal:= " COLOR: " ^ colore ^ !attfinal; 
+                                                                                   if not (positione = "") then attfinal:= " POSITION: " ^ positione ^ !attfinal;
+                                                                                   if not (pathe = "") then attfinal:= " PATH: " ^ pathe ^ !attfinal;
+
+                                                                                   go xs (Edge(a,b,labele,!attfinal)::acc)                
             | Noeud(a,b,c,d)::xs -> go xs acc
+            | x::xs -> go xs (x::xs)
 
           in go l [];;
 
@@ -214,6 +227,7 @@
 
         %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH
         %token EOL
+        
                 
         
         %start main             /* the entry point */
@@ -238,8 +252,7 @@
           ;
 
         labelnoeud:
-          ID {$1}
-          |ID AT numero numero {" POSITION: " ^ $3^":"^ $4}
+           ID {$1}
           ;
 
 
@@ -259,13 +272,32 @@
           
         ;
 
+        
+
         attributf:
           | COLOR labelnoeud  {" COLOR: " ^ $2 }
           | BGCOLOR labelnoeud   { " BGCOLOR: " ^ $2 }
           | PATH labelnoeud {" PATH: " ^ $2}
+          | AT numero numero  {" POSITION: " ^ $2^":"^ $3}
+
+
           | COLOR labelnoeud  attributf {" COLOR: " ^ $2 ^ $3 }      
           | BGCOLOR labelnoeud attributf  {" BGCOLOR: " ^ $2 ^ $3 }   
           | PATH labelnoeud attributf {" PATH: " ^ $2 ^ $3}
+          | AT numero numero  attributf {" POSITION: " ^ $2^":"^ $3 ^ $4}
+        ;
+
+        attributet:
+
+          | LABEL labelnoeud {" LABEL: " ^ $2 }
+          | COLOR labelnoeud  {" COLOR: " ^ $2 }
+          | PATH labelnoeud {" PATH: " ^ $2}
+          | LABEL labelnoeud AT numero numero {" POSITION: " ^ $4^":"^ $5}
+
+          | COLOR labelnoeud  attributet {" COLOR: " ^ $2 ^ $3 }      
+          | PATH labelnoeud attributet {" PATH: " ^ $2 ^ $3}
+          | LABEL labelnoeud attributet {" LABEL: " ^ $2 ^ $3 }
+          | LABEL labelnoeud AT numero numero  attributet {" POSITION: " ^ $4^":"^ $5 ^ $6}
         ;
         
         noeud:
@@ -275,21 +307,13 @@
           | CREATENODE ID   attribut AT numero numero  attribut { nodelist := add (Noeud($2, ( $5), ( $6),$3 ^ (" "  ^ $7))) @ !nodelist }
           | CREATENODE ID   AT numero numero {  nodelist := add (Noeud($2, ( $4), ( $5),"")) @ !nodelist}
 
-
-          | EDIT ID  WITH  AT numero numero attribut { nodelist := editn  (Noeud($2, ( $5), ( $6),$7))  !nodelist }
-          | EDIT ID  WITH attribut AT numero numero { nodelist := editn (Noeud($2, ( $6), ( $7),$4))  !nodelist }
-          | EDIT ID  WITH attribut AT numero numero  attribut { nodelist := editn (Noeud($2, ( $6), ( $7),$4 ^ (" "  ^ $8)))  !nodelist }
-          | EDIT ID  WITH AT numero numero {  nodelist := editn (Noeud($2, ( $5), ( $6),""))  !nodelist}
           
           | CREATEFROM ID TO ID  LABEL labelnoeud { transition := add (Edge($2,$4,$6,"")) @ !transition }
           | CREATEFROM ID TO ID  LABEL labelnoeud attributf { transition := add (Edge($2,$4,$6,$7)) @ !transition }
           | CREATEFROM ID TO ID   attributf LABEL labelnoeud { transition := add (Edge($2,$4,$7,$5))  @ !transition }
           | CREATEFROM ID TO ID   attributf LABEL labelnoeud  attributf { transition := add (Edge($2,$4,$7,$5 ^ (" "^ $8)))  @ !transition }
 
-          | EDITEDGE ID TO ID WITH LABEL labelnoeud { transition := editt (Edge($2,$4,$7,""))  !transition }
-          | EDITEDGE ID TO ID WITH LABEL labelnoeud  attributf { transition := editt (Edge($2,$4,$7,$8))  !transition }
-          | EDITEDGE ID TO ID  WITH attributf LABEL labelnoeud { transition := editt (Edge($2,$4,$8,$6))   !transition }
-          | EDITEDGE ID TO ID    WITH attributf LABEL labelnoeud  attributf { transition := editt (Edge($2,$4,$8,$6 ^ (" "^ $9)))   !transition }
+          | EDITEDGE ID TO ID WITH attributet { transition := editt $2 $4 $6  !transition }
 
           | REMOVE ID { nodelist := removenoeud $2 !nodelist  }
           | REMOVEEDGE ID TO ID {  transition := removetransition $2 $4  !transition }
