@@ -68,6 +68,6 @@
           | s u d spa e a s t {SE}
           | ['"']['a'-'z']*['"'] as lxm {LABELN(lxm)}
           | ['0'-'9']+ as lxm { NUM(lxm) }
-          | ['a'-'z' 'A'-'Z' '0'-'9' ]+ as lxm {ID(lxm)}
+          | ['a'-'z' 'A'-'Z' '0'-'9' '_' ]+ as lxm {ID(lxm)}
           | eof            { raise Eof }
 
