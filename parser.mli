@@ -2,6 +2,7 @@ type token =
   | ID of (string)
   | NUM of (string)
   | LABELN of (string)
+  | LIST of (string)
   | CREATENODE
   | CREATEFROM
   | AT

@@ -15,6 +15,11 @@
           |> List.filter (fun x -> x <> "")
         ;;
 
+        let list_split x =
+          String.split_on_char  ',' x
+          |> List.filter (fun x -> x <> "")
+        ;;
+
 
       
       let rec getvalue valeur default liste =
@@ -33,7 +38,7 @@
           false
         with Exit -> true;;
 
-        let inList element liste = List.exists element liste;; 
+        let inList element liste = List.exists  element liste;; 
 
         let createid id =
           if (String.length id) <= 15
@@ -161,6 +166,13 @@
             |false ->failwith "Impossible à supprimer"
             | _ -> deletee e f l ;;
 
+        let rec containscreateid a l = 
+          match l with
+        |[] -> false
+        | x::xs when (createid x = a) -> true
+        | _::xs -> containscreateid a xs;;
+
+
         let moveall numun numdeux l =
         let rec go l acc = match l with
           | [] -> List.rev acc
@@ -175,6 +187,17 @@
           | x::xs -> go xs  (x::acc)
 
         in go l [];;
+
+        let movelistid  id numun numdeux l =
+        let rec go l acc = match l with
+          | [] -> List.rev acc
+          | Noeud(a,b,c,d)::xs when (containscreateid a id ) -> go xs (Noeud(a,numun,numdeux,d) :: acc)
+          | x::xs -> go xs  (x::acc)
+
+        in go l [];; 
+
+        
+
 
         let renamen  ancien nouveau l =
         let rec go l acc = match l with
@@ -284,6 +307,7 @@
         %token <string> ID
         %token <string> NUM
         %token <string> LABELN
+        %token <string> LIST
 
         %token  CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH 
         %token EOL N S E O NW NE SW SE
@@ -318,6 +342,9 @@
 
         vrailabel:
          LABELN {String.sub $1 1 ((String.length $1) -2)  } ;
+
+        glist :
+         LIST { list_split (String.sub $1 1 ((String.length $1) -2)) } ;
 
         attribut:
           | LABEL vrailabel   {" LABEL: " ^ $2 }
@@ -410,7 +437,8 @@
           
           |  MOVE numero numero {nodelist := moveall $2 $3 !nodelist}
           |  MOVE ID numero numero {nodelist := moveallid $2 $3 $4 !nodelist}
+          |  MOVE glist numero numero {nodelist := movelistid $2 $3 $4 !nodelist}
 
           | RENAME ID TO ID {nodelist:= renamen $2 $4 !nodelist ; transition:= renamet $2 $4 !transition ;}
-        
+          
         ;

@@ -69,5 +69,6 @@
           | ['"']['a'-'z' 'A'-'Z' '0'-'9' ' ' ',' '.']*['"'] as lxm {LABELN(lxm)}
           | ['0'-'9']+ as lxm { NUM(lxm) }
           | ['a'-'z' 'A'-'Z' '0'-'9' '_' ]+ as lxm {ID(lxm)}
+          | ['[']['a'-'z' 'A'-'Z' '0'-'9' '_' ',' ]*[']'] as lxm {LIST(lxm)}
           | eof            { raise Eof }
 
