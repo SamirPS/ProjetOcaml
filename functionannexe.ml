@@ -63,15 +63,26 @@ let rec printlist e  =
 | h :: t -> (match h with 
           |Noeud(x,y,z,k)  -> Printf.printf "%s %s %s %s \n " x y z  k ; printlist t 
           |Edge(x,y,z,k)  -> Printf.printf "%s %s %s %s \n" x y z k ; printlist t ) ;;
+(*pour enlever le warning*)
+
+let getx node = 
+  match node with
+  | Noeud(a,b,c,d) -> b
+  | _ -> "";;
+
+let gety node = 
+  match node with
+  | Noeud(a,b,c,d) -> c
+  | _ -> "";;
 
 let calcularc idun ideux l label=
   let node = getnode idun ideux l in
-  let Noeud(a,b,c,d) = List.hd node in
-  let Noeud(e,f,g,h) = List.hd (List.rev node) in 
-  let p1x =float_of_string b in 
-  let p1y = float_of_string c in 
-  let p2x = float_of_string f in 
-  let p2y = float_of_string g in 
+  let nodeun = List.hd node in
+  let nodedeux = List.hd (List.rev node) in 
+  let p1x =float_of_string (getx nodeun) in 
+  let p1y = float_of_string (gety nodeun) in 
+  let p2x = float_of_string (getx nodedeux) in 
+  let p2y = float_of_string (gety nodedeux) in 
 
   let mpx =(  ( p2x) +. ( p1x) ) *. 0.5 in
   let mpy = (  ( p2y) +. ( p1y) ) *. 0.5 in 
@@ -107,12 +118,12 @@ let rec transitionfile noeud transi monstr  =
       |Edge(x,y,z,t)::q  -> let info = getvalue "PATH:" "30" (python_split ' ' t)  in
                             let infosur =  (String.concat " " (String.split_on_char '_' info)) in 
                             let node = getnode x y noeud in
-                            let Noeud(a,b,c,d) = List.hd node in
-                            let Noeud(e,f,g,h) = List.hd (List.rev node) in 
-                            let p1x = float_of_string b in 
-                            let p1y = float_of_string c in 
-                            let p2x = float_of_string f in 
-                            let p2y = float_of_string g in 
+                            let nodeun = List.hd node in
+                            let nodedeux = List.hd (List.rev node) in 
+                            let p1x =float_of_string (getx nodeun) in 
+                            let p1y = float_of_string (gety nodeun) in 
+                            let p2x = float_of_string (getx nodedeux) in 
+                            let p2y = float_of_string (gety nodedeux) in 
 
                             let mpx =(  ( p2x) +. ( p1x) ) *. 0.5 in
                             let mpy = (  ( p2y) +. ( p1y) ) *. 0.5 in 
