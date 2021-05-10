@@ -18,4 +18,4 @@ CREATE EDGE FROM trois to un LABEL "a"
 
 IS DETERMINISTIC
 is reconnu "aaab"
-SHOW "aaab"
+SHOW "aabababaaaaaaaa"
