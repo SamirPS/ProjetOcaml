@@ -66,6 +66,7 @@
           | n o r d spa e a s t {NE}
           | s u d spa w e s t {SW}
           | s u d spa e a s t {SE}
+          | i s _ c o m p l e t e {ISCOMPLETE}
           | ['"']['a'-'z' 'A'-'Z' '0'-'9' ' ' ',' '.']*['"'] as lxm {LABELN(lxm)}
           | ['0'-'9']+ as lxm { NUM(lxm) }
           | ['a'-'z' 'A'-'Z' '0'-'9' '_' ]+ as lxm {ID(lxm)}
