@@ -3,6 +3,10 @@ type token =
   | NUM of (string)
   | LABELN of (string)
   | LIST of (string)
+  | SHOW
+  | ISRECONNU
+  | ISDETERMINISTIC
+  | COMPLETE
   | ISCOMPLETE
   | CREATENODE
   | CREATEFROM

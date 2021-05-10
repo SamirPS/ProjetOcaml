@@ -1,1 +1,21 @@
-CREATE NODE samir AT 100 20;DUMP "dd"
+CREATE NODE zero  AT 100 300 INITIAL NORD
+create node un at 200 300
+create node deux at 200 200 FINAL NORD
+create node trois at 200 200 FINAL NORD
+
+
+CREATE EDGE FROM zero to zero LABEL "b"
+CREATE EDGE FROM zero to un LABEL "a"
+
+CREATE EDGE FROM un to deux LABEL "a"
+CREATE EDGE FROM un to trois LABEL "b"
+
+CREATE EDGE FROM deux to deux LABEL "a"
+CREATE EDGE FROM deux to trois LABEL "b"
+
+CREATE EDGE FROM trois to zero LABEL "b"
+CREATE EDGE FROM trois to un LABEL "a"
+
+IS DETERMINISTIC
+is reconnu "aaab"
+SHOW "aaab"

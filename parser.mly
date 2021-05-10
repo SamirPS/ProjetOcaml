@@ -17,7 +17,7 @@
         %token <string> LABELN
         %token <string> LIST
 
-        %token  ISCOMPLETE CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH 
+        %token SHOW ISRECONNU ISDETERMINISTIC COMPLETE ISCOMPLETE CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH 
         %token EOL N S E O NW NE SW SE
         
                 
@@ -31,7 +31,7 @@
         main:
             |noeud   EOL                {    }
             |display EOL             {  }
-            |ISCOMPLETE {Printf.printf "%b \n " (is_complete !nodelist !transition) }
+            |lasf EOL             { }
             
         ;
         
@@ -41,6 +41,13 @@
             | DUMP vrailabel    { createfile  $2  !nodelist !transition}
 
         ;
+
+        lasf : 
+        | ISCOMPLETE {Printf.printf "%b\n " (is_complete !nodelist !transition)}
+        | COMPLETE WITH labelnoeud AT numero numero {nodelist := completeaux $3 $5 $6 !nodelist !transition;transition:= complete $3 !nodelist !transition;}
+        | ISDETERMINISTIC {Printf.printf "%b\n " (is_deterministic !nodelist !transition)}
+        | ISRECONNU vrailabel {Printf.printf "%b\n " (is_accepted !nodelist !transition $2)}
+        | SHOW vrailabel {Printf.printf "%s\n " (getchemin !nodelist !transition $2)}
         numero:
             NUM {$1}
           ;
@@ -54,7 +61,7 @@
          LABELN {String.sub $1 1 ((String.length $1) -2)  } ;
 
         glist :
-         LIST { list_split (String.sub $1 1 ((String.length $1) -2)) } ;
+         LIST { python_split ',' (String.sub $1 1 ((String.length $1) -2)) } ;
 
         attribut:
           | LABEL vrailabel   {" LABEL: " ^ $2 }
@@ -142,7 +149,7 @@
           | EDITEDGE ID TO ID WITH attributet { transition := editt $2 $4 $6  !transition }
           | EDIT ID WITH attributen {nodelist := editn $2 $4 !nodelist }
 
-          | REMOVE ID { nodelist := removenoeud $2 !nodelist  }
+          | REMOVE ID { nodelist := removenoeud $2 !nodelist ; transition:= removetransitionafternode $2 !transition;  }
           | REMOVEEDGE ID TO ID {  transition := removetransition $2 $4  !transition }
           
           |  MOVE numero numero {nodelist := moveall $2 $3 !nodelist}
