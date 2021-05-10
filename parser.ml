@@ -331,7 +331,7 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
 # 47 "parser.mly"
-                                                    (nodelist := completeaux _3 _5 _6 !nodelist !transition;transition:= complete _3 !nodelist !transition;)
+                                                    (transition:= complete _3 !nodelist !transition;nodelist := completeaux _3 _5 _6 !nodelist !transition;)
 # 336 "parser.ml"
                : 'lasf))
 ; (fun __caml_parser_env ->

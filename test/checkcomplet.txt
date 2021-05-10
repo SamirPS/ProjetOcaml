@@ -1,0 +1,20 @@
+CREATE NODE un  AT 100 300 INITIAL NORD
+create node deux at 200 300  FINAL NORD
+create node trois at 200 200 FINAL NORD
+
+
+CREATE EDGE FROM un to deux LABEL "a"
+
+CREATE EDGE FROM deux to trois LABEL "b"
+
+CREATE EDGE FROM trois to deux LABEL "b"
+
+dump
+
+IS COMPLETE
+
+COMPLETE WITH p AT 500 500
+dump
+
+IS COMPLETE
+

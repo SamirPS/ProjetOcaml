@@ -345,7 +345,7 @@ let gettransicreeaux a identifiant listtransition listeletter =
   let rec go listeletter acc = 
     match listeletter  with
     | [] -> List.rev acc
-    | x::q when (existe a listtransition x =false ) -> (Edge(a,identifiant,x,""))::acc
+    | x::q when (existe a listtransition x = false ) -> (Edge(a,identifiant,x,""))::acc
     | _::q -> go q acc
   in go listeletter [];;
 
