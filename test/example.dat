@@ -16,6 +16,7 @@ CREATE EDGE FROM deux to trois LABEL "b"
 CREATE EDGE FROM trois to zero LABEL "b"
 CREATE EDGE FROM trois to un LABEL "a"
 
+IS COMPLETE
 IS DETERMINISTIC
 is reconnu "aaab"
 SHOW "aabababaaaaaaaa"
