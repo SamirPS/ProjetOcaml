@@ -1,0 +1,14 @@
+CREATE NODE zero  AT 100 300 INITIAL NORD
+create node un at 200 300 FINAL NORD
+
+
+
+CREATE EDGE FROM zero to zero LABEL "b"
+CREATE EDGE FROM zero to un LABEL "a"
+
+CREATE EDGE FROM un to zero LABEL "b"
+CREATE EDGE FROM un to un LABEL "a"
+
+IS DETERMINISTIC
+IS reconnu "a"
+SHOW "a"
