@@ -2176,12 +2176,12 @@ and __ocaml_lex_token_rec lexbuf __ocaml_lex_state =
 
   | 11 ->
 # 51 "lexer.mll"
-                                                 ( CREATEFROM )
+                                                ( CREATEFROM )
 # 2181 "lexer.ml"
 
   | 12 ->
 # 52 "lexer.mll"
-                     ( DUMP )
+                    ( DUMP )
 # 2186 "lexer.ml"
 
   | 13 ->

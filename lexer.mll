@@ -48,8 +48,8 @@
           | f i n a l         {FINAL}
           | b g c o l o r      {BGCOLOR}
           | c r e a t e spa n o d e { CREATENODE }
-          |  c r e a t e spa e d g e spa f r o m { CREATEFROM }
-          |  d u m p { DUMP }
+          | c r e a t e spa e d g e spa f r o m { CREATEFROM }
+          | d u m p { DUMP }
           | r e m o v e spa n o d e {REMOVE}
           | r e m o v e spa e d g e spa f r o m  {REMOVEEDGE}
           | m o v e   {MOVE}
