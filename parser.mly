@@ -38,7 +38,7 @@
         display:
 
             | DUMP               { printlist (!nodelist @ !transition) }
-            | DUMP vrailabel    { createfile  $2  !nodelist !transition}
+            | DUMP vrailabel    { createfile  $2  !nodelist !transition;dotBDD $2 !nodelist !transition}
 
         ;
 

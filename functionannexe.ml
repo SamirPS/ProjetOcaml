@@ -163,11 +163,38 @@ let rec transitionfile noeud transi monstr  =
       | _ -> ""^monstr;;
 
 let createfile name liste secondl =
-  let fic2 = open_out (name^".svg") in
+  let fic2 = open_out (name^"create.svg") in
   let mystrfinal=" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n"^(nodefile liste "") ^ (transitionfile liste secondl "") ^  "</svg>" in
   
   output_string fic2 mystrfinal;
   close_out fic2;;
+
+let rec dotBDDaux noeud monstr =
+  match noeud with 
+  |[] -> monstr;
+  |Noeud(a,b,c,d)::q -> dotBDDaux q (a ^ " [style =bold,label=\"" ^ a ^"\" ,pos=\""^b^","^c^"!" ^"\"];\n"^monstr)
+  |_::q-> dotBDDaux q monstr;;
+
+let rec dotedge transition monstr =
+  match transition with 
+  |[] -> monstr;
+  |Edge(a,b,c,d)::q -> dotedge q (a ^ " -> "^b^" [label=\""^c^"\"];\n"^ monstr)
+  |_::q-> dotedge q monstr;;
+  
+let commandshell name =
+  Sys.command ("neato "^name^".dot -n -Tsvg -o " ^ name^ ".svg");
+  Sys.remove (name^".dot");;
+
+let dotBDD name noeud transi =
+  let fic2 = open_out (name^".dot") in
+  let mystrfinal="digraph G { \n"^(dotBDDaux noeud "")^ (dotedge transi "" )^ "}" in
+
+  output_string fic2 mystrfinal;
+  close_out fic2;
+  commandshell name;;
+  
+
+
 
 (* Remove *)
 
