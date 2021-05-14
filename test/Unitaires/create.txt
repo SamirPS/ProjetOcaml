@@ -13,3 +13,4 @@ CREATE EDGE FROM samir to d label "e" AT 5 6 color "rouge" PATH "djdj"
 CREATE EDGE FROM samir to d  color "rouge" label "f"  AT 5 6 PATH "djdj"
 CREATE EDGE FROM samir to d  color "rouge" PATH "djdj" label "g"  AT 5 6
 CREATE EDGE FROM samir to d  label "h"  AT 5 6
+ 
