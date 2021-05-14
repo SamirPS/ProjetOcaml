@@ -150,7 +150,7 @@
           | EDIT ID WITH attributen {nodelist := editn (createid $2) $4 !nodelist }
 
           | REMOVE ID { nodelist := removenoeud (createid $2) !nodelist ; transition:= removetransitionafternode (createid $2) !transition;  }
-          | REMOVEEDGE ID TO ID {  transition := removetransition (createid $2) (createid $4)  !transition }
+          | REMOVEEDGE ID TO ID WITH vrailabel {  transition := removetransition (createid $2) (createid $4) $6 !transition }
           
           |  MOVE numero numero {nodelist := moveall $2 $3 !nodelist}
           |  MOVE ID numero numero {nodelist := moveallid_aux (createid $2) $3 $4 !nodelist}

@@ -197,17 +197,17 @@ let rec containte x y l  =
   | Edge(a,b,c,d)::q when a=x && b=y -> true
   | t::q -> containte x y q ;;
 
-let deletee e f l =
+let deletee e f lettre l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Edge(a,b,c,d)::xs when (e = a) && (f = b) -> go xs acc
+    | Edge(a,b,c,d)::xs when (e = a) && (f = b) && (c=lettre) -> go xs acc
     | x::xs -> go xs (x::acc)
   in go l [];;
 
-let removetransition e f l =
+let removetransition e f lettre l =
   match containte e f l with
     |false ->failwith "Impossible à supprimer"
-    | _ -> deletee e f l ;;
+    | _ -> deletee e f lettre l ;;
 
 (* MOVE *)
 
