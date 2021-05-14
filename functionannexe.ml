@@ -45,7 +45,7 @@ let getnode idun ideux l =
 
 let rec containsele x l = match l with
   | [] -> false
-  | Noeud(a,b,c,d)::q when a = createid x -> true
+  | Noeud(a,b,c,d)::q when (a = createid x) -> true
   | t::q -> containsele x q ;;
 
 let rec containsedge x y t l = match l with
@@ -242,37 +242,42 @@ let rec containscreateid a l =
     | _::xs -> containscreateid a xs;;
 
 let movelistid  id numun numdeux l =
+  let mylist = l in
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when (containscreateid a id ) -> if (containsele a l = false  ) then failwith "Noeud inconnu"  else go xs (Noeud(a,getnumber numun b,getnumber numdeux c,d) :: acc)
+    | Noeud(a,b,c,d)::xs when (containscreateid a id ) -> if (containsele a mylist = false  ) then failwith "Noeud inconnu"  else go xs (Noeud(a,getnumber numun b,getnumber numdeux c,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
   in go l [];; 
 
 (*RENAME*)
+
 let renamen  ancien nouveau l =
+  let mylist=l in 
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when a = (ancien) ->if (containsele nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else  go xs (Noeud(nouveau,b,c,d) :: acc)
+    | Noeud(a,b,c,d)::xs when (a = ancien) && (containsele nouveau mylist = true ) ->failwith "Noeud existe déjà avec ce nom" 
+    | Noeud(a,b,c,d)::xs when (a = ancien) && (containsele nouveau mylist = false ) ->go xs (Noeud(nouveau,b,c,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
   in go l [];;
 
 let renamet  ancien nouveau l =
+    let mylist=l in
     let rec go l acc = match l with
       | [] -> List.rev acc 
-      | Edge(a,b,c,d)::xs when (a =  ancien) && (b = ancien) -> if (containstrans nouveau nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,nouveau,c,d) :: acc)
-      | Edge(a,b,c,d)::xs when (a =  ancien)  -> if (containstrans nouveau b l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,b,c,d) :: acc)
-      | Edge(a,b,c,d)::xs when  (b =  ancien) -> if (containstrans a nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(b,nouveau,c,d) :: acc)
+      | Edge(a,b,c,d)::xs when (a =  ancien) && (b = ancien) -> if (containstrans nouveau nouveau mylist ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,nouveau,c,d) :: acc)
+      | Edge(a,b,c,d)::xs when (a =  ancien)  -> if (containstrans nouveau b mylist ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,b,c,d) :: acc)
+      | Edge(a,b,c,d)::xs when  (b =  ancien) -> if (containstrans a nouveau mylist ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(b,nouveau,c,d) :: acc)
       | x::xs -> go xs  (x::acc)
 
     in go l [];;
 
 (*edit *)
-  let editt  idun iddeux attributd l =
+  let editt  idun iddeux lettre attributd l =
     let rec go l acc = match l with
       | [] -> List.rev acc
-      | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) ->  let color = getvalue "COLOR:" "" (python_split ' ' d) in 
+      | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) && (c=lettre) ->                   let color = getvalue "COLOR:" "" (python_split ' ' d) in 
                                                                              let label = c in 
                                                                              let position = getvalue "POSITION:" "" (python_split ' ' d) in
                                                                              let path = getvalue "PATH:" "" (python_split ' ' d) in
