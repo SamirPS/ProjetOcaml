@@ -12,7 +12,7 @@ CREATE EDGE FROM f to f  color "rouge" label "b" PATH "djdj"
 
 dump
 
-remove node samir
-remove edge from d to e
+remove node samir 
+remove edge from d to e with "d"
 
 dump
