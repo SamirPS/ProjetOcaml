@@ -135,16 +135,16 @@
         
         noeud:
 
-          | CREATENODE ID  AT numero numero attribut { nodelist := ( add (Noeud(createid $2, ( $4), ( $5),$6)) !nodelist) @ !nodelist }
-          | CREATENODE ID   attribut AT numero numero { nodelist := ( add (Noeud(createid $2, ( $5), ( $6),$3)) !nodelist) @ !nodelist }
-          | CREATENODE ID   attribut AT numero numero  attribut { nodelist := ( add (Noeud( createid $2, ( $5), ( $6),$3 ^ (" "  ^ $7))) !nodelist) @ !nodelist }
-          | CREATENODE ID   AT numero numero {  nodelist := ( add (Noeud(createid $2, ( $4), ( $5),"")) !nodelist) @ !nodelist}
+          | CREATENODE ID  AT numero numero attribut { nodelist := ( add (Noeud(createid $2, ( $4), ( $5),$6)) !nodelist !transition) @ !nodelist }
+          | CREATENODE ID   attribut AT numero numero { nodelist := ( add (Noeud(createid $2, ( $5), ( $6),$3)) !nodelist !transition) @ !nodelist }
+          | CREATENODE ID   attribut AT numero numero  attribut { nodelist := ( add (Noeud( createid $2, ( $5), ( $6),$3 ^ (" "  ^ $7))) !nodelist !transition) @ !nodelist }
+          | CREATENODE ID   AT numero numero {  nodelist := ( add (Noeud(createid $2, ( $4), ( $5),"")) !nodelist !transition) @ !nodelist}
 
           
-          | CREATEFROM ID TO ID  LABEL vrailabel { transition := (add (Edge(createid $2,createid $4,$6,"")) !transition )@ !transition }
-          | CREATEFROM ID TO ID  LABEL vrailabel attributf { transition := (add (Edge(createid $2,createid $4,$6,$7)) !transition) @ !transition }
-          | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := ( add (Edge(createid $2,createid $4,$7,$5)) !transition)  @ !transition }
-          | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := (add (Edge(createid $2,createid $4,$7,$5 ^ (" "^ $8))) !transition)  @ !transition }
+          | CREATEFROM ID TO ID  LABEL vrailabel { transition := (add (Edge(createid $2,createid $4,$6,"")) !nodelist !transition )@ !transition }
+          | CREATEFROM ID TO ID  LABEL vrailabel attributf { transition := (add (Edge(createid $2,createid $4,$6,$7)) !nodelist !transition) @ !transition }
+          | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := ( add (Edge(createid $2,createid $4,$7,$5)) !nodelist !transition)  @ !transition }
+          | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := (add (Edge(createid $2,createid $4,$7,$5 ^ (" "^ $8))) !nodelist !transition)  @ !transition }
 
           | EDITEDGE ID TO ID WITH attributet { transition := editt (createid $2) ( createid $4) $6  !transition }
           | EDIT ID WITH attributen {nodelist := editn (createid $2) $4 !nodelist }

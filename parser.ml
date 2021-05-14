@@ -745,7 +745,7 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 138 "parser.mly"
-                                                     ( nodelist := ( add (Noeud(createid _2, ( _4), ( _5),_6)) !nodelist) @ !nodelist )
+                                                     ( nodelist := ( add (Noeud(createid _2, ( _4), ( _5),_6)) !nodelist !transition) @ !nodelist )
 # 750 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -755,7 +755,7 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
 # 139 "parser.mly"
-                                                      ( nodelist := ( add (Noeud(createid _2, ( _5), ( _6),_3)) !nodelist) @ !nodelist )
+                                                      ( nodelist := ( add (Noeud(createid _2, ( _5), ( _6),_3)) !nodelist !transition) @ !nodelist )
 # 760 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -766,7 +766,7 @@ let yyact = [|
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 140 "parser.mly"
-                                                                ( nodelist := ( add (Noeud( createid _2, ( _5), ( _6),_3 ^ (" "  ^ _7))) !nodelist) @ !nodelist )
+                                                                ( nodelist := ( add (Noeud( createid _2, ( _5), ( _6),_3 ^ (" "  ^ _7))) !nodelist !transition) @ !nodelist )
 # 771 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -775,7 +775,7 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
 # 141 "parser.mly"
-                                             (  nodelist := ( add (Noeud(createid _2, ( _4), ( _5),"")) !nodelist) @ !nodelist)
+                                             (  nodelist := ( add (Noeud(createid _2, ( _4), ( _5),"")) !nodelist !transition) @ !nodelist)
 # 780 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -784,7 +784,7 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 144 "parser.mly"
-                                                 ( transition := (add (Edge(createid _2,createid _4,_6,"")) !transition )@ !transition )
+                                                 ( transition := (add (Edge(createid _2,createid _4,_6,"")) !nodelist !transition )@ !transition )
 # 789 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -794,7 +794,7 @@ let yyact = [|
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
 # 145 "parser.mly"
-                                                           ( transition := (add (Edge(createid _2,createid _4,_6,_7)) !transition) @ !transition )
+                                                           ( transition := (add (Edge(createid _2,createid _4,_6,_7)) !nodelist !transition) @ !transition )
 # 799 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -804,7 +804,7 @@ let yyact = [|
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 146 "parser.mly"
-                                                            ( transition := ( add (Edge(createid _2,createid _4,_7,_5)) !transition)  @ !transition )
+                                                            ( transition := ( add (Edge(createid _2,createid _4,_7,_5)) !nodelist !transition)  @ !transition )
 # 809 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -815,7 +815,7 @@ let yyact = [|
     let _8 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
 # 147 "parser.mly"
-                                                                       ( transition := (add (Edge(createid _2,createid _4,_7,_5 ^ (" "^ _8))) !transition)  @ !transition )
+                                                                       ( transition := (add (Edge(createid _2,createid _4,_7,_5 ^ (" "^ _8))) !nodelist !transition)  @ !transition )
 # 820 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->

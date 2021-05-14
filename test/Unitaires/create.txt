@@ -1,4 +1,15 @@
 CREATE NODE samir AT -5 6 LABEL "franck" color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud
 CREATE NODE d LABEL "franck"  AT -5.0 6 color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud
 CREATE NODE de LABEL "franck"  color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud  AT 5 6
-dump
+CREATE NODE samira AT -5 6
+
+CREATE EDGE FROM samir to d label "a" color "rouge" PATH "djdj"
+CREATE EDGE FROM samir to d  color "rouge" label "b" PATH "djdj"
+CREATE EDGE FROM samir to d  color "rouge" PATH "djdj" label "c"
+CREATE EDGE FROM samir to d  label "d"
+
+
+CREATE EDGE FROM samir to d label "e" AT 5 6 color "rouge" PATH "djdj"
+CREATE EDGE FROM samir to d  color "rouge" label "f"  AT 5 6 PATH "djdj"
+CREATE EDGE FROM samir to d  color "rouge" PATH "djdj" label "g"  AT 5 6
+CREATE EDGE FROM samir to d  label "h"  AT 5 6

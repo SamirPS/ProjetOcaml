@@ -45,7 +45,7 @@ let getnode idun ideux l =
 
 let rec containsele x l = match l with
   | [] -> false
-  | Noeud(a,b,c,d)::q when a= createid x -> true
+  | Noeud(a,b,c,d)::q when a = createid x -> true
   | t::q -> containsele x q ;;
 
 let rec containsedge x y t l = match l with
@@ -71,10 +71,10 @@ let rec containsedge x y t l = match l with
         | Edge(x,y,z,t) -> [Edge(x,y,z,t)]
         | Noeud(x,y,z,t) -> [Noeud(x,y,z,t)] ;;
     
-  let add elem l =
+  let add elem n t  =
     match elem with
-    | Noeud(a,b,c,d) when (containsele a l = false) -> add_aux elem
-    | Edge(a,b,c,d) when (containsedge a b c l = false) -> add_aux elem
+    | Noeud(a,b,c,d) when (containsele a n = false) -> add_aux elem
+    | Edge(a,b,c,d) when (containsedge a b c t = false) && (containsele b n ) && (containsele b n )  -> add_aux elem
     | _ -> failwith "Ajout impossible" ;;
 
 (* DUMP *)
@@ -406,7 +406,7 @@ let complete identifiant listenoeud listtransition =
 
 let completeaux identifiant numun numdeux listenoeud listtransition = 
   if is_complete listenoeud listtransition = false && containsele identifiant listenoeud = false then
-    ( add (Noeud(identifiant,numun,numdeux,"")) listenoeud) @ listenoeud
+    ( add (Noeud(identifiant,numun,numdeux,"")) listenoeud listtransition) @ listenoeud
   else listenoeud;;
   
 (*Deterministe*)
