@@ -72,8 +72,8 @@
           | c o m p l e t e {COMPLETE}
           | s h o w {SHOW}
           | ['"']['a'-'z' 'A'-'Z' '0'-'9' ' ' ',' '.']*['"'] as lxm {LABELN(lxm)}
-          | ['0'-'9']+ as lxm { NUM(lxm) }
-          | ['a'-'z' 'A'-'Z' '0'-'9' '_' ]+ as lxm {ID(lxm)}
+          | ['+' '-']?['0'-'9']+['.']?['0'-'9']* as lxm { NUM(lxm) }
+          | ['a'-'z' 'A'-'Z']['a'-'z' 'A'-'Z' '0'-'9' '_' ]* as lxm {ID(lxm)}
           | ['[']['a'-'z' 'A'-'Z' '0'-'9' '_' ',' ]*[']'] as lxm {LIST(lxm)}
           | eof            { raise Eof }
 

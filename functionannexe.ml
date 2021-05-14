@@ -96,11 +96,16 @@ let gety node =
   | Noeud(a,b,c,d) -> c
   | _ -> "";;
 
+let isinteger numero = 
+  match Float.is_integer numero with
+  | true -> string_of_int (int_of_float numero)
+  | false -> string_of_float numero;; 
+
 let calcularc idun ideux l label=
   let node = getnode idun ideux l in
   let nodeun = List.hd node in
   let nodedeux = List.hd (List.rev node) in 
-  let p1x =float_of_string (getx nodeun) in 
+  let p1x = float_of_string (getx nodeun) in 
   let p1y = float_of_string (gety nodeun) in 
   let p2x = float_of_string (getx nodedeux) in 
   let p2y = float_of_string (gety nodedeux) in 
@@ -114,9 +119,9 @@ let calcularc idun ideux l label=
   let c1x = mpx +. offset *. cos(theta) in
   let c1y = mpy +. offset *. sin(theta) in
 
-  let curve = "M" ^ string_of_int ( int_of_float p1x )  ^ " " ^ string_of_int ( int_of_float p1y ) ^ " Q " ^ string_of_int  ( int_of_float c1x ) ^ " " ^ string_of_int ( int_of_float c1y ) ^ " " ^ string_of_int ( int_of_float p2x ) ^ " " ^ string_of_int ( int_of_float p2y ) in
+  let curve = "M" ^ isinteger (  p1x )  ^ " " ^isinteger (  p1y ) ^ " Q " ^ isinteger  (  c1x ) ^ " " ^isinteger (  c1y ) ^ " " ^isinteger (  p2x ) ^ " " ^isinteger (  p2y ) in
   let curveelement = "<path fill=\"none\"  d=\"" ^ curve ^ "\" stroke=\"black\"></path> \n " in 
-  let info = "<text x=\"" ^ string_of_int ( int_of_float c1x )  ^ "\" y=\"" ^ string_of_int ( int_of_float c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^label^ " </text> \n " in 
+  let info = "<text x=\"" ^isinteger (  c1x )  ^ "\" y=\"" ^isinteger (  c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^label^ " </text> \n " in 
   curveelement ^ " " ^ info;;
 
 let rec nodefile noeud monstr =
@@ -153,7 +158,7 @@ let rec transitionfile noeud transi monstr  =
                             let c1x = mpx +. offset *. cos(theta) in
                             let c1y = mpy +. offset *. sin(theta) in
                             let fill = "<path fill=\"none\"  d=\"" ^ infosur ^ "\" stroke=\"black\"></path> \n " in 
-                            let label = "<text x=\"" ^ string_of_int ( int_of_float c1x )  ^ "\" y=\"" ^ string_of_int ( int_of_float c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^z^ " </text> \n " in 
+                            let label = "<text x=\"" ^isinteger (  c1x )  ^ "\" y=\"" ^isinteger (  c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^z^ " </text> \n " in 
                             transitionfile noeud  q  (  (fill ^label) ^ monstr)
       | _ -> ""^monstr;;
 
@@ -206,10 +211,13 @@ let removetransition e f l =
 
 (* MOVE *)
 
+let getnumber numero stringnu = 
+  string_of_float( float_of_string(numero) +. float_of_string(stringnu) );;
+
 let moveall numun numdeux l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs  -> go xs (Noeud(a,numun,numdeux,d) :: acc)
+    | Noeud(a,b,c,d)::xs  -> go xs (Noeud(a,getnumber numun b,getnumber numdeux c,d) :: acc)
     | Edge (_, _, _, _)::xs -> go xs  acc
   in go l [];;
 
@@ -217,7 +225,7 @@ let moveall numun numdeux l =
 let moveallid  id numun numdeux l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when a = (id) -> go xs (Noeud(a,numun,numdeux,d) :: acc)
+    | Noeud(a,b,c,d)::xs when a = (id) -> go xs (Noeud(a,getnumber numun b,getnumber numdeux c,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
   in go l [];;
@@ -236,7 +244,7 @@ let rec containscreateid a l =
 let movelistid  id numun numdeux l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when (containscreateid a id ) -> if (containsele a l = false  ) then failwith "Noeud inconnu"  else go xs (Noeud(a,numun,numdeux,d) :: acc)
+    | Noeud(a,b,c,d)::xs when (containscreateid a id ) -> if (containsele a l = false  ) then failwith "Noeud inconnu"  else go xs (Noeud(a,getnumber numun b,getnumber numdeux c,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
   in go l [];; 
