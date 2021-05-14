@@ -8,3 +8,6 @@ CREATE EDGE FROM samir to d  color "rouge" label "b" PATH "djdj"
 CREATE EDGE FROM de to de  color "rouge" PATH "djdj" label "c"
 CREATE EDGE FROM d to d  label "d"
 
+EDIT EDGE FROM samir to d label "ajj" with label "100"
+dump
+

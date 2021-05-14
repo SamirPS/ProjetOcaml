@@ -5,8 +5,8 @@
 <text x="200" y="300" dominant-baseline="middle " fill="black" > z </text> 
 <circle cx="200" cy="200" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
 <text x="200" y="200" dominant-baseline="middle " fill="black" > u </text> 
-<circle cx="300." cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
-<text x="300." y="300" dominant-baseline="middle " fill="black" > f </text> 
+<circle cx="300" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="300" y="300" dominant-baseline="middle " fill="black" > f </text> 
 <path fill="none"  d="M200 300 Q 149.976110199 329.999990488 100 300" stroke="black"></path> 
   <text x="149.976110199" y="329.999990488" fill="black" text-anchor="middle"> a </text> 
  <path fill="none"  d="M200 300 Q 200.023889801 270.000009512 200 300" stroke="black"></path> 

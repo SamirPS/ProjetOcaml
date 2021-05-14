@@ -293,8 +293,7 @@ let renamet  ancien nouveau l =
                                                                              if not (pathe = "") then attfinal:= " PATH: " ^ pathe ^ !attfinal;
 
                                                                              go xs (Edge(a,b,labele,!attfinal)::acc)                
-      | Noeud(a,b,c,d)::xs -> go xs acc
-      | x::xs -> go xs (x::xs)
+      | x::xs -> go xs (x::acc)
 
     in go l [];;
 
@@ -330,10 +329,8 @@ let renamet  ancien nouveau l =
                                                                              if  not (sizee = "") then attfinal:= " SIZE: " ^ sizee ^ !attfinal; 
                                                                              if not (initiale = "") then attfinal:= " INITIAL: " ^ initiale ^ !attfinal;
                                                                              if not (finale = "") then attfinal:= " FINAL: " ^ finale ^ !attfinal;
-
                                                                              go xs (Noeud(a,xe,ye,!attfinal)::acc)                
-      | Edge(a,b,c,d)::xs -> go xs acc
-      | x::xs -> go xs (x::xs)
+      | x::xs -> go xs (x::acc)
 
     in go l [];;
 
