@@ -1,20 +1,52 @@
  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600" viewBox="0 0 800 600"> 
 <circle cx="100" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
-<text x="100" y="300" dominant-baseline="middle " fill="black" > i </text> 
-<circle cx="200" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
-<text x="200" y="300" dominant-baseline="middle " fill="black" > z </text> 
+<text x="100" y="300" dominant-baseline="middle " fill="black" > un </text> 
 <circle cx="200" cy="200" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
-<text x="200" y="200" dominant-baseline="middle " fill="black" > u </text> 
-<circle cx="300" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
-<text x="300" y="300" dominant-baseline="middle " fill="black" > f </text> 
-<path fill="none"  d="M200 300 Q 149.976110199 329.999990488 100 300" stroke="black"></path> 
-  <text x="149.976110199" y="329.999990488" fill="black" text-anchor="middle"> a </text> 
- <path fill="none"  d="M200 300 Q 200.023889801 270.000009512 200 300" stroke="black"></path> 
-  <text x="200.023889801" y="270.000009512" fill="black" text-anchor="middle"> a </text> 
- <path fill="none"  d="M200 200 Q 229.999990488 250.023889801 200 300" stroke="black"></path> 
-  <text x="229.999990488" y="250.023889801" fill="black" text-anchor="middle"> b </text> 
- <path fill="none"  d="M200 200 Q 229.999990488 250.023889801 200 300" stroke="black"></path> 
-  <text x="229.999990488" y="250.023889801" fill="black" text-anchor="middle"> b </text> 
- <path fill="none"  d="M300 300 Q 249.976110199 329.999990488 200 300" stroke="black"></path> 
-  <text x="249.976110199" y="329.999990488" fill="black" text-anchor="middle"> a </text> 
+<text x="200" y="200" dominant-baseline="middle " fill="black" > deux </text> 
+<circle cx="200" cy="400" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="200" y="400" dominant-baseline="middle " fill="black" > quatre </text> 
+<circle cx="200" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="200" y="300" dominant-baseline="middle " fill="black" > cinq </text> 
+<circle cx="240" cy="250" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="240" y="250" dominant-baseline="middle " fill="black" > p </text> 
+<path fill="none"  d="M240 250 Q 180.067590684 303.2602834 100 300" stroke="black"></path> 
+  <text x="180.067590684" y="303.2602834" fill="black" text-anchor="middle"> d </text> 
+ <path fill="none"  d="M240 250 Q 180.067590684 303.2602834 100 300" stroke="black"></path> 
+  <text x="180.067590684" y="303.2602834" fill="black" text-anchor="middle"> c </text> 
+ <path fill="none"  d="M240 250 Q 248.980883488 332.752960227 200 400" stroke="black"></path> 
+  <text x="248.980883488" y="332.752960227" fill="black" text-anchor="middle"> a </text> 
+ <path fill="none"  d="M240 250 Q 248.980883488 332.752960227 200 400" stroke="black"></path> 
+  <text x="248.980883488" y="332.752960227" fill="black" text-anchor="middle"> b </text> 
+ <path fill="none"  d="M240 250 Q 243.411133015 293.759500285 200 300" stroke="black"></path> 
+  <text x="243.411133015" y="293.759500285" fill="black" text-anchor="middle"> d </text> 
+ <path fill="none"  d="M240 250 Q 243.411133015 293.759500285 200 300" stroke="black"></path> 
+  <text x="243.411133015" y="293.759500285" fill="black" text-anchor="middle"> c </text> 
+ <path fill="none"  d="M240 250 Q 243.411133015 293.759500285 200 300" stroke="black"></path> 
+  <text x="243.411133015" y="293.759500285" fill="black" text-anchor="middle"> a </text> 
+ <path fill="none"  d="M240 250 Q 243.411133015 293.759500285 200 300" stroke="black"></path> 
+  <text x="243.411133015" y="293.759500285" fill="black" text-anchor="middle"> b </text> 
+ <path fill="none"  d="M240 250 Q 240.023889801 220.000009512 240 250" stroke="black"></path> 
+  <text x="240.023889801" y="220.000009512" fill="black" text-anchor="middle"> d </text> 
+ <path fill="none"  d="M240 250 Q 240.023889801 220.000009512 240 250" stroke="black"></path> 
+  <text x="240.023889801" y="220.000009512" fill="black" text-anchor="middle"> c </text> 
+ <path fill="none"  d="M240 250 Q 240.023889801 220.000009512 240 250" stroke="black"></path> 
+  <text x="240.023889801" y="220.000009512" fill="black" text-anchor="middle"> a </text> 
+ <path fill="none"  d="M240 250 Q 240.023889801 220.000009512 240 250" stroke="black"></path> 
+  <text x="240.023889801" y="220.000009512" fill="black" text-anchor="middle"> b </text> 
+ <path fill="none"  d="M200 200 Q 171.196304069 271.23008935 100 300" stroke="black"></path> 
+  <text x="171.196304069" y="271.23008935" fill="black" text-anchor="middle"> a </text> 
+ <path fill="none"  d="M200 400 Q 128.76991065 371.196304069 100 300" stroke="black"></path> 
+  <text x="128.76991065" y="371.196304069" fill="black" text-anchor="middle"> b </text> 
+ <path fill="none"  d="M200 200 Q 200.023889801 170.000009512 200 200" stroke="black"></path> 
+  <text x="200.023889801" y="170.000009512" fill="black" text-anchor="middle"> b </text> 
+ <path fill="none"  d="M200 200 Q 200.023889801 170.000009512 200 200" stroke="black"></path> 
+  <text x="200.023889801" y="170.000009512" fill="black" text-anchor="middle"> a </text> 
+ <path fill="none"  d="M200 300 Q 170.000009512 249.976110199 200 200" stroke="black"></path> 
+  <text x="170.000009512" y="249.976110199" fill="black" text-anchor="middle"> c </text> 
+ <path fill="none"  d="M200 300 Q 170.000009512 249.976110199 200 200" stroke="black"></path> 
+  <text x="170.000009512" y="249.976110199" fill="black" text-anchor="middle"> d </text> 
+ <path fill="none"  d="M200 300 Q 229.999990488 350.023889801 200 400" stroke="black"></path> 
+  <text x="229.999990488" y="350.023889801" fill="black" text-anchor="middle"> c </text> 
+ <path fill="none"  d="M200 300 Q 229.999990488 350.023889801 200 400" stroke="black"></path> 
+  <text x="229.999990488" y="350.023889801" fill="black" text-anchor="middle"> d </text> 
  </svg>

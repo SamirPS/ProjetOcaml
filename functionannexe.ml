@@ -376,7 +376,7 @@ let gettransicreeaux a identifiant listtransition listeletter =
   let rec go listeletter acc = 
     match listeletter  with
     | [] -> List.rev acc
-    | x::q when (existe a listtransition x = false ) -> (Edge(a,identifiant,x,""))::acc
+    | x::q when (existe a listtransition x =false ) -> go q ((Edge(a,identifiant,x,""))::acc)
     | _::q -> go q acc
   in go listeletter [];;
 
@@ -389,25 +389,18 @@ let gettransicree identifiant listtransition listenoeud =
   in go listenoeud [];;
 
 
-let addauto identifiant listtransition listenoeud listlettre =
-  let rec go listlettre acc = match listlettre with
-    | [] -> List.rev acc
-    | x::xs  -> go xs ((Edge(identifiant,identifiant,x,"")) :: acc)
-
-  in go listlettre [];;
   
 let transiajouter identifiant listenoeud listtransition =
   let ajout = gettransicree  identifiant listtransition listenoeud in 
-  let aussiajout= addauto identifiant listtransition listenoeud (getlettre listtransition) in
-  (aussiajout@listtransition)@ajout;;
+  listtransition@ajout;;
 
 let complete identifiant listenoeud listtransition =
-  if (is_complete listenoeud listtransition = false) && (containsele identifiant listenoeud = false) then
+  if (is_complete listenoeud listtransition = false) && (containsele identifiant listenoeud = true ) then
     transiajouter identifiant listenoeud listtransition
   else listtransition;;
 
 let completeaux identifiant numun numdeux listenoeud listtransition = 
-  if (is_complete listenoeud listtransition = true) && (containsele identifiant listenoeud = false) then
+  if (is_complete listenoeud listtransition = false) && (containsele identifiant listenoeud = false ) then
     ( add (Noeud(identifiant,numun,numdeux,"")) listenoeud listtransition) @ listenoeud
   else listenoeud;;
   
