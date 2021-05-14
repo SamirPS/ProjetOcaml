@@ -44,7 +44,7 @@
 
         lasf : 
         | ISCOMPLETE {Printf.printf "%b\n " (is_complete !nodelist !transition)}
-        | COMPLETE WITH labelnoeud AT numero numero {transition:= complete (createid $3) !nodelist !transition;nodelist := completeaux (createid $3) $5 $6 !nodelist !transition;}
+        | COMPLETE WITH labelnoeud AT numero numero {nodelist := completeaux (createid $3) $5 $6 !nodelist !transition;transition:= complete (createid $3) !nodelist !transition;}
         | ISDETERMINISTIC {Printf.printf "%b\n " (is_deterministic !nodelist !transition)}
         | ISRECONNU vrailabel {Printf.printf "%b\n " (is_accepted !nodelist !transition $2)}
         | SHOW vrailabel {Printf.printf "%s\n " (getchemin !nodelist !transition $2)}
