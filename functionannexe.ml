@@ -402,12 +402,12 @@ let transiajouter identifiant listenoeud listtransition =
   (aussiajout@listtransition)@ajout;;
 
 let complete identifiant listenoeud listtransition =
-  if (is_complete listenoeud listtransition = false) && (containsele identifiant listenoeud = true) then
+  if (is_complete listenoeud listtransition = false) && (containsele identifiant listenoeud = false) then
     transiajouter identifiant listenoeud listtransition
   else listtransition;;
 
 let completeaux identifiant numun numdeux listenoeud listtransition = 
-  if (is_complete listenoeud listtransition = false) && (containsele identifiant listenoeud = false) then
+  if (is_complete listenoeud listtransition = true) && (containsele identifiant listenoeud = false) then
     ( add (Noeud(identifiant,numun,numdeux,"")) listenoeud listtransition) @ listenoeud
   else listenoeud;;
   
