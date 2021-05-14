@@ -39,7 +39,7 @@ let createid id =
 let getnode idun ideux l =
   let rec search l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when (a = createid idun) || (a= createid ideux)    -> search xs (Noeud(a,b,c,d) :: acc)
+    | Noeud(a,b,c,d)::xs when (a = idun) || (a= ideux)    -> search xs (Noeud(a,b,c,d) :: acc)
     | _::xs -> search xs  acc
   in search l [];;
 
@@ -64,12 +64,12 @@ let rec containsedge x y t l = match l with
   let add_aux elem = 
       match elem with 
         
-        | Noeud(x,y,z,t) when t = "" -> [Noeud(createid x,y,z," SIZE: 30 LABEL: " ^ x)]
-        | Noeud(x,y,z,t) when ((contains t "SIZE:") = false) && ((contains t " LABEL: ") =false) -> [Noeud(createid x,y,z," SIZE: 30 LABEL: " ^ x ^t)]
-        | Noeud(x,y,z,t) when (contains t "SIZE:") = false  -> [Noeud(createid x,y,z," SIZE: 30" ^t)]
-        | Noeud(x,y,z,t) when (contains t "LABEL:") =  false -> [Noeud(createid x,y,z," LABEL: " ^ x ^t)]
-        | Edge(x,y,z,t) -> [Edge(createid x,createid y,z,t)]
-        | Noeud(x,y,z,t) -> [Noeud(createid x,y,z,t)] ;;
+        | Noeud(x,y,z,t) when t = "" -> [Noeud(x,y,z," SIZE: 30 LABEL: " ^ x)]
+        | Noeud(x,y,z,t) when ((contains t "SIZE:") = false) && ((contains t " LABEL: ") =false) -> [Noeud( x,y,z," SIZE: 30 LABEL: " ^ x ^t)]
+        | Noeud(x,y,z,t) when (contains t "SIZE:") = false  -> [Noeud(x,y,z," SIZE: 30" ^t)]
+        | Noeud(x,y,z,t) when (contains t "LABEL:") =  false -> [Noeud(x,y,z," LABEL: " ^ x ^t)]
+        | Edge(x,y,z,t) -> [Edge(x,y,z,t)]
+        | Noeud(x,y,z,t) -> [Noeud(x,y,z,t)] ;;
     
   let add elem l =
     match elem with
@@ -169,7 +169,7 @@ let createfile name liste secondl =
 let deleten e l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when createid e = a -> go xs acc
+    | Noeud(a,b,c,d)::xs when e = a -> go xs acc
     | x::xs -> go xs (x::acc)
   in go l [];;
 
@@ -181,7 +181,7 @@ let removenoeud e l =
 let removetransitionafternode e l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Edge(a,b,c,d)::xs when (createid e = a) || (createid e = b) -> go xs acc
+    | Edge(a,b,c,d)::xs when (e = a) || (e = b) -> go xs acc
     | x::xs -> go xs (x::acc)
   in go l [];;
 
@@ -195,7 +195,7 @@ let rec containte x y l  =
 let deletee e f l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Edge(a,b,c,d)::xs when (createid e = a) && (createid f = b) -> go xs acc
+    | Edge(a,b,c,d)::xs when (e = a) && (f = b) -> go xs acc
     | x::xs -> go xs (x::acc)
   in go l [];;
 
@@ -217,13 +217,13 @@ let moveall numun numdeux l =
 let moveallid  id numun numdeux l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when a = (createid id) -> go xs (Noeud(a,numun,numdeux,d) :: acc)
+    | Noeud(a,b,c,d)::xs when a = (id) -> go xs (Noeud(a,numun,numdeux,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
   in go l [];;
 
 let moveallid_aux id numun numdeux l =
-  match containsele (createid id) l with
+  match containsele (id) l with
   | false -> failwith "Noeud existe pas"
   | true -> moveallid id numun numdeux l;;
 
@@ -245,7 +245,7 @@ let movelistid  id numun numdeux l =
 let renamen  ancien nouveau l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when a = (createid ancien) ->if (containsele nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else  go xs (Noeud(nouveau,b,c,d) :: acc)
+    | Noeud(a,b,c,d)::xs when a = (ancien) ->if (containsele nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else  go xs (Noeud(nouveau,b,c,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
   in go l [];;
@@ -253,9 +253,9 @@ let renamen  ancien nouveau l =
 let renamet  ancien nouveau l =
     let rec go l acc = match l with
       | [] -> List.rev acc 
-      | Edge(a,b,c,d)::xs when (a = createid ancien) && (b = createid ancien) -> if (containstrans nouveau nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,nouveau,c,d) :: acc)
-      | Edge(a,b,c,d)::xs when (a = createid ancien)  -> if (containstrans nouveau b l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,b,c,d) :: acc)
-      | Edge(a,b,c,d)::xs when  (b = createid ancien) -> if (containstrans a nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(b,nouveau,c,d) :: acc)
+      | Edge(a,b,c,d)::xs when (a =  ancien) && (b = ancien) -> if (containstrans nouveau nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,nouveau,c,d) :: acc)
+      | Edge(a,b,c,d)::xs when (a =  ancien)  -> if (containstrans nouveau b l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,b,c,d) :: acc)
+      | Edge(a,b,c,d)::xs when  (b =  ancien) -> if (containstrans a nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(b,nouveau,c,d) :: acc)
       | x::xs -> go xs  (x::acc)
 
     in go l [];;
@@ -264,7 +264,7 @@ let renamet  ancien nouveau l =
   let editt  idun iddeux attributd l =
     let rec go l acc = match l with
       | [] -> List.rev acc
-      | Edge(a,b,c,d)::xs when (a= createid idun ) && (b=createid iddeux) ->  let color = getvalue "COLOR:" "" (python_split ' ' d) in 
+      | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) ->  let color = getvalue "COLOR:" "" (python_split ' ' d) in 
                                                                              let label = c in 
                                                                              let position = getvalue "POSITION:" "" (python_split ' ' d) in
                                                                              let path = getvalue "PATH:" "" (python_split ' ' d) in
@@ -290,7 +290,7 @@ let renamet  ancien nouveau l =
   let editn  idun attributd l =
     let rec go l acc = match l with
       | [] -> List.rev acc
-      | Noeud(a,b,c,d)::xs when (a= createid idun ) ->                       let x = b in 
+      | Noeud(a,b,c,d)::xs when (a= idun ) ->                                let x = b in 
                                                                              let y = c in 
                                                                              let label = getvalue "LABEL:" "" (python_split ' ' d) in
                                                                              let color = getvalue "COLOR:" "" (python_split ' ' d) in

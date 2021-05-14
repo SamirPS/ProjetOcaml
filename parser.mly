@@ -44,7 +44,7 @@
 
         lasf : 
         | ISCOMPLETE {Printf.printf "%b\n " (is_complete !nodelist !transition)}
-        | COMPLETE WITH labelnoeud AT numero numero {transition:= complete $3 !nodelist !transition;nodelist := completeaux $3 $5 $6 !nodelist !transition;}
+        | COMPLETE WITH labelnoeud AT numero numero {transition:= complete (createid $3) !nodelist !transition;nodelist := completeaux (createid $3) $5 $6 !nodelist !transition;}
         | ISDETERMINISTIC {Printf.printf "%b\n " (is_deterministic !nodelist !transition)}
         | ISRECONNU vrailabel {Printf.printf "%b\n " (is_accepted !nodelist !transition $2)}
         | SHOW vrailabel {Printf.printf "%s\n " (getchemin !nodelist !transition $2)}
@@ -135,27 +135,27 @@
         
         noeud:
 
-          | CREATENODE ID  AT numero numero attribut { nodelist := ( add (Noeud($2, ( $4), ( $5),$6)) !nodelist) @ !nodelist }
-          | CREATENODE ID   attribut AT numero numero { nodelist := ( add (Noeud($2, ( $5), ( $6),$3)) !nodelist) @ !nodelist }
-          | CREATENODE ID   attribut AT numero numero  attribut { nodelist := ( add (Noeud($2, ( $5), ( $6),$3 ^ (" "  ^ $7))) !nodelist) @ !nodelist }
-          | CREATENODE ID   AT numero numero {  nodelist := ( add (Noeud($2, ( $4), ( $5),"")) !nodelist) @ !nodelist}
+          | CREATENODE ID  AT numero numero attribut { nodelist := ( add (Noeud(createid $2, ( $4), ( $5),$6)) !nodelist) @ !nodelist }
+          | CREATENODE ID   attribut AT numero numero { nodelist := ( add (Noeud(createid $2, ( $5), ( $6),$3)) !nodelist) @ !nodelist }
+          | CREATENODE ID   attribut AT numero numero  attribut { nodelist := ( add (Noeud( createid $2, ( $5), ( $6),$3 ^ (" "  ^ $7))) !nodelist) @ !nodelist }
+          | CREATENODE ID   AT numero numero {  nodelist := ( add (Noeud(createid $2, ( $4), ( $5),"")) !nodelist) @ !nodelist}
 
           
-          | CREATEFROM ID TO ID  LABEL vrailabel { transition := (add (Edge($2,$4,$6,"")) !transition )@ !transition }
-          | CREATEFROM ID TO ID  LABEL vrailabel attributf { transition := (add (Edge($2,$4,$6,$7)) !transition) @ !transition }
-          | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := ( add (Edge($2,$4,$7,$5)) !transition)  @ !transition }
-          | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := (add (Edge($2,$4,$7,$5 ^ (" "^ $8))) !transition)  @ !transition }
+          | CREATEFROM ID TO ID  LABEL vrailabel { transition := (add (Edge(createid $2,createid $4,$6,"")) !transition )@ !transition }
+          | CREATEFROM ID TO ID  LABEL vrailabel attributf { transition := (add (Edge(createid $2,createid $4,$6,$7)) !transition) @ !transition }
+          | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := ( add (Edge(createid $2,createid $4,$7,$5)) !transition)  @ !transition }
+          | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := (add (Edge(createid $2,createid $4,$7,$5 ^ (" "^ $8))) !transition)  @ !transition }
 
-          | EDITEDGE ID TO ID WITH attributet { transition := editt $2 $4 $6  !transition }
-          | EDIT ID WITH attributen {nodelist := editn $2 $4 !nodelist }
+          | EDITEDGE ID TO ID WITH attributet { transition := editt (createid $2) ( createid $4) $6  !transition }
+          | EDIT ID WITH attributen {nodelist := editn (createid $2) $4 !nodelist }
 
-          | REMOVE ID { nodelist := removenoeud $2 !nodelist ; transition:= removetransitionafternode $2 !transition;  }
-          | REMOVEEDGE ID TO ID {  transition := removetransition $2 $4  !transition }
+          | REMOVE ID { nodelist := removenoeud (createid $2) !nodelist ; transition:= removetransitionafternode (createid $2) !transition;  }
+          | REMOVEEDGE ID TO ID {  transition := removetransition (createid $2) (createid $4)  !transition }
           
           |  MOVE numero numero {nodelist := moveall $2 $3 !nodelist}
-          |  MOVE ID numero numero {nodelist := moveallid_aux $2 $3 $4 !nodelist}
+          |  MOVE ID numero numero {nodelist := moveallid_aux (createid $2) $3 $4 !nodelist}
           |  MOVE glist numero numero {nodelist := movelistid $2 $3 $4 !nodelist}
 
-          | RENAME ID TO ID {nodelist:= renamen $2 $4 !nodelist ; transition:= renamet $2 $4 !transition ;}
+          | RENAME ID WITH ID {nodelist:= renamen (createid $2) (createid $4) !nodelist ; transition:= renamet (createid $2) (createid $4) !transition ;}
           
         ;
