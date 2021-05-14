@@ -43,10 +43,25 @@ let getnode idun ideux l =
     | _::xs -> search xs  acc
   in search l [];;
 
+let rec containsele x l = match l with
+  | [] -> false
+  | Noeud(a,b,c,d)::q when a= createid x -> true
+  | t::q -> containsele x q ;;
+
+let rec containsedge x y t l = match l with
+  | [] -> false
+  | Edge(a,b,c,d)::q when (a= createid x) && (b=createid y ) && (c=createid t) -> true
+  | t::q -> containsele x q ;;
+
+  let rec containstrans x y l = match l with
+  | [] -> false
+  | Edge(a,b,c,d)::q when (a= createid x) && (b=createid y ) -> true
+  | t::q -> containsele x q ;;
+
 
 (* fonction pour create *)
 
-  let add elem = 
+  let add_aux elem = 
       match elem with 
         
         | Noeud(x,y,z,t) when t = "" -> [Noeud(createid x,y,z," SIZE: 30 LABEL: " ^ x)]
@@ -55,6 +70,12 @@ let getnode idun ideux l =
         | Noeud(x,y,z,t) when (contains t "LABEL:") =  false -> [Noeud(createid x,y,z," LABEL: " ^ x ^t)]
         | Edge(x,y,z,t) -> [Edge(createid x,createid y,z,t)]
         | Noeud(x,y,z,t) -> [Noeud(createid x,y,z,t)] ;;
+    
+  let add elem l =
+    match elem with
+    | Noeud(a,b,c,d) when (containsele a l = false) -> add_aux elem
+    | Edge(a,b,c,d) when (containsedge a b c l = false) -> add_aux elem
+    | _ -> failwith "Ajout impossible" ;;
 
 (* DUMP *)
 let rec printlist e  = 
@@ -145,11 +166,6 @@ let createfile name liste secondl =
 
 (* Remove *)
 
-let rec containsele x l = match l with
-  | [] -> false
-  | Noeud(a,b,c,d)::q when a=x -> true
-  | t::q -> containsele x q ;;
-
 let deleten e l =
   let rec go l acc = match l with
     | [] -> List.rev acc
@@ -206,6 +222,11 @@ let moveallid  id numun numdeux l =
 
   in go l [];;
 
+let moveallid_aux id numun numdeux l =
+  match containsele (createid id) l with
+  | false -> failwith "Noeud existe pas"
+  | true -> moveallid id numun numdeux l;;
+
 let rec containscreateid a l = 
       match l with
     |[] -> false
@@ -215,7 +236,7 @@ let rec containscreateid a l =
 let movelistid  id numun numdeux l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when (containscreateid a id ) -> go xs (Noeud(a,numun,numdeux,d) :: acc)
+    | Noeud(a,b,c,d)::xs when (containscreateid a id ) -> if (containsele a l = false  ) then failwith "Noeud inconnu"  else go xs (Noeud(a,numun,numdeux,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
   in go l [];; 
@@ -224,17 +245,17 @@ let movelistid  id numun numdeux l =
 let renamen  ancien nouveau l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when a = (createid ancien) -> go xs (Noeud(nouveau,b,c,d) :: acc)
+    | Noeud(a,b,c,d)::xs when a = (createid ancien) ->if (containsele nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else  go xs (Noeud(nouveau,b,c,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
   in go l [];;
 
 let renamet  ancien nouveau l =
     let rec go l acc = match l with
-      | [] -> List.rev acc
-      | Edge(a,b,c,d)::xs when (a = createid ancien) && (b = createid ancien) -> go xs (Edge(nouveau,nouveau,c,d) :: acc)
-      | Edge(a,b,c,d)::xs when (a = createid ancien)  -> go xs (Edge(nouveau,b,c,d) :: acc)
-      | Edge(a,b,c,d)::xs when  (b = createid ancien) -> go xs (Edge(b,nouveau,c,d) :: acc)
+      | [] -> List.rev acc 
+      | Edge(a,b,c,d)::xs when (a = createid ancien) && (b = createid ancien) -> if (containstrans nouveau nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,nouveau,c,d) :: acc)
+      | Edge(a,b,c,d)::xs when (a = createid ancien)  -> if (containstrans nouveau b l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,b,c,d) :: acc)
+      | Edge(a,b,c,d)::xs when  (b = createid ancien) -> if (containstrans a nouveau l ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(b,nouveau,c,d) :: acc)
       | x::xs -> go xs  (x::acc)
 
     in go l [];;
@@ -371,13 +392,13 @@ let transiajouter identifiant listenoeud listtransition =
   (aussiajout@listtransition)@ajout;;
 
 let complete identifiant listenoeud listtransition =
-  if is_complete listenoeud listtransition = false then
+  if is_complete listenoeud listtransition = false && containsele identifiant listenoeud = false then
     transiajouter identifiant listenoeud listtransition
   else listtransition;;
 
 let completeaux identifiant numun numdeux listenoeud listtransition = 
-  if is_complete listenoeud listtransition = false then
-    ( add (Noeud(identifiant,numun,numdeux,"")) ) @ listenoeud
+  if is_complete listenoeud listtransition = false && containsele identifiant listenoeud = false then
+    ( add (Noeud(identifiant,numun,numdeux,"")) listenoeud) @ listenoeud
   else listenoeud;;
   
 (*Deterministe*)

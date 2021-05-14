@@ -135,16 +135,16 @@
         
         noeud:
 
-          | CREATENODE ID  AT numero numero attribut { nodelist := add (Noeud($2, ( $4), ( $5),$6)) @ !nodelist }
-          | CREATENODE ID   attribut AT numero numero { nodelist := add (Noeud($2, ( $5), ( $6),$3)) @ !nodelist }
-          | CREATENODE ID   attribut AT numero numero  attribut { nodelist := add (Noeud($2, ( $5), ( $6),$3 ^ (" "  ^ $7))) @ !nodelist }
-          | CREATENODE ID   AT numero numero {  nodelist := add (Noeud($2, ( $4), ( $5),"")) @ !nodelist}
+          | CREATENODE ID  AT numero numero attribut { nodelist := ( add (Noeud($2, ( $4), ( $5),$6)) !nodelist) @ !nodelist }
+          | CREATENODE ID   attribut AT numero numero { nodelist := ( add (Noeud($2, ( $5), ( $6),$3)) !nodelist) @ !nodelist }
+          | CREATENODE ID   attribut AT numero numero  attribut { nodelist := ( add (Noeud($2, ( $5), ( $6),$3 ^ (" "  ^ $7))) !nodelist) @ !nodelist }
+          | CREATENODE ID   AT numero numero {  nodelist := ( add (Noeud($2, ( $4), ( $5),"")) !nodelist) @ !nodelist}
 
           
-          | CREATEFROM ID TO ID  LABEL vrailabel { transition := add (Edge($2,$4,$6,"")) @ !transition }
-          | CREATEFROM ID TO ID  LABEL vrailabel attributf { transition := add (Edge($2,$4,$6,$7)) @ !transition }
-          | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := add (Edge($2,$4,$7,$5))  @ !transition }
-          | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := add (Edge($2,$4,$7,$5 ^ (" "^ $8)))  @ !transition }
+          | CREATEFROM ID TO ID  LABEL vrailabel { transition := (add (Edge($2,$4,$6,"")) !transition )@ !transition }
+          | CREATEFROM ID TO ID  LABEL vrailabel attributf { transition := (add (Edge($2,$4,$6,$7)) !transition) @ !transition }
+          | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := ( add (Edge($2,$4,$7,$5)) !transition)  @ !transition }
+          | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := (add (Edge($2,$4,$7,$5 ^ (" "^ $8))) !transition)  @ !transition }
 
           | EDITEDGE ID TO ID WITH attributet { transition := editt $2 $4 $6  !transition }
           | EDIT ID WITH attributen {nodelist := editn $2 $4 !nodelist }
@@ -153,7 +153,7 @@
           | REMOVEEDGE ID TO ID {  transition := removetransition $2 $4  !transition }
           
           |  MOVE numero numero {nodelist := moveall $2 $3 !nodelist}
-          |  MOVE ID numero numero {nodelist := moveallid $2 $3 $4 !nodelist}
+          |  MOVE ID numero numero {nodelist := moveallid_aux $2 $3 $4 !nodelist}
           |  MOVE glist numero numero {nodelist := movelistid $2 $3 $4 !nodelist}
 
           | RENAME ID TO ID {nodelist:= renamen $2 $4 !nodelist ; transition:= renamet $2 $4 !transition ;}

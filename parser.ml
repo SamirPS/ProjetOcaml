@@ -745,7 +745,7 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 138 "parser.mly"
-                                                     ( nodelist := add (Noeud(_2, ( _4), ( _5),_6)) @ !nodelist )
+                                                     ( nodelist := ( add (Noeud(_2, ( _4), ( _5),_6)) !nodelist) @ !nodelist )
 # 750 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -755,7 +755,7 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
 # 139 "parser.mly"
-                                                      ( nodelist := add (Noeud(_2, ( _5), ( _6),_3)) @ !nodelist )
+                                                      ( nodelist := ( add (Noeud(_2, ( _5), ( _6),_3)) !nodelist) @ !nodelist )
 # 760 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -766,7 +766,7 @@ let yyact = [|
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 140 "parser.mly"
-                                                                ( nodelist := add (Noeud(_2, ( _5), ( _6),_3 ^ (" "  ^ _7))) @ !nodelist )
+                                                                ( nodelist := ( add (Noeud(_2, ( _5), ( _6),_3 ^ (" "  ^ _7))) !nodelist) @ !nodelist )
 # 771 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -775,7 +775,7 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
 # 141 "parser.mly"
-                                             (  nodelist := add (Noeud(_2, ( _4), ( _5),"")) @ !nodelist)
+                                             (  nodelist := ( add (Noeud(_2, ( _4), ( _5),"")) !nodelist) @ !nodelist)
 # 780 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -784,7 +784,7 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 144 "parser.mly"
-                                                 ( transition := add (Edge(_2,_4,_6,"")) @ !transition )
+                                                 ( transition := (add (Edge(_2,_4,_6,"")) !transition )@ !transition )
 # 789 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -794,7 +794,7 @@ let yyact = [|
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
 # 145 "parser.mly"
-                                                           ( transition := add (Edge(_2,_4,_6,_7)) @ !transition )
+                                                           ( transition := (add (Edge(_2,_4,_6,_7)) !transition) @ !transition )
 # 799 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -804,7 +804,7 @@ let yyact = [|
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 146 "parser.mly"
-                                                            ( transition := add (Edge(_2,_4,_7,_5))  @ !transition )
+                                                            ( transition := ( add (Edge(_2,_4,_7,_5)) !transition)  @ !transition )
 # 809 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -815,7 +815,7 @@ let yyact = [|
     let _8 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
 # 147 "parser.mly"
-                                                                       ( transition := add (Edge(_2,_4,_7,_5 ^ (" "^ _8)))  @ !transition )
+                                                                       ( transition := (add (Edge(_2,_4,_7,_5 ^ (" "^ _8))) !transition)  @ !transition )
 # 820 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
@@ -864,7 +864,7 @@ let yyact = [|
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
 # 156 "parser.mly"
-                                   (nodelist := moveallid _2 _3 _4 !nodelist)
+                                   (nodelist := moveallid_aux _2 _3 _4 !nodelist)
 # 869 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->

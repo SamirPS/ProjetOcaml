@@ -9,12 +9,11 @@ CREATE EDGE FROM deux to trois LABEL "b"
 
 CREATE EDGE FROM trois to deux LABEL "b"
 
-dump
 
 IS COMPLETE
 
 COMPLETE WITH p AT 500 500
-dump
+
 
 IS COMPLETE
 
