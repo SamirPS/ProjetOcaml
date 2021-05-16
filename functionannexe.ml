@@ -208,8 +208,6 @@ let calcularc idun ideux l transi label argstransi=
   if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then
     flecheref := "M"^isinteger(p2x -. sizedeux )^","^isinteger(p2y)^" l -10 -4 l 10 -9 Z";
  
-
-  Printf.printf "%s -> %s count %d %s y1,y2 = %f %f \n " idun ideux count !flecheref p1y p2y;
   curveedebut^ !curve ^curvefin^infox^isinteger(c1x)^infoy^isinteger(c1y)^ infoatt ^label^ labelinfo^fleche^ !flecheref^flechefin;;
 
 let rec nodefile noeud monstr =

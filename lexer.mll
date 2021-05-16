@@ -59,15 +59,15 @@
           | e d i t {EDIT}
           | e d i t spa e d g e spa f r o m {EDITEDGE}
           | p a t h {PATH}
-          | n o r d  {N}
-          | s u d {S}
+          | n o r t h  {N}
+          | s o u t h {S}
           | n o n e {NONE}
           | e a s t {E}
           | w e s t {O}
-          | n o r d tiret w e s t {NW}
-          | n o r d tiret e a s t {NE}
-          | s u d tiret w e s t {SW}
-          | s u d tiret e a s t {SE}
+          | n o r t h tiret w e s t {NW}
+          | n o r t h tiret e a s t {NE}
+          | s o u t h tiret w e s t {SW}
+          | s o u t h tiret e a s t {SE}
           | i s spa c o m p l e t e {ISCOMPLETE}
           | i s spa d e t e r m i n i s t i c {ISDETERMINISTIC}
           | i s spa r e c o n n u {ISRECONNU}
