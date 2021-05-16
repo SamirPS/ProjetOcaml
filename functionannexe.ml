@@ -271,8 +271,10 @@ let rec initfinal listenoeud monstr=
                                                     (* fleche *)
                                                     if (direct = "Ouest" || direct = "none") then flecheref := "M"^isinteger(x1-.sizeun)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
                                                     if (direct = "Nord") then flecheref := "M"^isinteger(x1)^","^isinteger (y1+.sizeun)^" l -8 8 m 16 0 l -8 -8";
-                                                    if (direct = "Sud") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
-                                                    if (direct = "Est") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
+                                                    if (direct = "Sud") then flecheref := "M"^isinteger(x1)^","^isinteger (y1-.sizeun)^" l 8 -8 m -16 0 l 8 8";
+
+                                                    if (direct = "Est") then flecheref := "M"^isinteger(x1+.sizeun)^","^isinteger (y1)^"l 8,-8 l 0,16 Z";
+
 
 
                                                     if (direct = "Nord-West" ) then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(-. sizeun)^isinteger(-.sizeun)^"\">";
