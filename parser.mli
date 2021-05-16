@@ -36,6 +36,7 @@ type token =
   | NE
   | SW
   | SE
+  | NONE
 
 val main :
   (Lexing.lexbuf  -> token) -> Lexing.lexbuf -> unit 

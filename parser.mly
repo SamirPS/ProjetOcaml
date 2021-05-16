@@ -18,7 +18,7 @@
         %token <string> LIST
 
         %token SHOW ISRECONNU ISDETERMINISTIC COMPLETE ISCOMPLETE CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH 
-        %token EOL N S E O NW NE SW SE
+        %token EOL N S E O NW NE SW SE NONE
         
                 
         
@@ -81,14 +81,15 @@
         ;
 
         direction :
+        | NONE {"none"}
         | N {"Nord"}
         | S {"Sud"}
         | E {"Est"}
         | O {"Ouest"}
-        | NW {"Nord West"}
-        | NE {"Nord Est"}
-        | SW {"Sud Ouest"}
-        | SE {"Sud Est"}
+        | NW {"Nord-West"}
+        | NE {"Nord-Est"}
+        | SW {"Sud-Ouest"}
+        | SE {"Sud-Est"}
 
         attributf:
           | COLOR vrailabel  {" COLOR: " ^ $2 }
@@ -147,11 +148,11 @@
           | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := ( add (Edge(createid $2,createid $4,$7,$5)) !nodelist !transition)  @ !transition }
           | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := (add (Edge(createid $2,createid $4,$7,$5 ^ (" "^ $8))) !nodelist !transition)  @ !transition }
 
-          | EDITEDGE ID TO ID LABEL vrailabel WITH attributet { transition := editt (createid $2) ( createid $4) $6 $8  !transition }
+          | EDITEDGE ID TO ID WITH attributet { transition := editt (createid $2) ( createid $4) $6   !transition }
           | EDIT ID WITH attributen {nodelist := editn (createid $2) $4 !nodelist }
 
           | REMOVE ID { nodelist := removenoeud (createid $2) !nodelist ; transition:= removetransitionafternode (createid $2) !transition;  }
-          | REMOVEEDGE ID TO ID WITH vrailabel {  transition := removetransition (createid $2) (createid $4) $6 !transition }
+          | REMOVEEDGE ID TO ID  {  transition := removetransition (createid $2) (createid $4) !transition }
           
           |  MOVE numero numero {nodelist := moveall $2 $3 !nodelist}
           |  MOVE ID numero numero {nodelist := moveallid_aux (createid $2) $3 $4 !nodelist}

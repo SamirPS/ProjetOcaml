@@ -36,10 +36,10 @@ let createid id =
     then begin id end
     else begin (String.sub id 0 14 ) end;;
 
-let getnode idun ideux l =
+let getnode idun l =
   let rec search l acc = match l with
     | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs when (a = idun) || (a= ideux)    -> search xs (Noeud(a,b,c,d) :: acc)
+    | Noeud(a,b,c,d)::xs when a = idun   -> search xs (Noeud(a,b,c,d) :: acc)
     | _::xs -> search xs  acc
   in search l [];;
 
@@ -96,33 +96,121 @@ let gety node =
   | Noeud(a,b,c,d) -> c
   | _ -> "";;
 
+let getargs node valeur defaut  = 
+  match node with
+  | Noeud(a,b,c,d) -> getvalue valeur defaut (python_split ' ' d)
+  | _ -> defaut;;
+
 let isinteger numero = 
   match Float.is_integer numero with
   | true -> string_of_int (int_of_float numero)
-  | false -> string_of_float numero;; 
+  | false -> string_of_float numero;;
 
-let calcularc idun ideux l label=
-  let node = getnode idun ideux l in
-  let nodeun = List.hd node in
-  let nodedeux = List.hd (List.rev node) in 
+
+let counttransi idun iddeux listtransition =
+  let rec go listtransition acc = 
+    match listtransition  with
+    | [] ->  acc
+    | Edge(a,b,c,d)::q when (a=idun && b=iddeux) -> go q (acc+1)
+    | Edge(a,b,c,d)::q when (a=iddeux && b=idun) -> go q (acc+1)
+    | _::q -> go q acc
+  in go listtransition 0 ;;
+
+let getlabel idun iddeux listtransition =
+  let rec go listtransition acc = 
+    match listtransition  with
+    | [] ->  acc
+    | Edge(a,b,c,d)::q when (a=idun && b=iddeux) -> go q (c^" "^acc)
+    | _::q -> go q acc
+  in go listtransition "" ;;
+  
+
+
+let calcularc idun ideux l transi label argstransi=
+  let count = counttransi idun ideux transi in 
+  let nodeun = List.hd (getnode idun l) in
+  let nodedeux = List.hd (getnode ideux l) in 
   let p1x = float_of_string (getx nodeun) in 
   let p1y = float_of_string (gety nodeun) in 
   let p2x = float_of_string (getx nodedeux) in 
   let p2y = float_of_string (gety nodedeux) in 
-
   let mpx =(  ( p2x) +. ( p1x) ) *. 0.5 in
   let mpy = (  ( p2y) +. ( p1y) ) *. 0.5 in 
   let theta= (atan2 (p2y-.p1y) (p2x-.p1x)) -. (3.14 *. 0.5) in 
-  let offset =  30.0 in 
+  let offset =  -. 30.0 in 
 
 
   let c1x = mpx +. offset *. cos(theta) in
   let c1y = mpy +. offset *. sin(theta) in
+  
+  let color = getvalue "COLOR:" "black" (python_split ' ' argstransi) in
+  let curve = ref "" in 
+  let curveedebut = "<path fill=\"none\"  d=\""  in 
+  let curvefin = "\" stroke=\""^color^"\"></path> \n " in 
+  let infox = "<text x=\"" in 
+  let infoy = "\" y=\"" in 
+  let infoatt = "\" fill=\"black\" text-anchor=\"middle\"> " in 
+  let labelinfo = " </text> \n " in 
+  let sizeun = float_of_string ( getargs nodeun "SIZE:" "30") in
+  let sizedeux = float_of_string (getargs nodedeux "SIZE:" "30" ) in
 
-  let curve = "M" ^ isinteger (  p1x )  ^ " " ^isinteger (  p1y ) ^ " Q " ^ isinteger  (  c1x ) ^ " " ^isinteger (  c1y ) ^ " " ^isinteger (  p2x ) ^ " " ^isinteger (  p2y ) in
-  let curveelement = "<path fill=\"none\"  d=\"" ^ curve ^ "\" stroke=\"black\"></path> \n " in 
-  let info = "<text x=\"" ^isinteger (  c1x )  ^ "\" y=\"" ^isinteger (  c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^label^ " </text> \n " in 
-  curveelement ^ " " ^ info;;
+  let fleche = "<path fill=\""^color^"\"  d=\"" in 
+  let flechefin = "\" stroke=\""^color^"\"></path> \n" in 
+  let flecheref = ref "" in 
+
+  if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) ) then (* bas  à haut+ fleche **)
+    curve := "M" ^ isinteger(p1x) ^ " " ^isinteger(p1y-.sizeun) ^ " L " ^ isinteger(p2x) ^ " " ^isinteger(p2y+.sizedeux);
+  if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) ) then (* bas  à haut+ fleche **)
+    flecheref := "M"^isinteger(p2x)^","^isinteger (p2y+.sizedeux)^" l -8 8 m 16 0 l -8 -8";
+
+  
+  if (count < 2 &&  ( not (idun = ideux)) && (p2y>p1y) ) then (* haut à bas+ fleche **)
+    curve := "M" ^ isinteger(p1x) ^ " " ^isinteger(p1y+.sizedeux) ^ " L " ^ isinteger  (  p2x ) ^ " " ^isinteger (  p2y-.sizedeux );
+  if (count < 2 &&  ( not (idun = ideux)) && (p2y>p1y) ) then 
+    flecheref := "M"^isinteger(p2x)^","^isinteger (p2y-.sizedeux)^" l 8 -8 m -16 0 l 8 8";
+  
+  if (count < 2 &&  ( not (idun = ideux)) && (p1x>p2x) ) then (* droite à gauche+ fleche **)
+    curve := "M" ^ isinteger(p1x-.sizeun) ^ " " ^isinteger(p1y) ^ " L " ^ isinteger(  p2x+.sizedeux ) ^ " " ^isinteger (  p2y );
+  if (count < 2 &&  ( not (idun = ideux)) && (p1x>p2x) ) then
+    flecheref := "M"^isinteger(p2x+.sizedeux)^","^isinteger (p2y)^"l 8,-8 l 0,16 Z";
+
+  if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) ) then (* gauche à droite + fleche *)
+    curve := "M" ^ isinteger(p1x+.sizeun) ^ " " ^isinteger(p1y) ^ " L " ^ isinteger(p2x-.sizedeux) ^ " " ^isinteger (  p2y );
+  if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) ) then
+    flecheref := "M"^isinteger(p2x-.sizedeux)^","^isinteger (p2y)^"l -8,-8 l 0,16 Z";
+
+
+
+  if (idun = ideux) then (*sur lui même plus fléche*)
+    curve := "M" ^ isinteger(p1x +. (sizeun *. 5. /. 30.)) ^ " " ^isinteger(p1y +. sizedeux -. 1.) ^ " A 15 20 0 1 1 " ^ isinteger(p2x -. (sizeun *. 5. /. 30.) ) ^ " " ^isinteger (p2y +. sizedeux -. 1.);
+  if (idun = ideux) then 
+    flecheref := "M"^isinteger(p2x -. (sizeun *. 5. /. 30.) )^","^isinteger (p2y +. sizedeux -. 1.)^"l -11 2 l 9 9 Z";
+
+
+  if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then (* bas  à haut+ fleche **)
+    curve := "M" ^ isinteger(p1x -. (sizeun *. 5. /. 30.)) ^ "," ^isinteger(p1y -. sizeun) ^ " A 5,15 0 0 1 " ^ isinteger(p2x -. (sizedeux *. 5. /. 30.) ) ^ "," ^isinteger (p2y +. sizedeux);
+  if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then
+    flecheref := "M"^isinteger(p2x -. (sizedeux *. 5. /. 30.) )^","^isinteger (p2y +. sizedeux)^"l -11 2 l 9 9 Z";
+
+  if ( (not (idun = ideux)) && count >= 2 && (p2y>p1y)) then (* haut  à bas+ fleche **)
+    curve := "M" ^ isinteger(p1x +. (sizeun *. 5. /. 30.)) ^ "," ^isinteger(p1y +. sizeun) ^ " A 5,15 0 0 1 " ^ isinteger(p2x +. (sizedeux *. 5. /. 30.) ) ^ "," ^isinteger (p2y -. sizedeux);
+  if ( (not (idun = ideux)) && count >= 2 && (p2y>p1y)) then
+    flecheref := "M"^isinteger(p2x +. (sizedeux *. 5. /. 30.) )^","^isinteger (p2y -. sizedeux)^"l 11,-2 l -9,-9 Z";
+  
+  if ( (not (idun = ideux)) && count >= 2 && (p1x>p2x)) then (* droite  à gauche+ fleche **)
+    curve := "M" ^ isinteger(p1x -. sizeun) ^ "," ^isinteger(p1y) ^ " A 10,10 0 0 1 " ^ isinteger(p2x +. sizedeux) ^ "," ^isinteger(p2y);
+  if ( (not (idun = ideux)) && count >= 2 && (p1x>p2x)) then
+    flecheref := "M"^isinteger(p2x +. sizedeux )^","^isinteger(p2y)^" l 10 4 l -10 9 Z";
+  
+
+  if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then (* gauche   à droite+ fleche **)
+    curve := "M" ^ isinteger(p1x +. sizeun) ^ "," ^isinteger(p1y) ^ " A 10,10 0 0 1 " ^ isinteger(p2x -. sizedeux) ^ "," ^isinteger(p2y);
+  if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then
+    flecheref := "M"^isinteger(p2x -. sizedeux )^","^isinteger(p2y)^" l -10 -4 l 10 -9 Z";
+ 
+
+  Printf.printf "%s -> %s count %d %s y1,y2 = %f %f \n " idun ideux count !flecheref p1y p2y;
+  curveedebut^ !curve ^curvefin^infox^isinteger(c1x)^infoy^isinteger(c1y)^ infoatt ^label^ labelinfo^fleche^ !flecheref^flechefin;;
 
 let rec nodefile noeud monstr =
   match noeud with 
@@ -135,17 +223,17 @@ let rec nodefile noeud monstr =
                         ("<text x=\"" ^y^ "\" y=\"" ^ z ^ "\" dominant-baseline=\"middle \" fill=\"" ^ color ^"\" > "^ label ^" </text> \n") ^ monstr)
   | _ -> ""^monstr;;
       
-let rec transitionfile noeud transi monstr  = 
+let rec transitionfile noeud transi l monstr  = 
       match transi with 
       |[] -> monstr;
-      |Edge(x,y,z,t)::q when (contains t "PATH" = false)-> let info =  calcularc x y  noeud  z in  
-                            transitionfile noeud  q  ( info ^ monstr)
+      |Edge(x,y,z,t)::q when (contains t "PATH" = false)-> let info =  calcularc x y  noeud l  (getlabel x y l) t in  
+                            transitionfile noeud  q  l ( info ^ monstr)
       
       |Edge(x,y,z,t)::q  -> let info = getvalue "PATH:" "30" (python_split ' ' t)  in
+                            let color = getvalue "COLOR:" "black"  (python_split ' ' t) in 
                             let infosur =  (String.concat " " (String.split_on_char '_' info)) in 
-                            let node = getnode x y noeud in
-                            let nodeun = List.hd node in
-                            let nodedeux = List.hd (List.rev node) in 
+                            let nodeun = List.hd (getnode x l) in
+                            let nodedeux = List.hd (getnode y l) in  
                             let p1x =float_of_string (getx nodeun) in 
                             let p1y = float_of_string (gety nodeun) in 
                             let p2x = float_of_string (getx nodedeux) in 
@@ -157,14 +245,51 @@ let rec transitionfile noeud transi monstr  =
                             let offset =  30.0 in 
                             let c1x = mpx +. offset *. cos(theta) in
                             let c1y = mpy +. offset *. sin(theta) in
-                            let fill = "<path fill=\"none\"  d=\"" ^ infosur ^ "\" stroke=\"black\"></path> \n " in 
+                            let fill = "<path fill=\"none\"  d=\"" ^ infosur ^ "\" stroke=\""^color^"\"></path> \n " in 
                             let label = "<text x=\"" ^isinteger (  c1x )  ^ "\" y=\"" ^isinteger (  c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^z^ " </text> \n " in 
-                            transitionfile noeud  q  (  (fill ^label) ^ monstr)
+                            transitionfile noeud  q l (  (fill ^label) ^ monstr)
       | _ -> ""^monstr;;
+
+let rec initfinal listenoeud monstr= 
+  match listenoeud with
+  | [] -> monstr
+  |Noeud(x,y,z,t)::q when (contains t "INITIAL" )-> let direct =  getvalue "INITIAL:" "Ouest" (python_split ' ' t) in 
+                                                    let x1 = (float_of_string y) in
+                                                    let y1 = ( float_of_string z ) in
+                                                    let fleche = "<path fill=\""^"black"^"\"  d=\"" in 
+                                                    let flechefin = "\" stroke=\""^"black"^"\"></path> \n" in 
+                                                    let flecheref = ref "" in 
+                                                    let sizeun = float_of_string (getvalue "SIZE:" "30" (python_split ' ' t)) in 
+                                                    let myinfo = ref "" in 
+                                                    
+                                                    (*fleche pour la direction*)
+                                                    if (direct = "Ouest" || direct = "none") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
+                                                    if (direct = "Nord") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
+                                                    if (direct = "Sud") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Est") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
+                                                    
+                                                    (* fleche *)
+                                                    if (direct = "Ouest" || direct = "none") then flecheref := "M"^isinteger(x1-.sizeun)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
+                                                    if (direct = "Nord") then flecheref := "M"^isinteger(x1)^","^isinteger (y1+.sizeun)^" l -8 8 m 16 0 l -8 -8";
+                                                    if (direct = "Sud") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Est") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
+
+
+                                                    if (direct = "Nord-West" ) then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(-. sizeun)^isinteger(-.sizeun)^"\">";
+
+                                                    if (direct = "Nord-Est") then  myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
+
+                                                    if (direct = "Sud-Ouest") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
+
+                                                    if (direct = "Sud-Est") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^isinteger(-.sizeun)^"\">";
+                                                    initfinal q  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr)
+                                                                                               
+ | _::q -> initfinal q monstr
+;;
 
 let createfile name liste secondl =
   let fic2 = open_out (name^"create.svg") in
-  let mystrfinal=" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n"^(nodefile liste "") ^ (transitionfile liste secondl "") ^  "</svg>" in
+  let mystrfinal=" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n"^(nodefile liste "") ^ (transitionfile liste secondl secondl "") ^ (initfinal liste "") ^ "</svg>" in
   
   output_string fic2 mystrfinal;
   close_out fic2;;
@@ -224,17 +349,17 @@ let rec containte x y l  =
   | Edge(a,b,c,d)::q when a=x && b=y -> true
   | t::q -> containte x y q ;;
 
-let deletee e f lettre l =
+let deletee e f  l =
   let rec go l acc = match l with
     | [] -> List.rev acc
-    | Edge(a,b,c,d)::xs when (e = a) && (f = b) && (c=lettre) -> go xs acc
+    | Edge(a,b,c,d)::xs when (e = a) && (f = b)  -> go xs acc
     | x::xs -> go xs (x::acc)
   in go l [];;
 
-let removetransition e f lettre l =
+let removetransition e f  l =
   match containte e f l with
     |false ->failwith "Impossible à supprimer"
-    | _ -> deletee e f lettre l ;;
+    | _ -> deletee e f  l ;;
 
 (* MOVE *)
 
@@ -301,10 +426,10 @@ let renamet  ancien nouveau l =
     in go l [];;
 
 (*edit *)
-  let editt  idun iddeux lettre attributd l =
+  let editt  idun iddeux  attributd l =
     let rec go l acc = match l with
       | [] -> List.rev acc
-      | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) && (c=lettre) ->                   let color = getvalue "COLOR:" "" (python_split ' ' d) in 
+      | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) ->                   let color = getvalue "COLOR:" "" (python_split ' ' d) in 
                                                                              let label = c in 
                                                                              let position = getvalue "POSITION:" "" (python_split ' ' d) in
                                                                              let path = getvalue "PATH:" "" (python_split ' ' d) in
