@@ -321,7 +321,7 @@ let yyact = [|
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 41 "parser.mly"
-                                ( createfile  _2  !nodelist !transition;dotBDD _2 !nodelist !transition)
+                                ( createfile  _2  !nodelist !transition)
 # 326 "parser.ml"
                : 'display))
 ; (fun __caml_parser_env ->
