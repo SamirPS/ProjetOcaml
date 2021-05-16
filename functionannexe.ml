@@ -285,7 +285,40 @@ let rec initfinal listenoeud monstr=
 
                                                     if (direct = "Sud-Est") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^isinteger(-.sizeun)^"\">";
                                                     initfinal q  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr)
-                                                                                               
+
+ | Noeud(x,y,z,t)::q when (contains t "FINAL" )-> let direct =  getvalue "FINAL:" "Est" (python_split ' ' t) in 
+                                                    let x1 = (float_of_string y) in
+                                                    let y1 = ( float_of_string z ) in
+                                                    let fleche = "<path fill=\""^"black"^"\"  d=\"" in 
+                                                    let flechefin = "\" stroke=\""^"black"^"\"></path> \n" in 
+                                                    let flecheref = ref "" in 
+                                                    let sizeun = float_of_string (getvalue "SIZE:" "30" (python_split ' ' t)) in 
+                                                    let myinfo = ref "" in 
+                                                    
+                                                    (*fleche pour la direction*)
+                                                    if (direct = "Est" || direct = "none") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
+                                                    if (direct = "Nord") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Sud") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
+                                                    if (direct = "Ouest") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
+                                                    
+                                                    (* fleche *)
+                                                    if (direct = "Est" || direct = "none") then flecheref := "M"^isinteger(x1+.sizeun*.2.)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
+                                                    if (direct = "Nord") then flecheref := "M"^isinteger(x1)^","^isinteger (y1-.sizeun*.2.)^" l -8 8 m 16 0 l -8 -8";
+                                                    if (direct = "Sud") then flecheref := "M"^isinteger(x1)^","^isinteger (y1+.sizeun *. 2.)^" l 8 -8 m -16 0 l 8 8";
+
+                                                    if (direct = "Ouest") then flecheref := "M"^isinteger(x1-.sizeun*. 2.)^","^isinteger (y1)^"l 8,-8 l 0,16 Z";
+
+
+
+                                                    if (direct = "Nord-West" ) then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(-. sizeun)^isinteger(-.sizeun)^"\">";
+
+                                                    if (direct = "Nord-Est") then  myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
+
+                                                    if (direct = "Sud-Ouest") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
+
+                                                    if (direct = "Sud-Est") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^isinteger(-.sizeun)^"\">";
+                                                    initfinal q  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr)
+                                                                                                                                                  
  | _::q -> initfinal q monstr
 ;;
 
