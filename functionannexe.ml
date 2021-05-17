@@ -286,23 +286,136 @@ let rec transitionfile noeud transi l monstr  =
                             transitionfile noeud  q  l ( info ^ monstr)
       
       |Edge(x,y,z,t)::q  -> let info = getvalue "PATH:" "30" (python_split ' ' t)  in
+                            let count = counttransi x y l in 
                             let color = getvalue "COLOR:" "black"  (python_split ' ' t) in 
                             let infosur =  (String.concat " " (String.split_on_char '_' info)) in 
-                            let nodeun = List.hd (getnode x l) in
-                            let nodedeux = List.hd (getnode y l) in  
-                            let p1x =float_of_string (getx nodeun) in 
-                            let p1y = float_of_string (gety nodeun) in 
-                            let p2x = float_of_string (getx nodedeux) in 
-                            let p2y = float_of_string (gety nodedeux) in 
+                            let nodeun = List.hd (getnode x noeud) in
+                            let nodedeux = List.hd (getnode y noeud) in 
+                            let sizeun = float_of_string (getargs nodeun "SIZE:" "30")  in 
+                            let sizedeux = float_of_string (getargs nodedeux "SIZE:" "30")  in 
+                            let idun = x in 
+                            let ideux = y in 
+                            let infopath = python_split ' ' infosur in 
+                            let p1x =float_of_string (List.nth infopath 1) in 
+                            let p1y = float_of_string (List.nth infopath 2) in 
+                            let p2x = float_of_string (List.nth infopath (List.length infopath - 2)) in 
+                            let p2y = float_of_string (List.nth infopath (List.length infopath - 1))  in 
 
-                            let mpx =(  ( p2x) +. ( p1x) ) *. 0.5 in
-                            let mpy = (  ( p2y) +. ( p1y) ) *. 0.5 in 
-                            let theta = (atan2 (p2y-.p1y) (p2x-.p1x)) -. (3.14 *. 0.5) in 
-                            let offset =  30.0 in 
-                            let c1x = mpx +. offset *. cos(theta) in
-                            let c1y = mpy +. offset *. sin(theta) in
+                            let c1x = ref 0. in
+                            let c1y = ref 0. in
+
+                            let fleche = "<path fill=\""^color^"\"  d=\"" in 
+                            let flechefin = "\" stroke=\""^color^"\"></path> \n" in 
+                            let flecheref = ref "" in 
+
+                          
+                            (*label direction normal *)
+                            if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) ) then (* bas  à haut+ fleche **)
+                              c1x := ((p1x)+.(p2x))/.2. -. 5.;
+                            if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) ) then (* bas  à haut+ fleche **)
+                              c1y := ((p1y-.sizeun)+.(p2y+. sizedeux))/.2.;
+                          
+                            if (count < 2 &&  ( not (idun = ideux)) && (p2y>p1y) ) then (* haut à bas+ fleche **)
+                              c1x := ((p1x)+.(p2x))/.2. -. 5.;
+                            if (count < 2 &&  ( not (idun = ideux)) && (p2y>p1y) ) then 
+                              c1y := ((p1y+.sizeun)+.(p2y-. sizedeux))/.2.;
+                            
+                            if (count < 2 &&  ( not (idun = ideux)) && (p1x>p2x) ) then (* droite à gauche+ fleche **)
+                              c1x := ((p1x-.sizeun)+.(p2x+. sizedeux))/.2.;
+                            if (count < 2 &&  ( not (idun = ideux)) && (p1x>p2x) ) then
+                              c1y := ((p1y)+.(p2y))/.2. -. 5.;
+                          
+                            if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) ) then (* gauche à droite + fleche *)
+                              c1x := ((p1x+.sizeun)+.(p2x -. sizedeux))/.2.;
+                            if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) ) then
+                              c1y := ((p1y)+.(p2y))/.2. -. 5.;
+                        
+                          
+                          
+                            (*sur lui même plus fléche*)
+                            
+                            if (idun = ideux) then 
+                              c1x := p1x +. sizeun ;
+                            if (idun = ideux) then 
+                              c1y := p1y +. sizedeux *. 2.;
+                          
+                            (*count multiple*)
+                            
+                            (*position*)
+                          
+                            if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then (* bas  à haut+ fleche **)
+                              c1x := p1x -. sizeun;
+                            if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then
+                              c1y := p2y +. sizedeux *. 1.8;
+                          
+                            if ( (not (idun = ideux)) && count >= 2 && (p2y>p1y)) then (* haut  à bas+ fleche **)
+                              c1x := p1x +. sizeun;
+                            if ( (not (idun = ideux)) && count >= 2 && (p2y>p1y)) then
+                              c1y := p1y +. sizeun *. 1.8 ;
+                            
+                            if ( (not (idun = ideux)) && count >= 2 && (p1x>p2x)) then (* droite  à gauche+ fleche **)
+                              c1x := p1x -. sizeun *. 1.8;
+                            if ( (not (idun = ideux)) && count >= 2 && (p1x>p2x)) then
+                              c1y := p2y -. sizedeux;
+                            
+                          
+                            if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then (* gauche   à droite+ fleche **)
+                              c1x := p2x -. sizedeux *. 1.8;
+                            if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then
+                              c1y := p2y +. sizedeux;
+
+                            (*Partie FLECHE*)
+                            if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) ) then (* bas  à haut+ fleche **)
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^" l -8 8 m 16 0 l -8 -8";
+                          
+                            
+                            if (count < 2 &&  ( not (idun = ideux)) && (p2y>p1y) ) then 
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^" l 8 -8 m -16 0 l 8 8";
+                            
+                            if (count < 2 &&  ( not (idun = ideux)) && (p1x>p2x) ) then
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^"l 8,-8 l 0,16 Z";
+                          
+                            if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) ) then
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^"l -8,-8 l 0,16 Z";
+                          
+                          
+                            (*fleche sud east *)
+                            if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) && (p2y>p1y)) then
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^"l -10 -4 l 10 -9 Z";
+                            (* fleche nord west *)
+                            if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) && (p1x>p2x)) then 
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^"l 10 4 l -10 9 Z";
+                            (* fleche sud wesh *)
+                            if (count < 2 &&  ( not (idun = ideux))  && (p2y>p1y) && (p1x>p2x)) then 
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^"l 11,-2 l -9,-9 Z";
+                            (* fleche nord east*)
+                            if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) && (p2x>p1x)) then 
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^"l -11 2 l 9 9 Z";
+                          
+                          
+                            (*sur lui même plus fléche*)
+                            if (idun = ideux) then 
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^"l -11 2 l 9 9 Z";
+                          
+                          
+                            (*count multiple*)
+                            if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then
+                              flecheref := "M"^isinteger(p2x)^","^isinteger (p2y)^"l -11 2 l 9 9 Z";
+                          
+                            if ( (not (idun = ideux)) && count >= 2 && (p2y>p1y)) then
+                              flecheref := "M"^isinteger(p2x  )^","^isinteger (p2y)^"l 11,-2 l -9,-9 Z";
+                            
+                            if ( (not (idun = ideux)) && count >= 2 && (p1x>p2x)) then
+                              flecheref := "M"^isinteger(p2x )^","^isinteger(p2y)^" l 10 4 l -10 9 Z";
+                            
+                          
+                           if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then
+                              flecheref := "M"^isinteger(p2x )^","^isinteger(p2y)^" l -10 -4 l 10 -9 Z";
+                          
+                            
+                          
                             let fill = "<path fill=\"none\"  d=\"" ^ infosur ^ "\" stroke=\""^color^"\"></path> \n " in 
-                            let label = "<text x=\"" ^isinteger (  c1x )  ^ "\" y=\"" ^isinteger (  c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^z^ " </text> \n " in 
+                            let label = "<text x=\"" ^isinteger (  !c1x )  ^ "\" y=\"" ^isinteger (  !c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^ (getlabel x y l)^ " </text> \n " ^fleche^ !flecheref^flechefin in 
                             transitionfile noeud  q l (  (fill ^label) ^ monstr)
       | _ -> ""^monstr;;
 
