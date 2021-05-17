@@ -150,7 +150,7 @@
           | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := ( add (Edge(createid $2,createid $4,$7,$5)) !nodelist !transition)  @ !transition }
           | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := (add (Edge(createid $2,createid $4,$7,$5 ^ (" "^ $8))) !nodelist !transition)  @ !transition }
 
-          | EDITEDGE ID TO ID WITH vrailabel WITH attributet { transition := editt (createid $2) ( createid $4) $8 $6 !transition }
+          | EDITEDGE ID TO ID LABEL vrailabel WITH attributet { transition := editt (createid $2) ( createid $4) $8 $6 !transition }
           | EDIT ID WITH attributen {nodelist := editn (createid $2) $4 !nodelist }
 
           | REMOVE ID { nodelist := removenoeud (createid $2) !nodelist ; transition:= removetransitionafternode (createid $2) !transition;  }
