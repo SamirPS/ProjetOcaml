@@ -70,6 +70,7 @@
           | s o u t h tiret e a s t {SE}
           | i s spa c o m p l e t e {ISCOMPLETE}
           | i s spa d e t e r m i n i s t i c {ISDETERMINISTIC}
+          | d e t e r m i n i s t i c {DETERMINISTIC}
           | i s spa r e c o n n u {ISRECONNU}
           | c o m p l e t e {COMPLETE}
           | s h o w {SHOW}

@@ -644,6 +644,29 @@ let is_deterministic listenoeud listtransition =
   if (List.length listenoeud = 0 ) || (List.length listtransition = 0 ) then false
   else (is_deterministicaux listenoeud listtransition) && (numberinitial listenoeud = true) ;;
 
+(* Show determinste *)
+
+let showdeterminsteaux listenoeud listtransition =
+  let rec go listenoeud acc = 
+    match listenoeud  with
+    | [] -> List.rev acc
+    | Noeud(a,b,c,d)::q when (countallletter a listtransition (getlettre listtransition) = false ) -> go q (a::acc)
+    | _::q -> go q acc
+  in go listenoeud [];;
+
+let changecolord color listenoeud listtransition nodepascomplet  = 
+  let rec go listenoeud acc listakeep= 
+      match listenoeud  with
+      | [] -> List.rev acc
+      | Noeud(a,b,c,d)::q when (List.mem a nodepascomplet) -> go q ((editn a (" BGCOLOR: "^color) listakeep)) ((editn a (" BGCOLOR: "^color) listakeep))
+
+      | _::q -> go q acc listakeep
+    in go listenoeud [] listenoeud;;
+  
+let showcompletd color listenoeud listtransition =
+  let nodeamodifier = showdeterminsteaux listenoeud listtransition in 
+  changecolord color listenoeud listtransition nodeamodifier;;
+
 (* mot reconnu *)
 
 let rec getnodeinitial listenoeud = 

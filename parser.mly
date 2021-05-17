@@ -18,7 +18,7 @@
         %token <string> LIST
 
         %token SHOW ISRECONNU ISDETERMINISTIC COMPLETE ISCOMPLETE CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH 
-        %token EOL N S E O NW NE SW SE NONE
+        %token EOL N S E O NW NE SW SE NONE DETERMINISTIC
         
                 
         
@@ -49,6 +49,7 @@
         | ISRECONNU vrailabel {Printf.printf "%b\n " (is_accepted !nodelist !transition $2)}
         | SHOW vrailabel {Printf.printf "%s\n " (getchemin !nodelist !transition $2)}
         | SHOW COMPLETE vrailabel {nodelist:= showcomplet $3 !nodelist !transition }
+        | SHOW DETERMINISTIC vrailabel {nodelist := showcompletd $3 !nodelist !transition}
         numero:
             NUM {$1}
           ;
