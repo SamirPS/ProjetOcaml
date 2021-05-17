@@ -3,7 +3,7 @@ create node z at 200 300 LABEL "0"
 create node u at 200 200 LABEL "1"
 create node f at 300 300 FINAL east
 
-create edge from i to z label "a" PATH "M 130 300 L 170 300"
+create edge from i to z label "a"  PATH "M 130 300 L 170 300"
 create edge from z to z label "a" 
 create edge from z to u label "b" 
 create edge from u to z label "b" 

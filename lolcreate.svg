@@ -8,7 +8,7 @@
 <circle cx="300" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
 <text x="300" y="300" dominant-baseline="middle " fill="black" > f </text> 
 <path fill="none"  d="M 130 300 L 170 300" stroke="black"></path> 
- <text x="150" y="295" fill="black" text-anchor="middle"> a  </text> 
+ <text x="155" y="301" fill="black" text-anchor="middle"> a  </text> 
  <path fill="black"  d="M170,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 <path fill="none"  d="M205 329 A 15 20 0 1 1 195 329" stroke="black"></path> 
  <text x="230" y="360" fill="black" text-anchor="middle"> a  </text> 

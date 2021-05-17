@@ -138,6 +138,11 @@ let calcularc idun ideux l transi label argstransi=
 
   let c1x = ref 0. in
   let c1y = ref 0. in
+
+  let position =  getvalue "POSITION:" "0:0" (python_split ' ' argstransi) in
+  let xy =  python_split ':' position in
+  let xajout = float_of_string (List.nth xy 0) in 
+  let yajout = float_of_string (List.nth xy 1) in 
   
   let color = getvalue "COLOR:" "black" (python_split ' ' argstransi) in
   let curve = ref "" in 
@@ -266,7 +271,7 @@ let calcularc idun ideux l transi label argstransi=
   if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then
     c1y := p2y +. sizedeux;
  
-  curveedebut^ !curve ^curvefin^infox^isinteger(!c1x)^infoy^isinteger(!c1y)^ infoatt ^label^ labelinfo^fleche^ !flecheref^flechefin;;
+  curveedebut^ !curve ^curvefin^infox^isinteger(!c1x +. xajout)^infoy^isinteger(!c1y +. yajout)^ infoatt ^label^ labelinfo^fleche^ !flecheref^flechefin;;
 
 let rec nodefile noeud monstr =
   match noeud with 
@@ -303,6 +308,11 @@ let rec transitionfile noeud transi l monstr  =
 
                             let c1x = ref 0. in
                             let c1y = ref 0. in
+
+                            let position =  getvalue "POSITION:" "0:0" (python_split ' ' t) in
+                            let xy =  python_split ':' position in
+                            let xajout = float_of_string (List.nth xy 0) in 
+                            let yajout = float_of_string (List.nth xy 1) in 
 
                             let fleche = "<path fill=\""^color^"\"  d=\"" in 
                             let flechefin = "\" stroke=\""^color^"\"></path> \n" in 
@@ -415,7 +425,7 @@ let rec transitionfile noeud transi l monstr  =
                             
                           
                             let fill = "<path fill=\"none\"  d=\"" ^ infosur ^ "\" stroke=\""^color^"\"></path> \n " in 
-                            let label = "<text x=\"" ^isinteger (  !c1x )  ^ "\" y=\"" ^isinteger (  !c1y )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^ (getlabel x y l)^ " </text> \n " ^fleche^ !flecheref^flechefin in 
+                            let label = "<text x=\"" ^isinteger (  !c1x +. xajout)  ^ "\" y=\"" ^isinteger (  !c1y+.yajout )  ^ "\" fill=\"black\" text-anchor=\"middle\"> " ^ (getlabel x y l)^ " </text> \n " ^fleche^ !flecheref^flechefin in 
                             transitionfile noeud  q l (  (fill ^label) ^ monstr)
       | _ -> ""^monstr;;
 
