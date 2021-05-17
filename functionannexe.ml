@@ -886,9 +886,8 @@ let is_accepted listenoeud listtransition mot =
   for i = 0 to String.length mot - 1 do 
     lettre := mot.[i];
     noeudcourant := getnodecourant ( getautresommet listtransition (getid !noeudcourant) (Char.escaped !lettre)) listenoeud;
-
   done;
-  if (contains (getargs !noeudcourant) "FINAL:") then result:=true else result:=false; 
+  if ((contains (getargs !noeudcourant) "FINAL:") ) then result:=true else result:=false; 
   !result ;;
 
 let getchemin listenoeud listtransition mot =
