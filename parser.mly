@@ -48,6 +48,7 @@
         | ISDETERMINISTIC {Printf.printf "%b\n " (is_deterministic !nodelist !transition)}
         | ISRECONNU vrailabel {Printf.printf "%b\n " (is_accepted !nodelist !transition $2)}
         | SHOW vrailabel {Printf.printf "%s\n " (getchemin !nodelist !transition $2)}
+        | SHOW COMPLETE vrailabel {nodelist:= showcomplet $3 !nodelist !transition }
         numero:
             NUM {$1}
           ;

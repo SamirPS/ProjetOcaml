@@ -554,6 +554,29 @@ let is_complete listenoeud listtransition =
   if (List.length listenoeud = 0 ) || (List.length listtransition = 0 ) then false
   else (is_completeaux listenoeud listtransition);;
 
+(* Show complete *)
+let showcompleteaux listenoeud listtransition =
+  let rec go listenoeud acc = 
+    match listenoeud  with
+    | [] -> List.rev acc
+    | Noeud(a,b,c,d)::q when (check a listtransition (getlettre listtransition) = false) -> go q (a::acc)
+    | _::q -> go q acc
+  in go listenoeud [];;
+
+let changecolor color listenoeud listtransition nodepascomplet  = 
+  let rec go listenoeud acc listakeep= 
+      match listenoeud  with
+      | [] -> List.rev acc
+      | Noeud(a,b,c,d)::q when (List.mem a nodepascomplet) -> go q ((editn a (" BGCOLOR: "^color) listakeep)) ((editn a (" BGCOLOR: "^color) listakeep))
+
+      | _::q -> go q acc listakeep
+    in go listenoeud [] listenoeud;;
+  
+let showcomplet color listenoeud listtransition =
+  let nodeamodifier = showcompleteaux listenoeud listtransition in 
+  changecolor color listenoeud listtransition nodeamodifier;;
+
+
 (*Complete le truc *)
  
 let gettransicreeaux a identifiant listtransition listeletter =
