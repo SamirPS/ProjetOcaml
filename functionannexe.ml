@@ -217,7 +217,7 @@ let calcularc idun ideux l transi label argstransi=
     flecheref := "M"^isinteger(p2x -. (sizeun *. 5. /. 30.) )^","^isinteger (p2y +. sizedeux -. 1.)^"l -11 2 l 9 9 Z";
 
   if (idun = ideux) then 
-    c1x := p1x +. (sizeun *. 5. /. 30.);
+    c1x := p1x +. sizeun ;
   if (idun = ideux) then 
     c1y := p1y +. sizedeux *. 2.;
 
@@ -242,6 +242,29 @@ let calcularc idun ideux l transi label argstransi=
     curve := "M" ^ isinteger(p1x +. sizeun) ^ "," ^isinteger(p1y) ^ " A 10,10 0 0 1 " ^ isinteger(p2x -. sizedeux) ^ "," ^isinteger(p2y);
   if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then
     flecheref := "M"^isinteger(p2x -. sizedeux )^","^isinteger(p2y)^" l -10 -4 l 10 -9 Z";
+
+  (*position*)
+
+  if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then (* bas  à haut+ fleche **)
+    c1x := p1x -. sizeun;
+  if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then
+    c1y := p2y +. sizedeux *. 1.8;
+
+  if ( (not (idun = ideux)) && count >= 2 && (p2y>p1y)) then (* haut  à bas+ fleche **)
+    c1x := p1x +. sizeun;
+  if ( (not (idun = ideux)) && count >= 2 && (p2y>p1y)) then
+    c1y := p1y +. sizeun *. 1.8 ;
+  
+  if ( (not (idun = ideux)) && count >= 2 && (p1x>p2x)) then (* droite  à gauche+ fleche **)
+    c1x := p1x -. sizeun *. 1.8;
+  if ( (not (idun = ideux)) && count >= 2 && (p1x>p2x)) then
+    c1y := p2y -. sizedeux;
+  
+
+  if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then (* gauche   à droite+ fleche **)
+    c1x := p2x -. sizedeux *. 1.8;
+  if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then
+    c1y := p2y +. sizedeux;
  
   curveedebut^ !curve ^curvefin^infox^isinteger(!c1x)^infoy^isinteger(!c1y)^ infoatt ^label^ labelinfo^fleche^ !flecheref^flechefin;;
 
