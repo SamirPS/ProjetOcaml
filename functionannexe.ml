@@ -894,11 +894,11 @@ let is_accepted listenoeud listtransition mot =
 let getchemin listenoeud listtransition mot =
   let noeudcourant = ref (getnodeinitial listenoeud) in
   let lettre = ref ' ' in 
-  let chemin = ref ( ("Begin->")^(getid !noeudcourant) ) in
+  let chemin = ref ((getid !noeudcourant) ) in
   for i = 0 to String.length mot - 1 do 
     lettre := mot.[i];
     noeudcourant := getnodecourant ( getautresommet listtransition (getid !noeudcourant) (Char.escaped !lettre)) listenoeud;
     if not ( getid !noeudcourant = "") then chemin := !chemin ^ "->" ^ (getid !noeudcourant);
 
   done;
-  if (contains (getargs !noeudcourant) "FINAL:") then (!chemin)^"->END \n " else (!chemin)^"->NOTEND \n";; 
+  (!chemin) ;; 
