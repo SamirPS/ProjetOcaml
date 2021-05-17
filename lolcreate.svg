@@ -7,15 +7,9 @@
 <text x="200" y="200" dominant-baseline="middle " fill="black" > 1 </text> 
 <circle cx="300" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
 <text x="300" y="300" dominant-baseline="middle " fill="black" > f </text> 
-<path fill="none"  d="M200 270 L 200 230" stroke="black"></path> 
- <text x="229.999990488" y="250.023889801" fill="black" text-anchor="middle"> b  </text> 
- <path fill="black"  d="M200,230 l -8 8 m 16 0 l -8 -8" stroke="black"></path> 
-<path fill="none"  d="M230 200 L 270 300" stroke="black"></path> 
- <text x="228.76991065" y="271.196304069" fill="black" text-anchor="middle"> b  </text> 
- <path fill="black"  d="M270,300l -10 -4 l 10 -9 Z" stroke="black"></path> 
-<path fill="none"  d="M130 300 L 170 200" stroke="black"></path> 
- <text x="171.196304069" y="271.23008935" fill="black" text-anchor="middle"> a  </text> 
- <path fill="black"  d="M170,200l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M130 300 L 170 300" stroke="black"></path> 
+ <text x="150" y="295" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="M170,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 <path stroke="black" d="M 70 300 l-30 0"></path><path fill="black"  d="M70,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 <path stroke="black" d="M 330 300 l30 0"></path><path fill="black"  d="M360,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 </svg>

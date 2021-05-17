@@ -134,14 +134,10 @@ let calcularc idun ideux l transi label argstransi=
   let p1y = float_of_string (gety nodeun) in 
   let p2x = float_of_string (getx nodedeux) in 
   let p2y = float_of_string (gety nodedeux) in 
-  let mpx =(  ( p2x) +. ( p1x) ) *. 0.5 in
-  let mpy = (  ( p2y) +. ( p1y) ) *. 0.5 in 
-  let theta= (atan2 (p2y-.p1y) (p2x-.p1x)) -. (3.14 *. 0.5) in 
-  let offset =  -. 30.0 in 
 
 
-  let c1x = mpx +. offset *. cos(theta) in
-  let c1y = mpy +. offset *. sin(theta) in
+  let c1x = ref 0. in
+  let c1y = ref 0. in
   
   let color = getvalue "COLOR:" "black" (python_split ' ' argstransi) in
   let curve = ref "" in 
@@ -179,6 +175,27 @@ let calcularc idun ideux l transi label argstransi=
   if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) ) then
     flecheref := "M"^isinteger(p2x-.sizedeux)^","^isinteger (p2y)^"l -8,-8 l 0,16 Z";
 
+  (*label direction normal *)
+  if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) ) then (* bas  à haut+ fleche **)
+    c1x := ((p1x)+.(p2x))/.2. -. 5.;
+  if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) ) then (* bas  à haut+ fleche **)
+    c1y := ((p1y-.sizeun)+.(p2y+. sizedeux))/.2.;
+
+  if (count < 2 &&  ( not (idun = ideux)) && (p2y>p1y) ) then (* haut à bas+ fleche **)
+    c1x := ((p1x)+.(p2x))/.2. -. 5.;
+  if (count < 2 &&  ( not (idun = ideux)) && (p2y>p1y) ) then 
+    c1y := ((p1y+.sizeun)+.(p2y-. sizedeux))/.2.;
+  
+  if (count < 2 &&  ( not (idun = ideux)) && (p1x>p2x) ) then (* droite à gauche+ fleche **)
+    c1x := ((p1x-.sizeun)+.(p2x+. sizedeux))/.2.;
+  if (count < 2 &&  ( not (idun = ideux)) && (p1x>p2x) ) then
+    c1y := ((p1y)+.(p2y))/.2. -. 5.;
+
+  if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) ) then (* gauche à droite + fleche *)
+    c1x := ((p1x+.sizeun)+.(p2x -. sizedeux))/.2.;
+  if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) ) then
+    c1y := ((p1y)+.(p2y))/.2. -. 5.;
+
   (*fleche sud east *)
   if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) && (p2y>p1y)) then
     flecheref := "M"^isinteger(p2x-.sizedeux)^","^isinteger (p2y)^"l -10 -4 l 10 -9 Z";
@@ -193,13 +210,13 @@ let calcularc idun ideux l transi label argstransi=
     flecheref := "M"^isinteger(p2x-.sizedeux)^","^isinteger (p2y)^"l -11 2 l 9 9 Z";
 
 
-
-  if (idun = ideux) then (*sur lui même plus fléche*)
+  (*sur lui même plus fléche*)
+  if (idun = ideux) then 
     curve := "M" ^ isinteger(p1x +. (sizeun *. 5. /. 30.)) ^ " " ^isinteger(p1y +. sizedeux -. 1.) ^ " A 15 20 0 1 1 " ^ isinteger(p2x -. (sizeun *. 5. /. 30.) ) ^ " " ^isinteger (p2y +. sizedeux -. 1.);
   if (idun = ideux) then 
     flecheref := "M"^isinteger(p2x -. (sizeun *. 5. /. 30.) )^","^isinteger (p2y +. sizedeux -. 1.)^"l -11 2 l 9 9 Z";
 
-
+  (*count multiple*)
   if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then (* bas  à haut+ fleche **)
     curve := "M" ^ isinteger(p1x -. (sizeun *. 5. /. 30.)) ^ "," ^isinteger(p1y -. sizeun) ^ " A 5,15 0 0 1 " ^ isinteger(p2x -. (sizedeux *. 5. /. 30.) ) ^ "," ^isinteger (p2y +. sizedeux);
   if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then
@@ -221,7 +238,7 @@ let calcularc idun ideux l transi label argstransi=
   if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then
     flecheref := "M"^isinteger(p2x -. sizedeux )^","^isinteger(p2y)^" l -10 -4 l 10 -9 Z";
  
-  curveedebut^ !curve ^curvefin^infox^isinteger(c1x)^infoy^isinteger(c1y)^ infoatt ^label^ labelinfo^fleche^ !flecheref^flechefin;;
+  curveedebut^ !curve ^curvefin^infox^isinteger(!c1x)^infoy^isinteger(!c1y)^ infoatt ^label^ labelinfo^fleche^ !flecheref^flechefin;;
 
 let rec nodefile noeud monstr =
   match noeud with 
