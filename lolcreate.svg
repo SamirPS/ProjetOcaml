@@ -1,7 +1,7 @@
  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600" viewBox="0 0 800 600"> 
 <circle cx="300" cy="300" r="30 " stroke="black" stroke-width="2" fill="blue" > </circle> 
 <text x="300" y="300" dominant-baseline="middle " fill="black" > f </text> 
-<circle cx="200" cy="200" r="30 " stroke="black" stroke-width="2" fill="blue" > </circle> 
+<circle cx="200" cy="200" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
 <text x="200" y="200" dominant-baseline="middle " fill="black" > 1 </text> 
 <circle cx="200" cy="300" r="30 " stroke="black" stroke-width="2" fill="blue" > </circle> 
 <text x="200" y="300" dominant-baseline="middle " fill="black" > 0 </text> 
@@ -22,6 +22,9 @@
 <path fill="none"  d="M230 300 L 270 300" stroke="black"></path> 
  <text x="249.976110199" y="329.999990488" fill="black" text-anchor="middle"> a  </text> 
  <path fill="black"  d="M270,300l -8,-8 l 0,16 Z" stroke="black"></path> 
+<path fill="none"  d="M205 229 A 15 20 0 1 1 195 229" stroke="black"></path> 
+ <text x="199.976110199" y="229.999990488" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="black"  d="M195,229l -11 2 l 9 9 Z" stroke="black"></path> 
 <path stroke="black" d="M 330 300 l30 0"></path><path fill="black"  d="M360,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 <path stroke="black" d="M 70 300 l-30 0"></path><path fill="black"  d="M70,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 </svg>

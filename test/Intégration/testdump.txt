@@ -7,6 +7,8 @@ CREATE EDGE FROM z to z LABEL "a"
 create edge from z to u label "b" 
 create edge from u to z label "b" 
 create edge from z to f label "a" 
+create edge from u to u label "a" 
+
 IS DETERMINISTIC
 SHOW DETERMINISTIC "blue"
 dump "lol"
