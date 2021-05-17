@@ -179,6 +179,19 @@ let calcularc idun ideux l transi label argstransi=
   if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) ) then
     flecheref := "M"^isinteger(p2x-.sizedeux)^","^isinteger (p2y)^"l -8,-8 l 0,16 Z";
 
+  (*fleche sud east *)
+  if (count < 2 &&  ( not (idun = ideux)) && (p2x>p1x) && (p2y>p1y)) then
+    flecheref := "M"^isinteger(p2x-.sizedeux)^","^isinteger (p2y)^"l -10 -4 l 10 -9 Z";
+  (* fleche nord west *)
+  if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) && (p1x>p2x)) then 
+    flecheref := "M"^isinteger(p2x+.sizedeux)^","^isinteger (p2y)^"l 10 4 l -10 9 Z";
+  (* fleche sud wesh *)
+  if (count < 2 &&  ( not (idun = ideux))  && (p2y>p1y) && (p1x>p2x)) then 
+    flecheref := "M"^isinteger(p2x+.sizedeux)^","^isinteger (p2y)^"l 11,-2 l -9,-9 Z";
+  (* fleche nord east*)
+  if (count < 2 &&  ( not (idun = ideux))  && (p1y>p2y) && (p2x>p1x)) then 
+    flecheref := "M"^isinteger(p2x-.sizedeux)^","^isinteger (p2y)^"l -11 2 l 9 9 Z";
+
 
 
   if (idun = ideux) then (*sur lui même plus fléche*)
