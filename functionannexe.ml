@@ -522,7 +522,7 @@ let rec initfinal listenoeud monstr=
 ;;
 
 let createfile name liste secondl =
-  let fic2 = open_out (name^"create.svg") in
+  let fic2 = open_out (name^".svg") in
   let mystrfinal=" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n"^(nodefile liste "") ^ (transitionfile liste secondl secondl "") ^ (initfinal liste "") ^ "</svg>" in
   
   output_string fic2 mystrfinal;
@@ -898,7 +898,53 @@ let getchemin listenoeud listtransition mot =
   for i = 0 to String.length mot - 1 do 
     lettre := mot.[i];
     noeudcourant := getnodecourant ( getautresommet listtransition (getid !noeudcourant) (Char.escaped !lettre)) listenoeud;
-    if not ( getid !noeudcourant = "") then chemin := !chemin ^ "->" ^ (getid !noeudcourant);
+    if not ( getid !noeudcourant = "") then chemin := !chemin ^ "-" ^ (getid !noeudcourant);
 
   done;
   (!chemin) ;; 
+
+(*dump string*)
+
+let createframesvg nombrechemin =
+  let cssdebut = "<style type=\"text/css\">\n" in 
+  let tempstoal = float_of_int (List.length nombrechemin) *. 1.5 in
+  let cssm = ".frame {visibility:hidden;animation:frames " ^ isinteger(tempstoal)^"s linear infinite}\n" in 
+  let fin = "@keyframes frames {0% {visibility:visible} 20% {visibility:hidden}} </style>\n" in 
+  let milieucss = ref "" in 
+  for i=0 to List.length nombrechemin - 1 do
+    milieucss := !milieucss^"#_frame_"^string_of_int(i)^"{ animation-delay:"^isinteger(float_of_int(i)*.1.5)^"s}\n";
+  done;
+  cssdebut^cssm^ !milieucss^fin;;
+
+
+let rec nodefilev noeud monstr color =
+  match noeud with 
+  |[] -> monstr;
+  |Noeud(x,y,z,t)::q -> let size =  getvalue "SIZE:" "30" (python_split ' ' t)  in 
+                        let label = getvalue "LABEL:" x (python_split ' ' t) in 
+                        nodefilev q ( ( "<circle cx=\"" ^y^ "\" cy=\"" ^ z ^ "\" r=\""^size^" \" > </circle> \n")  ^ 
+                        ("<text x=\"" ^y^ "\" y=\"" ^ z ^ "\" dominant-baseline=\"middle \" fill=\"" ^ color ^"\" > "^ label ^" </text> \n") ^ monstr) color
+  | _ -> ""^monstr;;
+  
+let dumpwithstring name listenoeud listtransition mot =
+  let fic2 = open_out (name^".svg") in
+
+  let mystrfinal =" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n " ^(nodefile listenoeud "") ^ (transitionfile listenoeud listtransition listtransition "") ^ (initfinal listenoeud "") in
+  let chemin = python_split '-' (getchemin listenoeud listtransition mot) in 
+  let strmodifier = ref "" in 
+  let noeudcourant = ref [(getnodeinitial listenoeud)] in
+  let color = ref "red" in 
+  let colorsub = ref "lightCoral" in 
+  if (is_accepted listenoeud listtransition mot) then color:="green"; 
+  if (is_accepted listenoeud listtransition mot) then colorsub:="lightGreen"; 
+  let debut = "  <g stroke=\""^ !color^"\" stroke-width=\"2\" fill=\""^ !colorsub^"\">" in
+  
+  for i=0 to List.length chemin - 1 do
+    noeudcourant := getnode (List.nth chemin i) listenoeud;
+    strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ "\n"  ^ "</g></g> "^ !strmodifier;
+  done;
+  
+  output_string fic2 (mystrfinal^(createframesvg chemin)^ !strmodifier ^ "</svg>" );
+  close_out fic2;;
+
+    

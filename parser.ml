@@ -99,159 +99,159 @@ let yytransl_block = [|
     0|]
 
 let yylhs = "\255\255\
-\001\000\001\000\001\000\003\000\003\000\004\000\004\000\004\000\
-\004\000\004\000\004\000\004\000\007\000\006\000\005\000\008\000\
-\009\000\009\000\009\000\009\000\009\000\009\000\009\000\009\000\
-\009\000\009\000\009\000\009\000\010\000\010\000\010\000\010\000\
-\010\000\010\000\010\000\010\000\010\000\011\000\011\000\011\000\
-\011\000\011\000\011\000\012\000\012\000\012\000\012\000\012\000\
-\012\000\012\000\012\000\013\000\013\000\013\000\013\000\013\000\
+\001\000\001\000\001\000\003\000\003\000\003\000\004\000\004\000\
+\004\000\004\000\004\000\004\000\004\000\007\000\006\000\005\000\
+\008\000\009\000\009\000\009\000\009\000\009\000\009\000\009\000\
+\009\000\009\000\009\000\009\000\009\000\010\000\010\000\010\000\
+\010\000\010\000\010\000\010\000\010\000\010\000\011\000\011\000\
+\011\000\011\000\011\000\011\000\012\000\012\000\012\000\012\000\
+\012\000\012\000\012\000\012\000\013\000\013\000\013\000\013\000\
 \013\000\013\000\013\000\013\000\013\000\013\000\013\000\013\000\
-\013\000\002\000\002\000\002\000\002\000\002\000\002\000\002\000\
+\013\000\013\000\002\000\002\000\002\000\002\000\002\000\002\000\
 \002\000\002\000\002\000\002\000\002\000\002\000\002\000\002\000\
-\002\000\000\000"
+\002\000\002\000\000\000"
 
 let yylen = "\002\000\
-\002\000\002\000\002\000\001\000\002\000\001\000\006\000\001\000\
-\002\000\002\000\003\000\003\000\001\000\001\000\001\000\001\000\
-\002\000\002\000\002\000\002\000\002\000\002\000\003\000\003\000\
-\003\000\003\000\003\000\003\000\001\000\001\000\001\000\001\000\
-\001\000\001\000\001\000\001\000\001\000\002\000\002\000\003\000\
-\003\000\003\000\004\000\002\000\002\000\002\000\005\000\003\000\
-\003\000\003\000\006\000\002\000\002\000\002\000\002\000\002\000\
-\002\000\003\000\003\000\003\000\003\000\003\000\003\000\003\000\
-\004\000\006\000\006\000\007\000\005\000\006\000\007\000\007\000\
-\008\000\008\000\004\000\002\000\004\000\003\000\004\000\004\000\
-\004\000\002\000"
+\002\000\002\000\002\000\001\000\002\000\004\000\001\000\006\000\
+\001\000\002\000\002\000\003\000\003\000\001\000\001\000\001\000\
+\001\000\002\000\002\000\002\000\002\000\002\000\002\000\003\000\
+\003\000\003\000\003\000\003\000\003\000\001\000\001\000\001\000\
+\001\000\001\000\001\000\001\000\001\000\001\000\002\000\002\000\
+\003\000\003\000\003\000\004\000\002\000\002\000\002\000\005\000\
+\003\000\003\000\003\000\006\000\002\000\002\000\002\000\002\000\
+\002\000\002\000\003\000\003\000\003\000\003\000\003\000\003\000\
+\003\000\004\000\006\000\006\000\007\000\005\000\006\000\007\000\
+\007\000\008\000\008\000\004\000\002\000\004\000\003\000\004\000\
+\004\000\004\000\002\000"
 
 let yydefred = "\000\000\
-\000\000\000\000\000\000\000\000\008\000\000\000\006\000\000\000\
+\000\000\000\000\000\000\000\000\009\000\000\000\007\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\082\000\000\000\000\000\000\000\015\000\000\000\000\000\010\000\
-\009\000\000\000\000\000\000\000\005\000\076\000\000\000\000\000\
-\013\000\016\000\000\000\000\000\000\000\000\000\000\000\001\000\
-\002\000\003\000\011\000\012\000\014\000\000\000\000\000\000\000\
+\083\000\000\000\000\000\000\000\016\000\000\000\000\000\011\000\
+\010\000\000\000\000\000\000\000\000\000\077\000\000\000\000\000\
+\014\000\017\000\000\000\000\000\000\000\000\000\000\000\001\000\
+\002\000\003\000\012\000\013\000\015\000\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\078\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\000\000\030\000\031\000\032\000\033\000\034\000\
-\035\000\036\000\037\000\029\000\000\000\000\000\000\000\000\000\
-\000\000\077\000\079\000\080\000\081\000\000\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\075\000\000\000\000\000\000\000\
-\023\000\024\000\025\000\027\000\028\000\026\000\000\000\000\000\
+\000\000\000\000\079\000\000\000\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000\000\000\031\000\032\000\033\000\034\000\
+\035\000\036\000\037\000\038\000\030\000\000\000\000\000\000\000\
+\000\000\000\000\006\000\078\000\080\000\081\000\082\000\000\000\
+\000\000\000\000\000\000\000\000\000\000\000\000\076\000\000\000\
+\000\000\000\000\024\000\025\000\026\000\028\000\029\000\027\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\007\000\066\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\000\000\059\000\060\000\064\000\
-\062\000\063\000\061\000\000\000\068\000\000\000\071\000\041\000\
-\042\000\000\000\065\000\000\000\043\000\073\000\000\000\000\000\
-\000\000\074\000\000\000\000\000\000\000\000\000\050\000\048\000\
-\049\000\000\000\000\000\051\000"
+\000\000\000\000\000\000\000\000\000\000\000\000\008\000\067\000\
+\000\000\000\000\000\000\000\000\000\000\000\000\000\000\060\000\
+\061\000\065\000\063\000\064\000\062\000\000\000\069\000\000\000\
+\072\000\042\000\043\000\000\000\066\000\000\000\044\000\074\000\
+\000\000\000\000\000\000\075\000\000\000\000\000\000\000\000\000\
+\051\000\049\000\050\000\000\000\000\000\052\000"
 
 let yydgoto = "\002\000\
 \017\000\018\000\019\000\020\000\024\000\046\000\035\000\036\000\
-\054\000\077\000\108\000\146\000\093\000"
+\054\000\078\000\110\000\148\000\095\000"
 
-let yysindex = "\009\000\
-\108\255\000\000\004\255\010\255\000\000\252\254\000\000\021\255\
-\053\255\010\255\054\255\060\255\104\255\071\255\074\255\077\255\
-\000\000\018\255\052\255\058\255\000\000\010\255\010\255\000\000\
-\000\000\079\255\143\255\070\255\000\000\000\000\075\255\090\255\
-\000\000\000\000\090\255\090\255\082\255\085\255\084\255\000\000\
-\000\000\000\000\000\000\000\000\000\000\099\255\090\255\010\255\
-\010\255\090\255\112\255\112\255\010\255\109\255\121\255\123\255\
-\090\255\000\000\090\255\124\255\151\255\125\255\090\255\090\255\
-\158\255\158\255\158\255\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\158\255\158\255\158\255\090\255\
-\051\255\000\000\000\000\000\000\000\000\090\255\010\255\010\255\
-\090\255\112\255\112\255\010\255\000\000\120\255\090\255\158\255\
-\000\000\000\000\000\000\000\000\000\000\000\000\090\255\090\255\
-\010\255\010\255\010\255\141\255\090\255\151\255\151\255\151\255\
-\151\255\151\255\151\255\010\255\000\000\000\000\158\255\090\255\
-\046\255\046\255\046\255\010\255\151\255\000\000\000\000\000\000\
-\000\000\000\000\000\000\111\255\000\000\046\255\000\000\000\000\
-\000\000\046\255\000\000\076\255\000\000\000\000\010\255\010\255\
-\010\255\000\000\057\255\076\255\076\255\090\255\000\000\000\000\
-\000\000\090\255\076\255\000\000"
+let yysindex = "\016\000\
+\110\255\000\000\004\255\018\255\000\000\007\255\000\000\028\255\
+\054\255\018\255\061\255\074\255\087\255\075\255\076\255\079\255\
+\000\000\027\255\063\255\064\255\000\000\018\255\018\255\000\000\
+\000\000\093\255\145\255\086\255\081\255\000\000\091\255\106\255\
+\000\000\000\000\106\255\106\255\084\255\085\255\096\255\000\000\
+\000\000\000\000\000\000\000\000\000\000\101\255\106\255\018\255\
+\018\255\106\255\114\255\114\255\018\255\111\255\123\255\018\255\
+\125\255\106\255\000\000\106\255\126\255\153\255\127\255\106\255\
+\106\255\160\255\160\255\160\255\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000\000\000\000\000\160\255\160\255\160\255\
+\106\255\012\255\000\000\000\000\000\000\000\000\000\000\106\255\
+\018\255\018\255\106\255\114\255\114\255\018\255\000\000\122\255\
+\106\255\160\255\000\000\000\000\000\000\000\000\000\000\000\000\
+\106\255\106\255\018\255\018\255\018\255\143\255\106\255\153\255\
+\153\255\153\255\153\255\153\255\153\255\018\255\000\000\000\000\
+\160\255\106\255\046\255\046\255\046\255\018\255\153\255\000\000\
+\000\000\000\000\000\000\000\000\000\000\113\255\000\000\046\255\
+\000\000\000\000\000\000\046\255\000\000\055\255\000\000\000\000\
+\018\255\018\255\018\255\000\000\059\255\055\255\055\255\106\255\
+\000\000\000\000\000\000\106\255\055\255\000\000"
 
 let yyrindex = "\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\138\255\000\000\000\000\000\000\000\000\000\000\000\000\
+\000\000\140\255\000\000\000\000\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000\000\000\147\255\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
+\000\000\254\254\255\254\001\255\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000\000\000\000\000\010\255\024\255\038\255\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
 \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\255\254\005\255\012\255\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\017\255\019\255\023\255\000\000\
-\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\000\000\000\000\000\000\145\255\
-\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\000\000\149\255\150\255\152\255\
-\153\255\154\255\155\255\000\000\000\000\000\000\156\255\000\000\
-\157\255\037\255\038\255\000\000\159\255\000\000\000\000\000\000\
-\000\000\000\000\000\000\000\000\000\000\044\255\000\000\000\000\
-\000\000\161\255\000\000\000\000\000\000\000\000\000\000\000\000\
-\000\000\000\000\162\255\163\255\164\255\000\000\000\000\000\000\
-\000\000\000\000\165\255\000\000"
+\000\000\151\255\000\000\000\000\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000\000\000\000\000\000\000\000\000\152\255\
+\154\255\155\255\156\255\157\255\158\255\000\000\000\000\000\000\
+\159\255\000\000\161\255\022\255\052\255\000\000\162\255\000\000\
+\000\000\000\000\000\000\000\000\000\000\000\000\000\000\053\255\
+\000\000\000\000\000\000\163\255\000\000\000\000\000\000\000\000\
+\000\000\000\000\000\000\000\000\164\255\165\255\166\255\000\000\
+\000\000\000\000\000\000\000\000\167\255\000\000"
 
 let yygindex = "\000\000\
 \000\000\000\000\000\000\000\000\252\255\000\000\229\255\000\000\
-\193\255\205\255\160\255\004\000\240\255"
+\192\255\205\255\179\255\004\000\240\255"
 
-let yytablesize = 194
+let yytablesize = 196
 let yytable = "\025\000\
-\078\000\097\000\098\000\099\000\057\000\029\000\021\000\058\000\
-\059\000\001\000\017\000\022\000\021\000\100\000\101\000\102\000\
-\018\000\043\000\044\000\064\000\026\000\027\000\067\000\022\000\
-\135\000\136\000\137\000\017\000\020\000\083\000\021\000\084\000\
-\118\000\018\000\019\000\095\000\096\000\141\000\113\000\114\000\
-\022\000\142\000\023\000\065\000\066\000\020\000\040\000\021\000\
-\079\000\038\000\039\000\019\000\103\000\028\000\030\000\133\000\
-\040\000\104\000\109\000\106\000\031\000\112\000\104\000\105\000\
-\106\000\038\000\039\000\117\000\150\000\143\000\144\000\037\000\
-\040\000\107\000\038\000\119\000\120\000\039\000\107\000\045\000\
-\041\000\125\000\110\000\111\000\145\000\055\000\042\000\115\000\
-\143\000\144\000\056\000\033\000\134\000\126\000\127\000\128\000\
-\129\000\130\000\131\000\062\000\121\000\122\000\123\000\145\000\
-\032\000\033\000\060\000\034\000\139\000\061\000\063\000\132\000\
-\003\000\004\000\005\000\006\000\007\000\008\000\009\000\138\000\
-\080\000\081\000\154\000\082\000\085\000\094\000\155\000\010\000\
-\011\000\012\000\013\000\014\000\116\000\015\000\016\000\140\000\
-\000\000\000\000\147\000\148\000\149\000\068\000\069\000\070\000\
-\071\000\072\000\073\000\074\000\075\000\076\000\151\000\152\000\
-\153\000\124\000\047\000\048\000\049\000\050\000\156\000\051\000\
-\052\000\053\000\086\000\087\000\088\000\089\000\004\000\090\000\
-\091\000\092\000\048\000\049\000\050\000\069\000\051\000\052\000\
-\053\000\052\000\053\000\000\000\057\000\055\000\056\000\054\000\
-\067\000\070\000\000\000\058\000\000\000\072\000\044\000\045\000\
-\046\000\047\000"
+\079\000\099\000\100\000\101\000\058\000\029\000\021\000\059\000\
+\060\000\018\000\019\000\022\000\023\000\102\000\103\000\104\000\
+\001\000\043\000\044\000\065\000\021\000\021\000\068\000\106\000\
+\107\000\108\000\018\000\019\000\027\000\023\000\085\000\026\000\
+\086\000\120\000\039\000\022\000\097\000\098\000\021\000\109\000\
+\115\000\116\000\023\000\066\000\067\000\137\000\138\000\139\000\
+\080\000\020\000\039\000\083\000\022\000\105\000\028\000\040\000\
+\135\000\106\000\143\000\108\000\111\000\030\000\144\000\114\000\
+\040\000\041\000\020\000\145\000\146\000\119\000\152\000\145\000\
+\146\000\109\000\031\000\037\000\038\000\121\000\122\000\039\000\
+\040\000\041\000\147\000\127\000\112\000\113\000\147\000\032\000\
+\033\000\117\000\034\000\041\000\042\000\045\000\136\000\128\000\
+\129\000\130\000\131\000\132\000\133\000\055\000\123\000\124\000\
+\125\000\056\000\057\000\033\000\061\000\062\000\141\000\063\000\
+\064\000\134\000\003\000\004\000\005\000\006\000\007\000\008\000\
+\009\000\140\000\081\000\082\000\156\000\084\000\087\000\096\000\
+\157\000\010\000\011\000\012\000\013\000\014\000\118\000\015\000\
+\016\000\142\000\000\000\000\000\149\000\150\000\151\000\069\000\
+\070\000\071\000\072\000\073\000\074\000\075\000\076\000\077\000\
+\153\000\154\000\155\000\126\000\047\000\048\000\049\000\050\000\
+\158\000\051\000\052\000\053\000\088\000\089\000\090\000\091\000\
+\004\000\092\000\093\000\094\000\048\000\049\000\050\000\005\000\
+\051\000\052\000\053\000\070\000\053\000\000\000\054\000\058\000\
+\056\000\057\000\055\000\068\000\000\000\071\000\059\000\073\000\
+\045\000\046\000\047\000\048\000"
 
 let yycheck = "\004\000\
-\052\000\065\000\066\000\067\000\032\000\010\000\003\001\035\000\
-\036\000\001\000\012\001\008\001\003\001\077\000\078\000\079\000\
-\012\001\022\000\023\000\047\000\025\001\001\001\050\000\012\001\
-\121\000\122\000\123\000\029\001\012\001\057\000\012\001\059\000\
-\096\000\029\001\012\001\063\000\064\000\134\000\090\000\091\000\
-\029\001\138\000\039\001\048\000\049\000\029\001\029\001\029\001\
-\053\000\013\001\013\001\029\001\080\000\001\001\001\001\119\000\
-\013\001\012\001\086\000\014\001\001\001\089\000\012\001\013\001\
-\014\001\029\001\029\001\095\000\012\001\013\001\014\001\001\001\
-\029\001\028\001\001\001\103\000\104\000\001\001\028\001\001\001\
-\029\001\109\000\087\000\088\000\028\001\016\001\029\001\092\000\
-\013\001\014\001\016\001\002\001\120\000\110\000\111\000\112\000\
-\113\000\114\000\115\000\016\001\105\000\106\000\107\000\028\001\
-\001\001\002\001\025\001\004\001\125\000\025\001\012\001\116\000\
-\005\001\006\001\007\001\008\001\009\001\010\001\011\001\124\000\
-\012\001\001\001\150\000\001\001\001\001\001\001\154\000\020\001\
-\021\001\022\001\023\001\024\001\013\001\026\001\027\001\025\001\
-\255\255\255\255\143\000\144\000\145\000\030\001\031\001\032\001\
-\033\001\034\001\035\001\036\001\037\001\038\001\147\000\148\000\
-\149\000\013\001\012\001\013\001\014\001\015\001\155\000\017\001\
-\018\001\019\001\012\001\013\001\014\001\015\001\029\001\017\001\
-\018\001\019\001\013\001\014\001\015\001\029\001\017\001\018\001\
-\019\001\029\001\029\001\255\255\029\001\029\001\029\001\029\001\
-\029\001\029\001\255\255\029\001\255\255\029\001\029\001\029\001\
-\029\001\029\001"
+\052\000\066\000\067\000\068\000\032\000\010\000\003\001\035\000\
+\036\000\012\001\012\001\008\001\012\001\078\000\079\000\080\000\
+\001\000\022\000\023\000\047\000\003\001\012\001\050\000\012\001\
+\013\001\014\001\029\001\029\001\001\001\029\001\058\000\025\001\
+\060\000\098\000\013\001\012\001\064\000\065\000\029\001\028\001\
+\092\000\093\000\039\001\048\000\049\000\123\000\124\000\125\000\
+\053\000\012\001\029\001\056\000\029\001\081\000\001\001\029\001\
+\121\000\012\001\136\000\014\001\088\000\001\001\140\000\091\000\
+\013\001\013\001\029\001\013\001\014\001\097\000\012\001\013\001\
+\014\001\028\001\001\001\001\001\001\001\105\000\106\000\001\001\
+\029\001\029\001\028\001\111\000\089\000\090\000\028\001\001\001\
+\002\001\094\000\004\001\029\001\029\001\001\001\122\000\112\000\
+\113\000\114\000\115\000\116\000\117\000\016\001\107\000\108\000\
+\109\000\025\001\016\001\002\001\025\001\025\001\127\000\016\001\
+\012\001\118\000\005\001\006\001\007\001\008\001\009\001\010\001\
+\011\001\126\000\012\001\001\001\152\000\001\001\001\001\001\001\
+\156\000\020\001\021\001\022\001\023\001\024\001\013\001\026\001\
+\027\001\025\001\255\255\255\255\145\000\146\000\147\000\030\001\
+\031\001\032\001\033\001\034\001\035\001\036\001\037\001\038\001\
+\149\000\150\000\151\000\013\001\012\001\013\001\014\001\015\001\
+\157\000\017\001\018\001\019\001\012\001\013\001\014\001\015\001\
+\029\001\017\001\018\001\019\001\013\001\014\001\015\001\029\001\
+\017\001\018\001\019\001\029\001\029\001\255\255\029\001\029\001\
+\029\001\029\001\029\001\029\001\255\255\029\001\029\001\029\001\
+\029\001\029\001\029\001\029\001"
 
 let yynames_const = "\
   SHOW\000\
@@ -335,130 +335,130 @@ let yyact = [|
 # 336 "parser.ml"
                : 'display))
 ; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 2 : 'vrailabel) in
+    let _4 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
-# 46 "parser.mly"
+# 42 "parser.mly"
+                                            (dumpwithstring _2 !nodelist !transition _4)
+# 344 "parser.ml"
+               : 'display))
+; (fun __caml_parser_env ->
+    Obj.repr(
+# 47 "parser.mly"
                      (Printf.printf "%b\n " (is_complete !nodelist !transition))
-# 342 "parser.ml"
+# 350 "parser.ml"
                : 'lasf))
 ; (fun __caml_parser_env ->
     let _3 = (Parsing.peek_val __caml_parser_env 3 : 'labelnoeud) in
     let _5 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 47 "parser.mly"
-                                                    (nodelist := completeaux _3 _5 _6 !nodelist !transition;transition:= complete _3 !nodelist !transition;)
-# 351 "parser.ml"
-               : 'lasf))
-; (fun __caml_parser_env ->
-    Obj.repr(
 # 48 "parser.mly"
-                          (Printf.printf "%b\n " (is_deterministic !nodelist !transition))
-# 357 "parser.ml"
+                                                    (nodelist := completeaux _3 _5 _6 !nodelist !transition;transition:= complete _3 !nodelist !transition;)
+# 359 "parser.ml"
                : 'lasf))
 ; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 49 "parser.mly"
-                              (Printf.printf "%b\n " (is_accepted !nodelist !transition _2))
-# 364 "parser.ml"
+                          (Printf.printf "%b\n " (is_deterministic !nodelist !transition))
+# 365 "parser.ml"
                : 'lasf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 50 "parser.mly"
-                         (Printf.printf "%s\n " (getchemin !nodelist !transition _2))
-# 371 "parser.ml"
+                              (Printf.printf "%b\n " (is_accepted !nodelist !transition _2))
+# 372 "parser.ml"
                : 'lasf))
 ; (fun __caml_parser_env ->
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 51 "parser.mly"
-                                  (nodelist:= showcomplet _3 !nodelist !transition )
-# 378 "parser.ml"
+                         (Printf.printf "%s\n " (getchemin !nodelist !transition _2))
+# 379 "parser.ml"
                : 'lasf))
 ; (fun __caml_parser_env ->
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 52 "parser.mly"
+                                  (nodelist:= showcomplet _3 !nodelist !transition )
+# 386 "parser.ml"
+               : 'lasf))
+; (fun __caml_parser_env ->
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
+    Obj.repr(
+# 53 "parser.mly"
                                        (nodelist := showcompletd _3 !nodelist !transition)
-# 385 "parser.ml"
+# 393 "parser.ml"
                : 'lasf))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 54 "parser.mly"
+# 55 "parser.mly"
                 (_1)
-# 392 "parser.ml"
+# 400 "parser.ml"
                : 'numero))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 58 "parser.mly"
+# 59 "parser.mly"
               (_1)
-# 399 "parser.ml"
+# 407 "parser.ml"
                : 'labelnoeud))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 63 "parser.mly"
+# 64 "parser.mly"
                 (String.sub _1 1 ((String.length _1) -2)  )
-# 406 "parser.ml"
+# 414 "parser.ml"
                : 'vrailabel))
 ; (fun __caml_parser_env ->
     let _1 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 66 "parser.mly"
+# 67 "parser.mly"
               ( python_split ',' (String.sub _1 1 ((String.length _1) -2)) )
-# 413 "parser.ml"
+# 421 "parser.ml"
                : 'glist))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
-# 69 "parser.mly"
-                              (" LABEL: " ^ _2 )
-# 420 "parser.ml"
-               : 'attribut))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
-    Obj.repr(
 # 70 "parser.mly"
-                             (" COLOR: " ^ _2 )
-# 427 "parser.ml"
+                              (" LABEL: " ^ _2 )
+# 428 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 71 "parser.mly"
-                               (" BGCOLOR: " ^ _2 )
-# 434 "parser.ml"
+                             (" COLOR: " ^ _2 )
+# 435 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'direction) in
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 72 "parser.mly"
-                              (" INITIAL: " ^ _2 )
-# 441 "parser.ml"
+                               (" BGCOLOR: " ^ _2 )
+# 442 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'direction) in
     Obj.repr(
 # 73 "parser.mly"
+                              (" INITIAL: " ^ _2 )
+# 449 "parser.ml"
+               : 'attribut))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'direction) in
+    Obj.repr(
+# 74 "parser.mly"
                             (" FINAL: " ^ _2 )
-# 448 "parser.ml"
+# 456 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 74 "parser.mly"
+# 75 "parser.mly"
                          (" SIZE: " ^ _2)
-# 455 "parser.ml"
-               : 'attribut))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
-    Obj.repr(
-# 76 "parser.mly"
-                                      (" LABEL: " ^ _2 ^ _3 )
 # 463 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
@@ -466,31 +466,31 @@ let yyact = [|
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 77 "parser.mly"
-                                      (" COLOR: " ^ _2 ^ _3 )
+                                      (" LABEL: " ^ _2 ^ _3 )
 # 471 "parser.ml"
-               : 'attribut))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
-    Obj.repr(
-# 78 "parser.mly"
-                                  (" SIZE: " ^ _2 ^ _3 )
-# 479 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
+# 78 "parser.mly"
+                                      (" COLOR: " ^ _2 ^ _3 )
+# 479 "parser.ml"
+               : 'attribut))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
+    Obj.repr(
 # 79 "parser.mly"
-                                        (" BGCOLOR: " ^ _2 ^ _3 )
+                                  (" SIZE: " ^ _2 ^ _3 )
 # 487 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'direction) in
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 80 "parser.mly"
-                                       ( " INITIAL: " ^ _2 ^ _3 )
+                                        (" BGCOLOR: " ^ _2 ^ _3 )
 # 495 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
@@ -498,91 +498,91 @@ let yyact = [|
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
 # 81 "parser.mly"
-                                      ( " FINAL: " ^ _2 ^ _3 )
+                                       ( " INITIAL: " ^ _2 ^ _3 )
 # 503 "parser.ml"
                : 'attribut))
 ; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'direction) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
-# 86 "parser.mly"
-               ("none")
-# 509 "parser.ml"
-               : 'direction))
+# 82 "parser.mly"
+                                      ( " FINAL: " ^ _2 ^ _3 )
+# 511 "parser.ml"
+               : 'attribut))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 87 "parser.mly"
-            ("Nord")
-# 515 "parser.ml"
+               ("none")
+# 517 "parser.ml"
                : 'direction))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 88 "parser.mly"
-            ("Sud")
-# 521 "parser.ml"
+            ("Nord")
+# 523 "parser.ml"
                : 'direction))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 89 "parser.mly"
-            ("Est")
-# 527 "parser.ml"
+            ("Sud")
+# 529 "parser.ml"
                : 'direction))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 90 "parser.mly"
-            ("Ouest")
-# 533 "parser.ml"
+            ("Est")
+# 535 "parser.ml"
                : 'direction))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 91 "parser.mly"
-             ("Nord-West")
-# 539 "parser.ml"
+            ("Ouest")
+# 541 "parser.ml"
                : 'direction))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 92 "parser.mly"
-             ("Nord-Est")
-# 545 "parser.ml"
+             ("Nord-West")
+# 547 "parser.ml"
                : 'direction))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 93 "parser.mly"
-             ("Sud-Ouest")
-# 551 "parser.ml"
+             ("Nord-Est")
+# 553 "parser.ml"
                : 'direction))
 ; (fun __caml_parser_env ->
     Obj.repr(
 # 94 "parser.mly"
+             ("Sud-Ouest")
+# 559 "parser.ml"
+               : 'direction))
+; (fun __caml_parser_env ->
+    Obj.repr(
+# 95 "parser.mly"
              ("Sud-Est")
-# 557 "parser.ml"
+# 565 "parser.ml"
                : 'direction))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
-# 97 "parser.mly"
+# 98 "parser.mly"
                              (" COLOR: " ^ _2 )
-# 564 "parser.ml"
+# 572 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
-# 98 "parser.mly"
+# 99 "parser.mly"
                            (" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' _2)))
-# 571 "parser.ml"
+# 579 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 99 "parser.mly"
+# 100 "parser.mly"
                               (" POSITION: " ^ _2^":"^ _3)
-# 579 "parser.ml"
-               : 'attributf))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
-    Obj.repr(
-# 102 "parser.mly"
-                                       (" COLOR: " ^ _2 ^ _3 )
 # 587 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
@@ -590,54 +590,54 @@ let yyact = [|
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
 # 103 "parser.mly"
-                                     (" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' _2)) ^ _3)
+                                       (" COLOR: " ^ _2 ^ _3 )
 # 595 "parser.ml"
+               : 'attributf))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
+    Obj.repr(
+# 104 "parser.mly"
+                                     (" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' _2)) ^ _3)
+# 603 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
-# 104 "parser.mly"
+# 105 "parser.mly"
                                         (" POSITION: " ^ _2^":"^ _3 ^ _4)
-# 604 "parser.ml"
+# 612 "parser.ml"
                : 'attributf))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
-# 109 "parser.mly"
-                            (" LABEL: " ^ _2 )
-# 611 "parser.ml"
-               : 'attributet))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
-    Obj.repr(
 # 110 "parser.mly"
-                             (" COLOR: " ^ _2 )
-# 618 "parser.ml"
+                            (" LABEL: " ^ _2 )
+# 619 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 111 "parser.mly"
+                             (" COLOR: " ^ _2 )
+# 626 "parser.ml"
+               : 'attributet))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
+    Obj.repr(
+# 112 "parser.mly"
                            (" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' _2)))
-# 625 "parser.ml"
+# 633 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 3 : 'vrailabel) in
     let _4 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _5 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 112 "parser.mly"
+# 113 "parser.mly"
                                              (" POSITION: " ^ _4^":"^ _5)
-# 634 "parser.ml"
-               : 'attributet))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
-    Obj.repr(
-# 114 "parser.mly"
-                                        (" COLOR: " ^ _2 ^ _3 )
 # 642 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
@@ -645,7 +645,7 @@ let yyact = [|
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
     Obj.repr(
 # 115 "parser.mly"
-                                      (" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' _2)) ^ _3)
+                                        (" COLOR: " ^ _2 ^ _3 )
 # 650 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
@@ -653,8 +653,16 @@ let yyact = [|
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
     Obj.repr(
 # 116 "parser.mly"
-                                       (" LABEL: " ^ _2 ^ _3 )
+                                      (" PATH: " ^ ( String.concat "_" (String.split_on_char ' ' _2)) ^ _3)
 # 658 "parser.ml"
+               : 'attributet))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
+    Obj.repr(
+# 117 "parser.mly"
+                                       (" LABEL: " ^ _2 ^ _3 )
+# 666 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 4 : 'vrailabel) in
@@ -662,66 +670,58 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
     Obj.repr(
-# 117 "parser.mly"
+# 118 "parser.mly"
                                                          (" POSITION: " ^ _4^":"^ _5 ^ _6)
-# 668 "parser.ml"
+# 676 "parser.ml"
                : 'attributet))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
-# 121 "parser.mly"
-                              (" LABEL: " ^ _2 )
-# 675 "parser.ml"
-               : 'attributen))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
-    Obj.repr(
 # 122 "parser.mly"
-                             (" COLOR: " ^ _2 )
-# 682 "parser.ml"
+                              (" LABEL: " ^ _2 )
+# 683 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 123 "parser.mly"
-                               (" BGCOLOR: " ^ _2 )
-# 689 "parser.ml"
+                             (" COLOR: " ^ _2 )
+# 690 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'direction) in
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
 # 124 "parser.mly"
-                              (" INITIAL: " ^ _2 )
-# 696 "parser.ml"
+                               (" BGCOLOR: " ^ _2 )
+# 697 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'direction) in
     Obj.repr(
 # 125 "parser.mly"
+                              (" INITIAL: " ^ _2 )
+# 704 "parser.ml"
+               : 'attributen))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 0 : 'direction) in
+    Obj.repr(
+# 126 "parser.mly"
                             (" FINAL: " ^ _2 )
-# 703 "parser.ml"
+# 711 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 126 "parser.mly"
+# 127 "parser.mly"
                          (" SIZE: " ^ _2)
-# 710 "parser.ml"
+# 718 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 127 "parser.mly"
+# 128 "parser.mly"
                              (" X: " ^ _2 ^ " Y: " ^ _3 )
-# 718 "parser.ml"
-               : 'attributen))
-; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
-    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
-    Obj.repr(
-# 129 "parser.mly"
-                                        (" LABEL: " ^ _2 ^ _3)
 # 726 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
@@ -729,7 +729,7 @@ let yyact = [|
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
 # 130 "parser.mly"
-                                       (" COLOR: " ^ _2 ^ _3 )
+                                        (" LABEL: " ^ _2 ^ _3)
 # 734 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
@@ -737,15 +737,15 @@ let yyact = [|
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
 # 131 "parser.mly"
-                                         (" BGCOLOR: " ^ _2 ^ _3 )
+                                       (" COLOR: " ^ _2 ^ _3 )
 # 742 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
-    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'direction) in
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
 # 132 "parser.mly"
-                                        (" INITIAL: " ^ _2 ^ _3 )
+                                         (" BGCOLOR: " ^ _2 ^ _3 )
 # 750 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
@@ -753,25 +753,33 @@ let yyact = [|
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
 # 133 "parser.mly"
-                                      (" FINAL: " ^ _2 ^ _3 )
+                                        (" INITIAL: " ^ _2 ^ _3 )
 # 758 "parser.ml"
+               : 'attributen))
+; (fun __caml_parser_env ->
+    let _2 = (Parsing.peek_val __caml_parser_env 1 : 'direction) in
+    let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
+    Obj.repr(
+# 134 "parser.mly"
+                                      (" FINAL: " ^ _2 ^ _3 )
+# 766 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
-# 134 "parser.mly"
+# 135 "parser.mly"
                                     (" SIZE: " ^ _2 ^ _3)
-# 766 "parser.ml"
+# 774 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
-# 135 "parser.mly"
+# 136 "parser.mly"
                                         (" X: " ^ _2 ^ " Y: " ^ _3 ^ _4)
-# 775 "parser.ml"
+# 783 "parser.ml"
                : 'attributen))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 4 : string) in
@@ -779,9 +787,9 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
-# 142 "parser.mly"
+# 143 "parser.mly"
                                                      ( nodelist := ( add (Noeud(createid _2, ( _4), ( _5),_6)) !nodelist !transition) @ !nodelist )
-# 785 "parser.ml"
+# 793 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 4 : string) in
@@ -789,9 +797,9 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 143 "parser.mly"
+# 144 "parser.mly"
                                                       ( nodelist := ( add (Noeud(createid _2, ( _5), ( _6),_3)) !nodelist !transition) @ !nodelist )
-# 795 "parser.ml"
+# 803 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 5 : string) in
@@ -800,27 +808,27 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'attribut) in
     Obj.repr(
-# 144 "parser.mly"
+# 145 "parser.mly"
                                                                 ( nodelist := ( add (Noeud( createid _2, ( _5), ( _6),_3 ^ (" "  ^ _7))) !nodelist !transition) @ !nodelist )
-# 806 "parser.ml"
+# 814 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 3 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _5 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 145 "parser.mly"
+# 146 "parser.mly"
                                              (  nodelist := ( add (Noeud(createid _2, ( _4), ( _5),"")) !nodelist !transition) @ !nodelist)
-# 815 "parser.ml"
+# 823 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 4 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
-# 148 "parser.mly"
+# 149 "parser.mly"
                                                  ( transition := (add (Edge(createid _2,createid _4,_6,"")) !nodelist !transition )@ !transition )
-# 824 "parser.ml"
+# 832 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 5 : string) in
@@ -828,9 +836,9 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
-# 149 "parser.mly"
+# 150 "parser.mly"
                                                            ( transition := (add (Edge(createid _2,createid _4,_6,_7)) !nodelist !transition) @ !transition )
-# 834 "parser.ml"
+# 842 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 5 : string) in
@@ -838,9 +846,9 @@ let yyact = [|
     let _5 = (Parsing.peek_val __caml_parser_env 2 : 'attributf) in
     let _7 = (Parsing.peek_val __caml_parser_env 0 : 'vrailabel) in
     Obj.repr(
-# 150 "parser.mly"
+# 151 "parser.mly"
                                                             ( transition := ( add (Edge(createid _2,createid _4,_7,_5)) !nodelist !transition)  @ !transition )
-# 844 "parser.ml"
+# 852 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 6 : string) in
@@ -849,9 +857,9 @@ let yyact = [|
     let _7 = (Parsing.peek_val __caml_parser_env 1 : 'vrailabel) in
     let _8 = (Parsing.peek_val __caml_parser_env 0 : 'attributf) in
     Obj.repr(
-# 151 "parser.mly"
+# 152 "parser.mly"
                                                                        ( transition := (add (Edge(createid _2,createid _4,_7,_5 ^ (" "^ _8))) !nodelist !transition)  @ !transition )
-# 855 "parser.ml"
+# 863 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 6 : string) in
@@ -859,66 +867,66 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 2 : 'vrailabel) in
     let _8 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
     Obj.repr(
-# 153 "parser.mly"
+# 154 "parser.mly"
                                                               ( transition := editt (createid _2) ( createid _4) _8 _6 !transition )
-# 865 "parser.ml"
+# 873 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'attributen) in
     Obj.repr(
-# 154 "parser.mly"
+# 155 "parser.mly"
                                     (nodelist := editn (createid _2) _4 !nodelist )
-# 873 "parser.ml"
+# 881 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 156 "parser.mly"
+# 157 "parser.mly"
                       ( nodelist := removenoeud (createid _2) !nodelist ; transition:= removetransitionafternode (createid _2) !transition;  )
-# 880 "parser.ml"
+# 888 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 157 "parser.mly"
+# 158 "parser.mly"
                                  (  transition := removetransition (createid _2) (createid _4) !transition )
-# 888 "parser.ml"
+# 896 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _3 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 159 "parser.mly"
+# 160 "parser.mly"
                                 (nodelist := moveall _2 _3 !nodelist)
-# 896 "parser.ml"
+# 904 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 160 "parser.mly"
+# 161 "parser.mly"
                                    (nodelist := moveallid_aux (createid _2) _3 _4 !nodelist)
-# 905 "parser.ml"
+# 913 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : 'glist) in
     let _3 = (Parsing.peek_val __caml_parser_env 1 : 'numero) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : 'numero) in
     Obj.repr(
-# 161 "parser.mly"
+# 162 "parser.mly"
                                       (nodelist := movelistid _2 _3 _4 !nodelist)
-# 914 "parser.ml"
+# 922 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
     let _2 = (Parsing.peek_val __caml_parser_env 2 : string) in
     let _4 = (Parsing.peek_val __caml_parser_env 0 : string) in
     Obj.repr(
-# 163 "parser.mly"
+# 164 "parser.mly"
                               (nodelist:= renamen (createid _2) (createid _4) !nodelist ; transition:= renamet (createid _2) (createid _4) !transition ;)
-# 922 "parser.ml"
+# 930 "parser.ml"
                : unit))
 (* Entry main *)
 ; (fun __caml_parser_env -> raise (Parsing.YYexit (Parsing.peek_val __caml_parser_env 0)))

@@ -19,4 +19,5 @@ CREATE EDGE FROM trois to un LABEL "a"
 IS COMPLETE
 IS DETERMINISTIC
 is reconnu "aaab"
-SHOW "aabababaaaaaaaa"
+SHOW "aaab"
+DUMP "bb" with "aaaba"
