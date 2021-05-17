@@ -216,6 +216,11 @@ let calcularc idun ideux l transi label argstransi=
   if (idun = ideux) then 
     flecheref := "M"^isinteger(p2x -. (sizeun *. 5. /. 30.) )^","^isinteger (p2y +. sizedeux -. 1.)^"l -11 2 l 9 9 Z";
 
+  if (idun = ideux) then 
+    c1x := p1x +. (sizeun *. 5. /. 30.);
+  if (idun = ideux) then 
+    c1y := p1y +. sizedeux *. 2.;
+
   (*count multiple*)
   if ( (not (idun = ideux)) && count >= 2 && (p1y>p2y)) then (* bas  à haut+ fleche **)
     curve := "M" ^ isinteger(p1x -. (sizeun *. 5. /. 30.)) ^ "," ^isinteger(p1y -. sizeun) ^ " A 5,15 0 0 1 " ^ isinteger(p2x -. (sizedeux *. 5. /. 30.) ) ^ "," ^isinteger (p2y +. sizedeux);
