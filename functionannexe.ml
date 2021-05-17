@@ -639,10 +639,10 @@ let renamet  ancien nouveau l =
     in go l [];;
 
 (*edit *)
-  let editt  idun iddeux  attributd l =
+  let editt  idun iddeux  attributd lettre l =
     let rec go l acc = match l with
       | [] -> List.rev acc
-      | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) ->                   let color = getvalue "COLOR:" "" (python_split ' ' d) in 
+      | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) && (c=lettre) ->                   let color = getvalue "COLOR:" "" (python_split ' ' d) in 
                                                                              let label = c in 
                                                                              let position = getvalue "POSITION:" "" (python_split ' ' d) in
                                                                              let path = getvalue "PATH:" "" (python_split ' ' d) in
