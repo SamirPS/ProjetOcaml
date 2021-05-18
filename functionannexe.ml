@@ -38,7 +38,7 @@ let createid id =
 
 let getnode idun l =
   let rec search l acc = match l with
-    | [] -> List.rev acc
+    | [] ->  List.rev acc
     | Noeud(a,b,c,d)::xs when a = idun   -> search xs (Noeud(a,b,c,d) :: acc)
     | _::xs -> search xs  acc
   in search l [];;
@@ -538,7 +538,7 @@ let createfile name liste secondl =
 
 let deleten e l =
   let rec go l acc = match l with
-    | [] -> List.rev acc
+    | [] ->  List.rev acc
     | Noeud(a,b,c,d)::xs when e = a -> go xs acc
     | x::xs -> go xs (x::acc)
   in go l [];;
@@ -564,7 +564,7 @@ let rec containte x y l  =
 
 let deletee e f  l =
   let rec go l acc = match l with
-    | [] -> List.rev acc
+    | [] -> List.rev  acc
     | Edge(a,b,c,d)::xs when (e = a) && (f = b)  -> go xs acc
     | x::xs -> go xs (x::acc)
   in go l [];;
@@ -581,7 +581,7 @@ let getnumber numero stringnu =
 
 let moveall numun numdeux l =
   let rec go l acc = match l with
-    | [] -> List.rev acc
+    | [] ->  List.rev acc
     | Noeud(a,b,c,d)::xs  -> go xs (Noeud(a,getnumber numun b,getnumber numdeux c,d) :: acc)
     | Edge (_, _, _, _)::xs -> go xs  acc
   in go l [];;
@@ -589,7 +589,7 @@ let moveall numun numdeux l =
 
 let moveallid  id numun numdeux l =
   let rec go l acc = match l with
-    | [] -> List.rev acc
+    | [] ->  List.rev acc
     | Noeud(a,b,c,d)::xs when a = (id) -> go xs (Noeud(a,getnumber numun b,getnumber numdeux c,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
@@ -609,7 +609,7 @@ let rec containscreateid a l =
 let movelistid  id numun numdeux l =
   let mylist = l in
   let rec go l acc = match l with
-    | [] -> List.rev acc
+    | [] ->  List.rev acc
     | Noeud(a,b,c,d)::xs when (containscreateid a id ) -> if (containsele a mylist = false  ) then failwith "Noeud inconnu"  else go xs (Noeud(a,getnumber numun b,getnumber numdeux c,d) :: acc)
     | x::xs -> go xs  (x::acc)
 
@@ -630,7 +630,7 @@ let renamen  ancien nouveau l =
 let renamet  ancien nouveau l =
     let mylist=l in
     let rec go l acc = match l with
-      | [] -> List.rev acc 
+      | [] ->  List.rev acc 
       | Edge(a,b,c,d)::xs when (a =  ancien) && (b = ancien) -> if (containstrans nouveau nouveau mylist ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,nouveau,c,d) :: acc)
       | Edge(a,b,c,d)::xs when (a =  ancien)  -> if (containstrans nouveau b mylist ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(nouveau,b,c,d) :: acc)
       | Edge(a,b,c,d)::xs when  (b =  ancien) -> if (containstrans a nouveau mylist ) then failwith "Noeud existe déjà avec ce nom"  else go xs (Edge(b,nouveau,c,d) :: acc)
@@ -641,7 +641,7 @@ let renamet  ancien nouveau l =
 (*edit *)
   let editt  idun iddeux  attributd lettre l =
     let rec go l acc = match l with
-      | [] -> List.rev acc
+      | [] ->  List.rev acc
       | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) && (c=lettre) ->                   let color = getvalue "COLOR:" "" (python_split ' ' d) in 
                                                                              let label = c in 
                                                                              let position = getvalue "POSITION:" "" (python_split ' ' d) in
@@ -666,7 +666,7 @@ let renamet  ancien nouveau l =
 
   let editn  idun attributd l =
     let rec go l acc = match l with
-      | [] -> List.rev acc
+      | [] ->  List.rev acc
       | Noeud(a,b,c,d)::xs when (a= idun ) ->                                let x = b in 
                                                                              let y = c in 
                                                                              let label = getvalue "LABEL:" "" (python_split ' ' d) in
@@ -747,7 +747,7 @@ let showcompleteaux listenoeud listtransition =
 let changecolor color listenoeud listtransition nodepascomplet  = 
   let rec go listenoeud acc listakeep= 
       match listenoeud  with
-      | [] -> List.rev acc
+      | [] ->  acc
       | Noeud(a,b,c,d)::q when (List.mem a nodepascomplet) -> go q ((editn a (" BGCOLOR: "^color) listakeep)) ((editn a (" BGCOLOR: "^color) listakeep))
 
       | _::q -> go q acc listakeep
@@ -763,15 +763,15 @@ let showcomplet color listenoeud listtransition =
 let gettransicreeaux a identifiant listtransition listeletter =
   let rec go listeletter acc = 
     match listeletter  with
-    | [] -> List.rev acc
+    | [] ->  List.rev acc
     | x::q when (existe a listtransition x =false ) -> go q ((Edge(a,identifiant,x,""))::acc)
     | _::q -> go q acc
   in go listeletter [];;
 
 let gettransicree identifiant listtransition listenoeud =
   let rec go listenoeud acc = match listenoeud with
-    | [] -> List.rev acc
-    | Noeud(a,b,c,d)::xs  -> go xs ( (gettransicreeaux a identifiant listtransition (getlettre listtransition))@acc)
+    | [] ->  acc
+    | Noeud(a,b,c,d)::xs  -> go xs ( acc@(gettransicreeaux a identifiant listtransition (getlettre listtransition)))
     | _::xs -> go xs acc
 
   in go listenoeud [];;
@@ -789,7 +789,7 @@ let complete identifiant listenoeud listtransition =
 
 let completeaux identifiant numun numdeux listenoeud listtransition = 
   if (is_complete listenoeud listtransition = false) && (containsele identifiant listenoeud = false ) then
-    ( add (Noeud(identifiant,numun,numdeux,"")) listenoeud listtransition) @ listenoeud
+      listenoeud @ ( add (Noeud(identifiant,numun,numdeux,"")) listenoeud listtransition)
   else listenoeud;;
   
 (*Deterministe*)
@@ -838,7 +838,7 @@ let showdeterminsteaux listenoeud listtransition =
 let changecolord color listenoeud listtransition nodepascomplet  = 
   let rec go listenoeud acc listakeep= 
       match listenoeud  with
-      | [] -> List.rev acc
+      | [] ->  acc
       | Noeud(a,b,c,d)::q when (List.mem a nodepascomplet) -> go q ((editn a (" BGCOLOR: "^color) listakeep)) ((editn a (" BGCOLOR: "^color) listakeep))
 
       | _::q -> go q acc listakeep
@@ -945,7 +945,7 @@ let dumpwithstring name listenoeud listtransition mot =
   if (is_accepted listenoeud listtransition mot) then colorsub:="lightGreen"; 
   let debut = "  <g stroke=\""^ !color^"\" stroke-width=\"2\" fill=\""^ !colorsub^"\">" in
   
-  for i=0 to String.length mot - 1 do
+  for i=0 to ( min (String.length mot - 1) (List.length chemin - 1)) do
      
     noeudcourant := getnode (List.nth chemin i) listenoeud;
     transicourant := gettransiv (getid (List.hd !noeudcourant)) (String.make 1  mot.[i]) listtransition;
