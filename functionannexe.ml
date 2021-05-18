@@ -74,7 +74,7 @@ let rec containsedge x y t l = match l with
   let add elem n t  =
     match elem with
     | Noeud(a,b,c,d) when (containsele a n = false) -> add_aux elem
-    | Edge(a,b,c,d) when (containsedge a b c t = false) && (containsele b n ) && (containsele b n )  -> add_aux elem
+    | Edge(a,b,c,d) when (containsedge a b c t = false) && (containsele a n ) && (containsele b n )  -> add_aux elem
     | _ -> failwith "Ajout impossible" ;;
 
 (* DUMP *)
