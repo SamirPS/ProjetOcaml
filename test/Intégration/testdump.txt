@@ -9,6 +9,6 @@ create edge from z to u label "b"
 create edge from u to z label "b" 
 create edge from z to f label "a" 
 
-IS RECONNU "a"
+IS RECONNU "aa"
 SHOW "a"
-DUMP "bb" with "a"
+DUMP "bb" with "aa"

@@ -940,7 +940,7 @@ let dumpwithstring name listenoeud listtransition mot =
   
   for i=0 to String.length mot - 1 do
     noeudcourant := getnode (List.nth chemin i) listenoeud;
-    strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal [(getnodeinitial listenoeud)] "" !color !color)^"\n"  ^ "</g></g> "^ !strmodifier;
+    strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal !noeudcourant "" !color !color)^"\n"  ^ "</g></g> "^ !strmodifier;
   done;
 
   let i = List.length chemin - 1 in 
