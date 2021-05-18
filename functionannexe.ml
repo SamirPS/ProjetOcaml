@@ -915,6 +915,12 @@ let createframesvg nombrechemin =
   done;
   cssdebut^cssm^ !milieucss^fin;;
 
+let rec gettransiv idun lettre liste =
+  match liste with 
+  | [] -> []
+  |Edge(a,b,c,d)::q when (a=idun) && (lettre=c) -> [Edge(a,b,c,d)]
+  | _::q -> gettransiv idun lettre q;;
+
 
 let rec nodefilev noeud monstr color =
   match noeud with 
@@ -932,6 +938,7 @@ let dumpwithstring name listenoeud listtransition mot =
   let chemin = python_split '-' (getchemin listenoeud listtransition mot) in 
   let strmodifier = ref "" in 
   let noeudcourant = ref [(getnodeinitial listenoeud)] in
+  let transicourant = ref [] in 
   let color = ref "red" in 
   let colorsub = ref "lightCoral" in 
   if (is_accepted listenoeud listtransition mot) then color:="green"; 
@@ -940,7 +947,9 @@ let dumpwithstring name listenoeud listtransition mot =
   
   for i=0 to String.length mot - 1 do
     noeudcourant := getnode (List.nth chemin i) listenoeud;
-    strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal !noeudcourant "" !color !color)^"\n"  ^ "</g></g> "^ !strmodifier;
+    transicourant := gettransiv (getid (List.hd !noeudcourant)) (String.make 1  mot.[i]) listtransition;
+    transicourant := editt (getid (List.hd !noeudcourant)) ( getautresommet listtransition (getid (List.hd !noeudcourant)) (String.make 1  mot.[i]))  (" COLOR: "^ !color) (String.make 1  mot.[i])  !transicourant;
+    strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal !noeudcourant "" !color !color)^(transitionfile listenoeud !transicourant listtransition "")^"\n"  ^ "</g></g> "^ !strmodifier;
   done;
 
   let i = List.length chemin - 1 in 
