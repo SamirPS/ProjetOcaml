@@ -1,20 +1,74 @@
  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600" viewBox="0 0 800 600"> 
 <circle cx="100" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
-<text x="100" y="300" dominant-baseline="middle " fill="black" > zero </text> 
-<circle cx="200" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
-<text x="200" y="300" dominant-baseline="middle " fill="black" > un </text> 
-<path fill="none"  d="M105 329 A 15 20 0 1 1 95 329" stroke="black"></path> 
- <text x="130" y="360" fill="black" text-anchor="middle"> b  </text> 
- <path fill="black"  d="M95,329l -11 2 l 9 9 Z" stroke="black"></path> 
-<path fill="none"  d="M130,300 A 10,10 0 0 1 170,300" stroke="black"></path> 
- <text x="146" y="330" fill="black" text-anchor="middle"> a  </text> 
- <path fill="black"  d="M170,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
-<path fill="none"  d="M170,300 A 10,10 0 0 1 130,300" stroke="black"></path> 
- <text x="146" y="270" fill="black" text-anchor="middle"> b  </text> 
- <path fill="black"  d="M130,300 l 10 4 l -10 9 Z" stroke="black"></path> 
-<path fill="none"  d="M205 329 A 15 20 0 1 1 195 329" stroke="black"></path> 
- <text x="230" y="360" fill="black" text-anchor="middle"> a  </text> 
- <path fill="black"  d="M195,329l -11 2 l 9 9 Z" stroke="black"></path> 
-<path stroke="black" d="M 70 300 l-30 0"></path><path fill="black"  d="M70,300l -8,-8 l 0,16 Z" stroke="black"></path> 
-<path stroke="black" d="M 230 300 l30 0"></path><path fill="black"  d="M260,300l -8,-8 l 0,16 Z" stroke="black"></path> 
+<text x="100" y="300" dominant-baseline="middle " fill="black" > un </text> 
+<circle cx="200" cy="200" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="200" y="200" dominant-baseline="middle " fill="black" > deux </text> 
+<circle cx="200" cy="400" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="200" y="400" dominant-baseline="middle " fill="black" > quatre </text> 
+<circle cx="400" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="400" y="300" dominant-baseline="middle " fill="black" > cinq </text> 
+<circle cx="240" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="240" y="300" dominant-baseline="middle " fill="black" > p </text> 
+<path fill="none"  d="M130,300 A 10,10 0 0 1 210,300" stroke="black"></path> 
+ <text x="186" y="270" fill="black" text-anchor="middle"> d c  </text> 
+ <path fill="black"  d="M210,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path fill="none"  d="M130,300 A 10,10 0 0 1 210,300" stroke="black"></path> 
+ <text x="186" y="270" fill="black" text-anchor="middle"> d c  </text> 
+ <path fill="black"  d="M210,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path fill="none"  d="M230,400 A 10,10 0 0 1 210,300" stroke="black"></path> 
+ <text x="186" y="270" fill="black" text-anchor="middle"> a b  </text> 
+ <path fill="black"  d="M210,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path fill="none"  d="M230,400 A 10,10 0 0 1 210,300" stroke="black"></path> 
+ <text x="186" y="270" fill="black" text-anchor="middle"> a b  </text> 
+ <path fill="black"  d="M210,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path fill="none"  d="M370,300 A 10,10 0 0 1 270,300" stroke="black"></path> 
+ <text x="346" y="330" fill="black" text-anchor="middle"> d c a b  </text> 
+ <path fill="black"  d="M270,300 l 10 4 l -10 9 Z" stroke="black"></path> 
+<path fill="none"  d="M370,300 A 10,10 0 0 1 270,300" stroke="black"></path> 
+ <text x="346" y="330" fill="black" text-anchor="middle"> d c a b  </text> 
+ <path fill="black"  d="M270,300 l 10 4 l -10 9 Z" stroke="black"></path> 
+<path fill="none"  d="M370,300 A 10,10 0 0 1 270,300" stroke="black"></path> 
+ <text x="346" y="330" fill="black" text-anchor="middle"> d c a b  </text> 
+ <path fill="black"  d="M270,300 l 10 4 l -10 9 Z" stroke="black"></path> 
+<path fill="none"  d="M370,300 A 10,10 0 0 1 270,300" stroke="black"></path> 
+ <text x="346" y="330" fill="black" text-anchor="middle"> d c a b  </text> 
+ <path fill="black"  d="M270,300 l 10 4 l -10 9 Z" stroke="black"></path> 
+<path fill="none"  d="M245 329 A 15 20 0 1 1 235 329" stroke="black"></path> 
+ <text x="270" y="360" fill="black" text-anchor="middle"> d c a b  </text> 
+ <path fill="black"  d="M235,329l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M245 329 A 15 20 0 1 1 235 329" stroke="black"></path> 
+ <text x="270" y="360" fill="black" text-anchor="middle"> d c a b  </text> 
+ <path fill="black"  d="M235,329l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M245 329 A 15 20 0 1 1 235 329" stroke="black"></path> 
+ <text x="270" y="360" fill="black" text-anchor="middle"> d c a b  </text> 
+ <path fill="black"  d="M235,329l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M245 329 A 15 20 0 1 1 235 329" stroke="black"></path> 
+ <text x="270" y="360" fill="black" text-anchor="middle"> d c a b  </text> 
+ <path fill="black"  d="M235,329l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M130 300 L 170 200" stroke="black"></path> 
+ <text x="150" y="245" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="black"  d="M170,200l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M130 300 L 170 400" stroke="black"></path> 
+ <text x="150" y="345" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="M170,400l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path fill="none"  d="M205 229 A 15 20 0 1 1 195 229" stroke="black"></path> 
+ <text x="230" y="260" fill="black" text-anchor="middle"> b a  </text> 
+ <path fill="black"  d="M195,229l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M205 229 A 15 20 0 1 1 195 229" stroke="black"></path> 
+ <text x="230" y="260" fill="black" text-anchor="middle"> b a  </text> 
+ <path fill="black"  d="M195,229l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M230,200 A 10,10 0 0 1 370,300" stroke="black"></path> 
+ <text x="346" y="270" fill="black" text-anchor="middle"> c d  </text> 
+ <path fill="black"  d="M370,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path fill="none"  d="M230,200 A 10,10 0 0 1 370,300" stroke="black"></path> 
+ <text x="346" y="270" fill="black" text-anchor="middle"> c d  </text> 
+ <path fill="black"  d="M370,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path fill="none"  d="M230,400 A 10,10 0 0 1 370,300" stroke="black"></path> 
+ <text x="346" y="270" fill="black" text-anchor="middle"> c d  </text> 
+ <path fill="black"  d="M370,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path fill="none"  d="M230,400 A 10,10 0 0 1 370,300" stroke="black"></path> 
+ <text x="346" y="270" fill="black" text-anchor="middle"> c d  </text> 
+ <path fill="black"  d="M370,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path stroke="black" d="M 100 330 l 0 30"></path><path fill="black"  d="M100,330 l -8 8 m 16 0 l -8 -8" stroke="black"></path> 
+<path stroke="black" d="M 400 270 l 0 -30"></path><path fill="black"  d="M400,240 l -8 8 m 16 0 l -8 -8" stroke="black"></path> 
 </svg>

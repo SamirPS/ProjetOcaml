@@ -13,4 +13,4 @@ create edge from z to f label "a"
 
 IS RECONNU "aa"
 SHOW "aa"
-DUMP "bb" with "aaa"
+DUMP "testvide" with ""
