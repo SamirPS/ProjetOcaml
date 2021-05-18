@@ -429,23 +429,23 @@ let rec transitionfile noeud transi l monstr  =
                             transitionfile noeud  q l (  (fill ^label) ^ monstr)
       | _ -> ""^monstr;;
 
-let rec initfinal listenoeud monstr= 
+let rec initfinal listenoeud monstr color fill = 
   match listenoeud with
   | [] -> monstr
   |Noeud(x,y,z,t)::q when (contains t "INITIAL" )-> let direct =  getvalue "INITIAL:" "Ouest" (python_split ' ' t) in 
                                                     let x1 = (float_of_string y) in
                                                     let y1 = ( float_of_string z ) in
-                                                    let fleche = "<path fill=\""^"black"^"\"  d=\"" in 
-                                                    let flechefin = "\" stroke=\""^"black"^"\"></path> \n" in 
+                                                    let fleche = "<path fill=\""^fill^"\"  d=\"" in 
+                                                    let flechefin = "\" stroke=\""^color^"\"></path> \n" in 
                                                     let flecheref = ref "" in 
                                                     let sizeun = float_of_string (getvalue "SIZE:" "30" (python_split ' ' t)) in 
                                                     let myinfo = ref "" in 
                                                     
                                                     (*fleche pour la direction*)
-                                                    if (direct = "Ouest" || direct = "none") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
-                                                    if (direct = "Nord") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
-                                                    if (direct = "Sud") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
-                                                    if (direct = "Est") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
+                                                    if (direct = "Ouest" || direct = "none") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
+                                                    if (direct = "Nord") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
+                                                    if (direct = "Sud") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Est") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
                                                     
                                                     (* fleche *)
                                                     if (direct = "Ouest" || direct = "none") then flecheref := "M"^isinteger(x1-.sizeun)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
@@ -456,13 +456,13 @@ let rec initfinal listenoeud monstr=
 
 
                                                     (* fleche direction *)
-                                                    if (direct = "Nord-West" ) then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(-. sizeun)^isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Nord-West" ) then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(-. sizeun)^isinteger(-.sizeun)^"\">";
 
-                                                    if (direct = "Nord-Est") then  myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Nord-Est") then  myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
 
-                                                    if (direct = "Sud-Ouest") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Sud-Ouest") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
 
-                                                    if (direct = "Sud-Est") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Sud-Est") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^isinteger(-.sizeun)^"\">";
                                                     (*fleche noir *)
                                                     
                                                     if (direct = "Nord-West" ) then flecheref := "M"^isinteger(x1)^","^isinteger(y1+.sizeun)^"l 10 4 l -10 9 Z";
@@ -472,23 +472,23 @@ let rec initfinal listenoeud monstr=
                                                     if (direct = "Sud-Ouest") then flecheref := "M"^isinteger(x1+.sizeun)^","^isinteger(y1)^" l 11,-2 l -9,-9 Z";
                                                     if (direct = "Sud-Est") then flecheref := "M"^isinteger(x1-.sizeun)^","^isinteger(y1)^" l -10 -4 l 10 -9 Z";
 
-                                                    initfinal q  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr)
+                                                    initfinal q  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr) color fill
 
 
  | Noeud(x,y,z,t)::q when (contains t "FINAL" )-> let direct =  getvalue "FINAL:" "Est" (python_split ' ' t) in 
                                                     let x1 = (float_of_string y) in
                                                     let y1 = ( float_of_string z ) in
-                                                    let fleche = "<path fill=\""^"black"^"\"  d=\"" in 
-                                                    let flechefin = "\" stroke=\""^"black"^"\"></path> \n" in 
+                                                    let fleche = "<path fill=\""^fill^"\"  d=\"" in 
+                                                    let flechefin = "\" stroke=\""^color^"\"></path> \n" in 
                                                     let flecheref = ref "" in 
                                                     let sizeun = float_of_string (getvalue "SIZE:" "30" (python_split ' ' t)) in 
                                                     let myinfo = ref "" in 
                                                     
                                                     (*fleche pour la direction*)
-                                                    if (direct = "Est" || direct = "none") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
-                                                    if (direct = "Nord") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
-                                                    if (direct = "Sud") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
-                                                    if (direct = "Ouest") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
+                                                    if (direct = "Est" || direct = "none") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
+                                                    if (direct = "Nord") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Sud") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
+                                                    if (direct = "Ouest") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
                                                     
                                                     (* fleche *)
                                                     if (direct = "Est" || direct = "none") then flecheref := "M"^isinteger(x1+.sizeun*.2.)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
@@ -499,13 +499,13 @@ let rec initfinal listenoeud monstr=
 
 
 
-                                                    if (direct = "Nord-West" ) then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Nord-West" ) then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^isinteger(-.sizeun)^"\">";
 
-                                                    if (direct = "Nord-Est") then  myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Nord-Est") then  myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
 
-                                                    if (direct = "Sud-Ouest") then  myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Sud-Ouest") then  myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
 
-                                                    if (direct = "Sud-Est") then myinfo := "<path stroke=\"black\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(-. sizeun)^isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Sud-Est") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(-. sizeun)^isinteger(-.sizeun)^"\">";
 
                                                     (*fleche noir *)
                                                     
@@ -516,14 +516,14 @@ let rec initfinal listenoeud monstr=
                                                     if (direct = "Sud-Ouest") then flecheref := "M"^isinteger(x1)^","^isinteger(y1+.sizeun)^"l -11 2 l 9 9 Z";
                                                     if (direct = "Sud-Est") then flecheref := "M"^isinteger(x1)^","^isinteger(y1+.sizeun)^"l 10 4 l -10 9 Z";
 
-                                                    initfinal q  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr)
+                                                    initfinal q  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr) color fill 
                                                                                                                                                   
- | _::q -> initfinal q monstr
+ | _::q -> initfinal q monstr color fill
 ;;
 
 let createfile name liste secondl =
   let fic2 = open_out (name^".svg") in
-  let mystrfinal=" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n"^(nodefile liste "") ^ (transitionfile liste secondl secondl "") ^ (initfinal liste "") ^ "</svg>" in
+  let mystrfinal=" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n"^(nodefile liste "") ^ (transitionfile liste secondl secondl "") ^ (initfinal liste "" "black" "black") ^ "</svg>" in
   
   output_string fic2 mystrfinal;
   close_out fic2;;
@@ -928,7 +928,7 @@ let rec nodefilev noeud monstr color =
 let dumpwithstring name listenoeud listtransition mot =
   let fic2 = open_out (name^".svg") in
 
-  let mystrfinal =" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n " ^(nodefile listenoeud "") ^ (transitionfile listenoeud listtransition listtransition "") ^ (initfinal listenoeud "") in
+  let mystrfinal =" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n " ^(nodefile listenoeud "") ^ (transitionfile listenoeud listtransition listtransition "") ^ (initfinal listenoeud "" "black" "black") in
   let chemin = python_split '-' (getchemin listenoeud listtransition mot) in 
   let strmodifier = ref "" in 
   let noeudcourant = ref [(getnodeinitial listenoeud)] in
@@ -938,10 +938,14 @@ let dumpwithstring name listenoeud listtransition mot =
   if (is_accepted listenoeud listtransition mot) then colorsub:="lightGreen"; 
   let debut = "  <g stroke=\""^ !color^"\" stroke-width=\"2\" fill=\""^ !colorsub^"\">" in
   
-  for i=0 to List.length chemin - 1 do
+  for i=0 to String.length mot - 1 do
     noeudcourant := getnode (List.nth chemin i) listenoeud;
-    strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ "\n"  ^ "</g></g> "^ !strmodifier;
+    strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal [(getnodeinitial listenoeud)] "" !color !color)^"\n"  ^ "</g></g> "^ !strmodifier;
   done;
+
+  let i = List.length chemin - 1 in 
+  noeudcourant := getnode (List.nth chemin i) listenoeud;
+  strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal !noeudcourant "" !color !color) ^ "\n"  ^ "</g></g> "^ !strmodifier;
   
   output_string fic2 (mystrfinal^(createframesvg chemin)^ !strmodifier ^ "</svg>" );
   close_out fic2;;

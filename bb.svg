@@ -25,21 +25,17 @@
 <path stroke="black" d="M 70 300 l-30 0"></path><path fill="black"  d="M70,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 <path stroke="black" d="M 330 300 l30 0"></path><path fill="black"  d="M360,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 <style type="text/css">
-.frame {visibility:hidden;animation:frames 4.5s linear infinite}
+.frame {visibility:hidden;animation:frames 3s linear infinite}
 #_frame_0{ animation-delay:0s}
 #_frame_1{ animation-delay:1.5s}
-#_frame_2{ animation-delay:3s}
 @keyframes frames {0% {visibility:visible} 20% {visibility:hidden}} </style>
-<g id="_frame_2" class="frame">
-  <g stroke="green" stroke-width="2" fill="lightGreen"> <circle cx="300" cy="300" r="30 " > </circle> 
-<text x="300" y="300" dominant-baseline="middle " fill="green" > f </text> 
-
-</g></g> <g id="_frame_1" class="frame">
-  <g stroke="green" stroke-width="2" fill="lightGreen"> <circle cx="200" cy="300" r="30 " > </circle> 
-<text x="200" y="300" dominant-baseline="middle " fill="green" > 0 </text> 
+<g id="_frame_1" class="frame">
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="200" cy="300" r="30 " > </circle> 
+<text x="200" y="300" dominant-baseline="middle " fill="red" > 0 </text> 
 
 </g></g> <g id="_frame_0" class="frame">
-  <g stroke="green" stroke-width="2" fill="lightGreen"> <circle cx="100" cy="300" r="30 " > </circle> 
-<text x="100" y="300" dominant-baseline="middle " fill="green" > i </text> 
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="100" cy="300" r="30 " > </circle> 
+<text x="100" y="300" dominant-baseline="middle " fill="red" > i </text> 
+<path stroke="red" d="M 70 300 l-30 0"></path><path fill="red"  d="M70,300l -8,-8 l 0,16 Z" stroke="red"></path> 
 
 </g></g> </svg>
