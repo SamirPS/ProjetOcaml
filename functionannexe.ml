@@ -946,12 +946,13 @@ let dumpwithstring name listenoeud listtransition mot =
   let debut = "  <g stroke=\""^ !color^"\" stroke-width=\"2\" fill=\""^ !colorsub^"\">" in
   
   for i=0 to String.length mot - 1 do
+     transicourant := gettransiv (getid (List.hd !noeudcourant)) (String.make 1  mot.[i]) listtransition;
+     transicourant := editt (getid (List.hd !noeudcourant)) ( getautresommet listtransition (getid (List.hd !noeudcourant)) (String.make 1  mot.[i]))  (" COLOR: "^ !color) (String.make 1  mot.[i])  !transicourant;
+  
     noeudcourant := getnode (List.nth chemin i) listenoeud;
     strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal !noeudcourant "" !color !color)^(transitionfile listenoeud !transicourant listtransition "")^"\n"  ^ "</g></g> "^ !strmodifier;
-    transicourant := gettransiv (getid (List.hd !noeudcourant)) (String.make 1  mot.[i]) listtransition;
-    transicourant := editt (getid (List.hd !noeudcourant)) ( getautresommet listtransition (getid (List.hd !noeudcourant)) (String.make 1  mot.[i]))  (" COLOR: "^ !color) (String.make 1  mot.[i])  !transicourant;
-  done;
-
+   done;
+  
   let i = List.length chemin - 1 in 
   noeudcourant := getnode (List.nth chemin i) listenoeud;
   strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal !noeudcourant "" !color !color) ^ "\n"  ^ "</g></g> "^ !strmodifier;
