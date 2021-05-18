@@ -263,13 +263,13 @@ let calcularc idun ideux l transi label argstransi=
   if ( (not (idun = ideux)) && count >= 2 && (p1x>p2x)) then (* droite  à gauche+ fleche **)
     c1x := p1x -. sizeun *. 1.8;
   if ( (not (idun = ideux)) && count >= 2 && (p1x>p2x)) then
-    c1y := p2y -. sizedeux;
+    c1y := p2y +. sizedeux;
   
 
   if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then (* gauche   à droite+ fleche **)
     c1x := p2x -. sizedeux *. 1.8;
   if ( (not (idun = ideux)) && count >= 2 && (p2x>p1x)) then
-    c1y := p2y +. sizedeux;
+    c1y := p2y -. sizedeux;
  
   curveedebut^ !curve ^curvefin^infox^isinteger(!c1x +. xajout)^infoy^isinteger(!c1y +. yajout)^ infoatt ^label^ labelinfo^fleche^ !flecheref^flechefin;;
 
