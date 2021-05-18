@@ -38,16 +38,13 @@
 </g></g> <g id="_frame_1" class="frame">
   <g stroke="green" stroke-width="2" fill="lightGreen"> <circle cx="200" cy="300" r="30 " > </circle> 
 <text x="200" y="300" dominant-baseline="middle " fill="green" > 0 </text> 
-<path fill="none"  d="M230 300 L 270 300" stroke="green"></path> 
- <text x="250" y="295" fill="black" text-anchor="middle"> a  </text> 
- <path fill="green"  d="M270,300l -8,-8 l 0,16 Z" stroke="green"></path> 
+<path fill="none"  d="M 130 300 L 170 300" stroke="green"></path> 
+ <text x="150" y="295" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="green"  d="M170,300l -8,-8 l 0,16 Z" stroke="green"></path> 
 
 </g></g> <g id="_frame_0" class="frame">
   <g stroke="green" stroke-width="2" fill="lightGreen"> <circle cx="100" cy="300" r="30 " > </circle> 
 <text x="100" y="300" dominant-baseline="middle " fill="green" > i </text> 
 <path stroke="green" d="M 70 300 l-30 0"></path><path fill="green"  d="M70,300l -8,-8 l 0,16 Z" stroke="green"></path> 
-<path fill="none"  d="M 130 300 L 170 300" stroke="green"></path> 
- <text x="150" y="295" fill="black" text-anchor="middle"> a  </text> 
- <path fill="green"  d="M170,300l -8,-8 l 0,16 Z" stroke="green"></path> 
 
 </g></g> </svg>
