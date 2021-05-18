@@ -9,10 +9,8 @@ create edge from z to z label "a"
 create edge from z to u label "a" 
 create edge from u to z label "b" 
 create edge from z to f label "a" 
-create edge from u to f label "a" 
-create edge from f to u label "b" 
 
 
 IS RECONNU "aa"
 SHOW "aa"
-DUMP "bb" with "aa"
+DUMP "bb" with "aaa"

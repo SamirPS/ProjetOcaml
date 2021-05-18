@@ -25,12 +25,6 @@
 <path fill="none"  d="M230 300 L 270 300" stroke="black"></path> 
  <text x="250" y="295" fill="black" text-anchor="middle"> a  </text> 
  <path fill="black"  d="M270,300l -8,-8 l 0,16 Z" stroke="black"></path> 
-<path fill="none"  d="M230,200 A 10,10 0 0 1 270,300" stroke="black"></path> 
- <text x="246" y="270" fill="black" text-anchor="middle"> a  </text> 
- <path fill="black"  d="M270,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
-<path fill="none"  d="M270,300 A 10,10 0 0 1 230,200" stroke="black"></path> 
- <text x="246" y="230" fill="black" text-anchor="middle"> b  </text> 
- <path fill="black"  d="M230,200 l 10 4 l -10 9 Z" stroke="black"></path> 
 <path stroke="black" d="M 70 300 l-30 0"></path><path fill="black"  d="M70,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 <path stroke="black" d="M 330 300 l30 0"></path><path fill="black"  d="M360,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 <style type="text/css">
@@ -40,23 +34,28 @@
 #_frame_2{ animation-delay:3s}
 @keyframes frames {0% {visibility:visible} 20% {visibility:hidden}} </style>
 <g id="_frame_2" class="frame">
-  <g stroke="green" stroke-width="2" fill="lightGreen"> <circle cx="300" cy="300" r="30 " > </circle> 
-<text x="300" y="300" dominant-baseline="middle " fill="green" > f </text> 
-<path stroke="green" d="M 330 300 l30 0"></path><path fill="green"  d="M360,300l -8,-8 l 0,16 Z" stroke="green"></path> 
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="300" cy="300" r="30 " > </circle> 
+<text x="300" y="300" dominant-baseline="middle " fill="red" > f </text> 
+<path stroke="red" d="M 330 300 l30 0"></path><path fill="red"  d="M360,300l -8,-8 l 0,16 Z" stroke="red"></path> 
+
+</g></g> <g id="_frame_2" class="frame">
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="300" cy="300" r="30 " > </circle> 
+<text x="300" y="300" dominant-baseline="middle " fill="red" > f </text> 
+<path stroke="red" d="M 330 300 l30 0"></path><path fill="red"  d="M360,300l -8,-8 l 0,16 Z" stroke="red"></path> 
 
 </g></g> <g id="_frame_1" class="frame">
-  <g stroke="green" stroke-width="2" fill="lightGreen"> <circle cx="200" cy="300" r="30 " > </circle> 
-<text x="200" y="300" dominant-baseline="middle " fill="green" > 0 </text> 
-<path fill="none"  d="M230 300 L 270 300" stroke="green"></path> 
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="200" cy="300" r="30 " > </circle> 
+<text x="200" y="300" dominant-baseline="middle " fill="red" > 0 </text> 
+<path fill="none"  d="M230 300 L 270 300" stroke="red"></path> 
  <text x="250" y="295" fill="black" text-anchor="middle"> a  </text> 
- <path fill="green"  d="M270,300l -8,-8 l 0,16 Z" stroke="green"></path> 
+ <path fill="red"  d="M270,300l -8,-8 l 0,16 Z" stroke="red"></path> 
 
 </g></g> <g id="_frame_0" class="frame">
-  <g stroke="green" stroke-width="2" fill="lightGreen"> <circle cx="100" cy="300" r="30 " > </circle> 
-<text x="100" y="300" dominant-baseline="middle " fill="green" > i </text> 
-<path stroke="green" d="M 70 300 l-30 0"></path><path fill="green"  d="M70,300l -8,-8 l 0,16 Z" stroke="green"></path> 
-<path fill="none"  d="M130,300 A 10,10 0 0 1 170,300" stroke="green"></path> 
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="100" cy="300" r="30 " > </circle> 
+<text x="100" y="300" dominant-baseline="middle " fill="red" > i </text> 
+<path stroke="red" d="M 70 300 l-30 0"></path><path fill="red"  d="M70,300l -8,-8 l 0,16 Z" stroke="red"></path> 
+<path fill="none"  d="M130,300 A 10,10 0 0 1 170,300" stroke="red"></path> 
  <text x="146" y="270" fill="black" text-anchor="middle"> a  </text> 
- <path fill="green"  d="M170,300 l -10 -4 l 10 -9 Z" stroke="green"></path> 
+ <path fill="red"  d="M170,300 l -10 -4 l 10 -9 Z" stroke="red"></path> 
 
 </g></g> </svg>
