@@ -77,6 +77,68 @@ let rec containsedge x y t l = match l with
     | Edge(a,b,c,d) when (containsedge a b c t = false) && (containsele a n ) && (containsele b n )  -> add_aux elem
     | _ -> failwith "Ajout impossible" ;;
 
+
+(*edit *)
+let editt  idun iddeux  attributd lettre l =
+let rec go l acc = match l with
+  | [] ->  List.rev acc
+  | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) && (c=lettre) ->                   let color = getvalue "COLOR:" "" (python_split ' ' d) in 
+                                                                         let label = c in 
+                                                                         let position = getvalue "POSITION:" "" (python_split ' ' d) in
+                                                                         let path = getvalue "PATH:" "" (python_split ' ' d) in
+
+                                                                         let colore = getvalue "COLOR:" color (python_split ' ' attributd) in 
+                                                                         let labele = getvalue "LABEL:" label (python_split ' ' attributd) in 
+                                                                         let positione = getvalue "POSITION:" position (python_split ' 'attributd) in
+                                                                         let pathe =  getvalue "PATH:" path (python_split ' ' attributd) in 
+
+                                                                         let attfinal = ref "" in 
+                                                                         if  not (colore = "") then attfinal:= " COLOR: " ^ colore ^ !attfinal; 
+                                                                         if not (positione = "") then attfinal:= " POSITION: " ^ positione ^ !attfinal;
+                                                                         if not (pathe = "") then attfinal:= " PATH: " ^ pathe ^ !attfinal;
+
+                                                                         go xs (Edge(a,b,labele,!attfinal)::acc)                
+  | x::xs -> go xs (x::acc)
+
+in go l [];;
+
+                                                        
+
+let editn  idun attributd l =
+let rec go l acc = match l with
+  | [] ->  List.rev acc
+  | Noeud(a,b,c,d)::xs when (a= idun ) ->                                let x = b in 
+                                                                         let y = c in 
+                                                                         let label = getvalue "LABEL:" "" (python_split ' ' d) in
+                                                                         let color = getvalue "COLOR:" "" (python_split ' ' d) in
+                                                                         let bgcolor = getvalue "BGCOLOR:" "" (python_split ' ' d) in
+                                                                         let size = getvalue "SIZE:" "" (python_split ' ' d) in
+                                                                         let initial = getvalue "INITIAL:" "" (python_split ' ' d) in
+                                                                         let final = getvalue "FINAL:" "" (python_split ' ' d) in
+                                                                         
+
+                                                                         let xe = getvalue "X:" x (python_split ' ' attributd) in 
+                                                                         let ye = getvalue "Y:" y (python_split ' ' attributd) in 
+                                                                         let labele = getvalue "LABEL:" label (python_split ' ' attributd) in
+                                                                         let colore = getvalue "COLOR:" color (python_split ' ' attributd) in
+                                                                         let bgcolore = getvalue "BGCOLOR:" bgcolor (python_split ' ' attributd) in
+                                                                         let sizee = getvalue "SIZE:" size (python_split ' ' attributd) in
+                                                                         let initiale = getvalue "INITIAL:" initial (python_split ' ' attributd) in
+                                                                         let finale = getvalue "FINAL:" final (python_split ' ' attributd ) in
+
+                                                                         let attfinal = ref "" in 
+
+                                                                         if  not (labele = "") then attfinal:= " LABEL: " ^ labele ^ !attfinal; 
+                                                                         if not (colore = "") then attfinal:= " COLOR: " ^ colore ^ !attfinal;
+                                                                         if not (bgcolore = "") then attfinal:= " BGCOLOR: " ^ bgcolore ^ !attfinal;
+                                                                         if  not (sizee = "") then attfinal:= " SIZE: " ^ sizee ^ !attfinal; 
+                                                                         if not (initiale = "") then attfinal:= " INITIAL: " ^ initiale ^ !attfinal;
+                                                                         if not (finale = "") then attfinal:= " FINAL: " ^ finale ^ !attfinal;
+                                                                         go xs (Noeud(a,xe,ye,!attfinal)::acc)                
+  | x::xs -> go xs (x::acc)
+
+in go l [];;
+
 (* DUMP *)
 let rec printlist e  = 
   match e with
@@ -432,7 +494,7 @@ let rec transitionfile noeud transi l monstr  =
 let rec initfinal listenoeud monstr color fill = 
   match listenoeud with
   | [] -> monstr
-  |Noeud(x,y,z,t)::q when (contains t "INITIAL" )-> let direct =  getvalue "INITIAL:" "Ouest" (python_split ' ' t) in 
+  |Noeud(x,y,z,t)::q when (contains t "INITIAL" ) &&  (contains  t " INITIAL: DELETE" =false) -> let direct =  getvalue "INITIAL:" "Ouest" (python_split ' ' t) in 
                                                     let x1 = (float_of_string y) in
                                                     let y1 = ( float_of_string z ) in
                                                     let fleche = "<path fill=\""^fill^"\"  d=\"" in 
@@ -472,10 +534,10 @@ let rec initfinal listenoeud monstr color fill =
                                                     if (direct = "Sud-Ouest") then flecheref := "M"^isinteger(x1+.sizeun)^","^isinteger(y1)^" l 11,-2 l -9,-9 Z";
                                                     if (direct = "Sud-Est") then flecheref := "M"^isinteger(x1-.sizeun)^","^isinteger(y1)^" l -10 -4 l 10 -9 Z";
 
-                                                    initfinal q  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr) color fill
+                                                    initfinal (editn  x " INITIAL: DELETE" (Noeud(x,y,z,t)::q))  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr) color fill
 
 
- | Noeud(x,y,z,t)::q when (contains t "FINAL" )-> let direct =  getvalue "FINAL:" "Est" (python_split ' ' t) in 
+ | Noeud(x,y,z,t)::q when (contains t "FINAL" ) && (contains  t " FINAL: DELETE" =false) ->   let direct =  getvalue "FINAL:" "Est" (python_split ' ' t) in 
                                                     let x1 = (float_of_string y) in
                                                     let y1 = ( float_of_string z ) in
                                                     let fleche = "<path fill=\""^fill^"\"  d=\"" in 
@@ -516,7 +578,7 @@ let rec initfinal listenoeud monstr color fill =
                                                     if (direct = "Sud-Ouest") then flecheref := "M"^isinteger(x1)^","^isinteger(y1+.sizeun)^"l -11 2 l 9 9 Z";
                                                     if (direct = "Sud-Est") then flecheref := "M"^isinteger(x1)^","^isinteger(y1+.sizeun)^"l 10 4 l -10 9 Z";
 
-                                                    initfinal q  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr) color fill 
+                                                    initfinal  (editn  x " FINAL: DELETE" (Noeud(x,y,z,t)::q))  (!myinfo^"</path>"^fleche^ !flecheref ^ flechefin^monstr) color fill 
                                                                                                                                                   
  | _::q -> initfinal q monstr color fill
 ;;
@@ -638,66 +700,7 @@ let renamet  ancien nouveau l =
 
     in go l [];;
 
-(*edit *)
-  let editt  idun iddeux  attributd lettre l =
-    let rec go l acc = match l with
-      | [] ->  List.rev acc
-      | Edge(a,b,c,d)::xs when (a= idun ) && (b=iddeux) && (c=lettre) ->                   let color = getvalue "COLOR:" "" (python_split ' ' d) in 
-                                                                             let label = c in 
-                                                                             let position = getvalue "POSITION:" "" (python_split ' ' d) in
-                                                                             let path = getvalue "PATH:" "" (python_split ' ' d) in
 
-                                                                             let colore = getvalue "COLOR:" color (python_split ' ' attributd) in 
-                                                                             let labele = getvalue "LABEL:" label (python_split ' ' attributd) in 
-                                                                             let positione = getvalue "POSITION:" position (python_split ' 'attributd) in
-                                                                             let pathe =  getvalue "PATH:" path (python_split ' ' attributd) in 
-
-                                                                             let attfinal = ref "" in 
-                                                                             if  not (colore = "") then attfinal:= " COLOR: " ^ colore ^ !attfinal; 
-                                                                             if not (positione = "") then attfinal:= " POSITION: " ^ positione ^ !attfinal;
-                                                                             if not (pathe = "") then attfinal:= " PATH: " ^ pathe ^ !attfinal;
-
-                                                                             go xs (Edge(a,b,labele,!attfinal)::acc)                
-      | x::xs -> go xs (x::acc)
-
-    in go l [];;
-
-                                                            
-
-  let editn  idun attributd l =
-    let rec go l acc = match l with
-      | [] ->  List.rev acc
-      | Noeud(a,b,c,d)::xs when (a= idun ) ->                                let x = b in 
-                                                                             let y = c in 
-                                                                             let label = getvalue "LABEL:" "" (python_split ' ' d) in
-                                                                             let color = getvalue "COLOR:" "" (python_split ' ' d) in
-                                                                             let bgcolor = getvalue "BGCOLOR:" "" (python_split ' ' d) in
-                                                                             let size = getvalue "SIZE:" "" (python_split ' ' d) in
-                                                                             let initial = getvalue "INITIAL:" "" (python_split ' ' d) in
-                                                                             let final = getvalue "FINAL:" "" (python_split ' ' d) in
-                                                                             
-
-                                                                             let xe = getvalue "X:" x (python_split ' ' attributd) in 
-                                                                             let ye = getvalue "Y:" y (python_split ' ' attributd) in 
-                                                                             let labele = getvalue "LABEL:" label (python_split ' ' attributd) in
-                                                                             let colore = getvalue "COLOR:" color (python_split ' ' attributd) in
-                                                                             let bgcolore = getvalue "BGCOLOR:" bgcolor (python_split ' ' attributd) in
-                                                                             let sizee = getvalue "SIZE:" size (python_split ' ' attributd) in
-                                                                             let initiale = getvalue "INITIAL:" initial (python_split ' ' attributd) in
-                                                                             let finale = getvalue "FINAL:" final (python_split ' ' attributd ) in
-
-                                                                             let attfinal = ref "" in 
-
-                                                                             if  not (labele = "") then attfinal:= " LABEL: " ^ labele ^ !attfinal; 
-                                                                             if not (colore = "") then attfinal:= " COLOR: " ^ colore ^ !attfinal;
-                                                                             if not (bgcolore = "") then attfinal:= " BGCOLOR: " ^ bgcolore ^ !attfinal;
-                                                                             if  not (sizee = "") then attfinal:= " SIZE: " ^ sizee ^ !attfinal; 
-                                                                             if not (initiale = "") then attfinal:= " INITIAL: " ^ initiale ^ !attfinal;
-                                                                             if not (finale = "") then attfinal:= " FINAL: " ^ finale ^ !attfinal;
-                                                                             go xs (Noeud(a,xe,ye,!attfinal)::acc)                
-      | x::xs -> go xs (x::acc)
-
-    in go l [];;
 
 (* LASF *)
 

@@ -1,6 +1,6 @@
-create node i at 100 300 INITIAL west 
+create node i at 100 300 INITIAL west  FINAL south
 create node z at 200 300 LABEL "0"
-create node u at 200 200 LABEL "1"
+create node u at 200 200 LABEL "1" 
 create node f at 300 300 FINAL east
 
 create edge from i to z label "a" 
