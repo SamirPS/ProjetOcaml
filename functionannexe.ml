@@ -281,7 +281,7 @@ let rec nodefile noeud monstr =
                         let label = getvalue "LABEL:" x (python_split ' ' t) in 
                         let bgcolor = getvalue "BGCOLOR:" "none" (python_split ' ' t) in 
                         nodefile q ( ( "<circle cx=\"" ^y^ "\" cy=\"" ^ z ^ "\" r=\""^size^" \" stroke=\"" ^ color ^ "\" stroke-width=\"2\" fill=\""^bgcolor^"\" > </circle> \n")  ^ 
-                        ("<text x=\"" ^y^ "\" y=\"" ^ z ^ "\" dominant-baseline=\"middle \" fill=\"" ^ color ^"\" > "^ label ^" </text> \n") ^ monstr)
+                        ("<text x=\"" ^y^ "\" y=\"" ^ z ^ "\" dominant-baseline=\"middle \" fill=\"" ^ color ^"\" >"^ label ^"</text> \n") ^ monstr)
   | _ -> ""^monstr;;
       
 let rec transitionfile noeud transi l monstr  = 
@@ -928,7 +928,7 @@ let rec nodefilev noeud monstr color =
   |Noeud(x,y,z,t)::q -> let size =  getvalue "SIZE:" "30" (python_split ' ' t)  in 
                         let label = getvalue "LABEL:" x (python_split ' ' t) in 
                         nodefilev q ( ( "<circle cx=\"" ^y^ "\" cy=\"" ^ z ^ "\" r=\""^size^" \" > </circle> \n")  ^ 
-                        ("<text x=\"" ^y^ "\" y=\"" ^ z ^ "\" dominant-baseline=\"middle \" fill=\"" ^ color ^"\" > "^ label ^" </text> \n") ^ monstr) color
+                        ("<text x=\"" ^y^ "\" y=\"" ^ z ^ "\" dominant-baseline=\"middle \" fill=\"" ^ color ^"\" >"^ label ^"</text> \n") ^ monstr) color
   | _ -> ""^monstr;;
   
 let dumpwithstring name listenoeud listtransition mot =
