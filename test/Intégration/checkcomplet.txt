@@ -1,6 +1,6 @@
-CREATE NODE un  AT 100 300 INITIAL NORD
-create node deux at 200 300  FINAL NORD
-create node trois at 200 200 FINAL NORD
+CREATE NODE un  AT 100 300 INITIAL north
+create node deux at 200 300  FINAL north
+create node trois at 200 200 FINAL north
 
 
 CREATE EDGE FROM un to deux LABEL "a"

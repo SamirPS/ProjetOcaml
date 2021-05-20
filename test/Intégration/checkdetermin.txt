@@ -9,4 +9,4 @@ CREATE EDGE FROM un to un LABEL "a"
 IS DETERMINISTIC
 IS reconnu "a"
 SHOW "a"
-dump "lol"
+dump "checkdetermin"
