@@ -20,4 +20,4 @@ IS COMPLETE
 IS DETERMINISTIC
 is reconnu "aaab"
 SHOW "aaab"
-DUMP "bb" with "aaaba"
+DUMP "example" with "aaaba"

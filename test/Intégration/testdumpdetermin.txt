@@ -10,4 +10,4 @@ create edge from i to z label "b"
 
 IS RECONNU "aaa"
 SHOW "aaa"
-DUMP "testdump" with "aaaaaaaaaaaaaaaaa"
+DUMP "testdumpdetermin" with "aaaaaaaaaaaaaaaaa"

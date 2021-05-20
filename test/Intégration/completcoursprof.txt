@@ -1,5 +1,5 @@
-CREATE NODE zero  AT 100 300 INITIAL NORD
-create node un at 200 300  FINAL NORD
+CREATE NODE zero  AT 100 300 INITIAL north
+create node un at 200 300  FINAL north
 CREATE EDGE FROM zero to un LABEL "a"
 CREATE EDGE FROM un to un LABEL "a"
 CREATE EDGE FROM un to un LABEL "b"

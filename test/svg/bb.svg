@@ -1,0 +1,89 @@
+ <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600" viewBox="0 0 800 600"> 
+ <circle cx="200" cy="200" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="200" y="200" dominant-baseline="middle " fill="black" >trois</text> 
+<circle cx="200" cy="200" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="200" y="200" dominant-baseline="middle " fill="black" >deux</text> 
+<circle cx="200" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="200" y="300" dominant-baseline="middle " fill="black" >un</text> 
+<circle cx="100" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="100" y="300" dominant-baseline="middle " fill="black" >zero</text> 
+<path fill="none"  d="M205,230 A 5,15 0 0 1 205,270" stroke="black"></path> 
+ <text x="230" y="254" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="black"  d="M205,270l 11,-2 l -9,-9 Z" stroke="black"></path> 
+<path fill="none"  d="M170 200 L 130 300" stroke="black"></path> 
+ <text x="150" y="245" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="M130,300l 11,-2 l -9,-9 Z" stroke="black"></path> 
+<path fill="none"  d="" stroke="black"></path> 
+ <text x="0" y="0" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="" stroke="black"></path> 
+<path fill="none"  d="M205 229 A 15 20 0 1 1 195 229" stroke="black"></path> 
+ <text x="230" y="260" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="black"  d="M195,229l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M195,270 A 5,15 0 0 1 195,230" stroke="black"></path> 
+ <text x="170" y="254" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="M195,230l -11 2 l 9 9 Z" stroke="black"></path> 
+<path fill="none"  d="M200 270 L 200 230" stroke="black"></path> 
+ <text x="195" y="250" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="black"  d="M200,230 l -8 8 m 16 0 l -8 -8" stroke="black"></path> 
+<path fill="none"  d="M130 300 L 170 300" stroke="black"></path> 
+ <text x="150" y="295" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="black"  d="M170,300l -8,-8 l 0,16 Z" stroke="black"></path> 
+<path fill="none"  d="M105 329 A 15 20 0 1 1 95 329" stroke="black"></path> 
+ <text x="130" y="360" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="M95,329l -11 2 l 9 9 Z" stroke="black"></path> 
+<path stroke="black" d="M 200 170 l 0 -30"></path><path fill="black"  d="M200,140 l -8 8 m 16 0 l -8 -8" stroke="black"></path> 
+<path stroke="black" d="M 200 170 l 0 -30"></path><path fill="black"  d="M200,140 l -8 8 m 16 0 l -8 -8" stroke="black"></path> 
+<path stroke="black" d="M 100 330 l 0 30"></path><path fill="black"  d="M100,330 l -8 8 m 16 0 l -8 -8" stroke="black"></path> 
+<style type="text/css">
+.frame {visibility:hidden;animation:frames 9s linear infinite}
+#_frame_0{ animation-delay:0s}
+#_frame_1{ animation-delay:1.5s}
+#_frame_2{ animation-delay:3s}
+#_frame_3{ animation-delay:4.5s}
+#_frame_4{ animation-delay:6s}
+#_frame_5{ animation-delay:7.5s}
+@keyframes frames {0% {visibility:visible} 20% {visibility:hidden}} </style>
+<g id="_frame_5" class="frame">
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="200" cy="300" r="30 " > </circle> 
+<text x="200" y="300" dominant-baseline="middle " fill="red" >un</text> 
+
+</g></g> <g id="_frame_4" class="frame">
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="200" cy="200" r="30 " > </circle> 
+<text x="200" y="200" dominant-baseline="middle " fill="red" >trois</text> 
+<path stroke="red" d="M 200 170 l 0 -30"></path><path fill="red"  d="M200,140 l -8 8 m 16 0 l -8 -8" stroke="red"></path> 
+<path fill="none"  d="M205,230 A 5,15 0 0 1 205,270" stroke="red"></path> 
+ <text x="230" y="254" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="red"  d="M205,270l 11,-2 l -9,-9 Z" stroke="red"></path> 
+
+</g></g> <g id="_frame_3" class="frame">
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="200" cy="200" r="30 " > </circle> 
+<text x="200" y="200" dominant-baseline="middle " fill="red" >deux</text> 
+<path stroke="red" d="M 200 170 l 0 -30"></path><path fill="red"  d="M200,140 l -8 8 m 16 0 l -8 -8" stroke="red"></path> 
+<path fill="none"  d="" stroke="red"></path> 
+ <text x="0" y="0" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="red"  d="" stroke="red"></path> 
+
+</g></g> <g id="_frame_2" class="frame">
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="200" cy="200" r="30 " > </circle> 
+<text x="200" y="200" dominant-baseline="middle " fill="red" >deux</text> 
+<path stroke="red" d="M 200 170 l 0 -30"></path><path fill="red"  d="M200,140 l -8 8 m 16 0 l -8 -8" stroke="red"></path> 
+<path fill="none"  d="M205 229 A 15 20 0 1 1 195 229" stroke="red"></path> 
+ <text x="230" y="260" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="red"  d="M195,229l -11 2 l 9 9 Z" stroke="red"></path> 
+
+</g></g> <g id="_frame_1" class="frame">
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="200" cy="300" r="30 " > </circle> 
+<text x="200" y="300" dominant-baseline="middle " fill="red" >un</text> 
+<path fill="none"  d="M200 270 L 200 230" stroke="red"></path> 
+ <text x="195" y="250" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="red"  d="M200,230 l -8 8 m 16 0 l -8 -8" stroke="red"></path> 
+
+</g></g> <g id="_frame_0" class="frame">
+  <g stroke="red" stroke-width="2" fill="lightCoral"> <circle cx="100" cy="300" r="30 " > </circle> 
+<text x="100" y="300" dominant-baseline="middle " fill="red" >zero</text> 
+<path stroke="red" d="M 100 330 l 0 30"></path><path fill="red"  d="M100,330 l -8 8 m 16 0 l -8 -8" stroke="red"></path> 
+<path fill="none"  d="M130 300 L 170 300" stroke="red"></path> 
+ <text x="150" y="295" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="red"  d="M170,300l -8,-8 l 0,16 Z" stroke="red"></path> 
+
+</g></g> </svg>
