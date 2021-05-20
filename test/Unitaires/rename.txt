@@ -1,5 +1,5 @@
-CREATE NODE samir AT -5 6 LABEL "franck" color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud
-CREATE NODE de LABEL "franck"  AT 5.0 6 color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud
-CREATE NODE dea LABEL "franck"  AT 5.0 6 color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud
+CREATE NODE samir AT -5 6 LABEL "franck" color "rouge" bgcolor "blue" size 20 INITIAL north FINAL south
+CREATE NODE de LABEL "franck"  AT 5.0 6 color "rouge" bgcolor "blue" size 20 INITIAL north FINAL south
+CREATE NODE dea LABEL "franck"  AT 5.0 6 color "rouge" bgcolor "blue" size 20 INITIAL north FINAL south
 rename samir with deaz
 dump

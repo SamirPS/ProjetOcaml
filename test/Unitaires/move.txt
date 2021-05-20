@@ -1,7 +1,7 @@
-CREATE NODE samir AT -5 6 LABEL "franck" color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud
-CREATE NODE d LABEL "franck"  AT 5.0 6 color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud
-CREATE NODE e LABEL "franck"  AT 10.0 6 color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud
-CREATE NODE f LABEL "franck"  AT -6.0 6 color "rouge" bgcolor "blue" size 20 INITIAL nord FINAL sud
+CREATE NODE samir AT -5 6 LABEL "franck" color "rouge" bgcolor "blue" size 20 INITIAL  FINAL 
+CREATE NODE d LABEL "franck"  AT 5.0 6 color "rouge" bgcolor "blue" size 20 INITIAL  FINAL 
+CREATE NODE e LABEL "franck"  AT 10.0 6 color "rouge" bgcolor "blue" size 20 INITIAL  FINAL 
+CREATE NODE f LABEL "franck"  AT -6.0 6 color "rouge" bgcolor "blue" size 20 INITIAL  FINAL 
 
 
 move 5 6
