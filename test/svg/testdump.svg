@@ -22,4 +22,5 @@
 <path fill="none"  d="M130 300 L 170 300" stroke="black"></path> 
  <text x="150" y="295" fill="black" text-anchor="middle"> a  </text> 
  <path fill="black"  d="M170,300l -8,-8 l 0,16 Z" stroke="black"></path> 
+<path stroke="black" d="M 70 300 l-30 0"></path><path fill="black"  d="M70,300l -8,-8 l 0,16 Z" stroke="black"></path> 
 </svg>
