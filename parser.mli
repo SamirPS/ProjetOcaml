@@ -36,7 +36,6 @@ type token =
   | NE
   | SW
   | SE
-  | NONE
   | DETERMINISTIC
 
 val main :

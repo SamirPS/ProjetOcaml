@@ -17,7 +17,7 @@ let python_split sep x =
 let rec getvalue valeur default liste =
   match liste with
   |[] -> default 
-  |h::q when h = valeur-> List.hd q
+  |h::q when h = valeur-> if List.length q != 0 then List.hd q else getvalue valeur default q
   |h::q -> getvalue valeur default q;;
 
 
@@ -504,13 +504,13 @@ let rec initfinal listenoeud monstr color fill =
                                                     let myinfo = ref "" in 
                                                     
                                                     (*fleche pour la direction*)
-                                                    if (direct = "Ouest" || direct = "none") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
+                                                    if (direct = "Ouest" || direct = "") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
                                                     if (direct = "Nord") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
                                                     if (direct = "Sud") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
                                                     if (direct = "Est") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
                                                     
                                                     (* fleche *)
-                                                    if (direct = "Ouest" || direct = "none") then flecheref := "M"^isinteger(x1-.sizeun)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
+                                                    if (direct = "Ouest" || direct = "") then flecheref := "M"^isinteger(x1-.sizeun)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
                                                     if (direct = "Nord") then flecheref := "M"^isinteger(x1)^","^isinteger (y1+.sizeun)^" l -8 8 m 16 0 l -8 -8";
                                                     if (direct = "Sud") then flecheref := "M"^isinteger(x1)^","^isinteger (y1-.sizeun)^" l 8 -8 m -16 0 l 8 8";
 
@@ -547,13 +547,13 @@ let rec initfinal listenoeud monstr color fill =
                                                     let myinfo = ref "" in 
                                                     
                                                     (*fleche pour la direction*)
-                                                    if (direct = "Est" || direct = "none") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
+                                                    if (direct = "Est" || direct = "") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
                                                     if (direct = "Nord") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
                                                     if (direct = "Sud") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
                                                     if (direct = "Ouest") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
                                                     
                                                     (* fleche *)
-                                                    if (direct = "Est" || direct = "none") then flecheref := "M"^isinteger(x1+.sizeun*.2.)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
+                                                    if (direct = "Est" || direct = "") then flecheref := "M"^isinteger(x1+.sizeun*.2.)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
                                                     if (direct = "Nord") then flecheref := "M"^isinteger(x1)^","^isinteger (y1-.sizeun*.2.)^" l -8 8 m 16 0 l -8 -8";
                                                     if (direct = "Sud") then flecheref := "M"^isinteger(x1)^","^isinteger (y1+.sizeun *. 2.)^" l 8 -8 m -16 0 l 8 8";
 
