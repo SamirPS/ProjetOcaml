@@ -72,6 +72,8 @@
           | BGCOLOR vrailabel  {" BGCOLOR: " ^ $2 }
           | INITIAL direction {" INITIAL: " ^ $2 }
           | FINAL direction {" FINAL: " ^ $2 }
+          | INITIAL  {" INITIAL: " ^ "none" }
+          | FINAL  {" FINAL: " ^ "none" }
           | SIZE numero  {" SIZE: " ^ $2}
 
           | LABEL vrailabel attribut  {" LABEL: " ^ $2 ^ $3 }
@@ -80,11 +82,12 @@
           | BGCOLOR vrailabel attribut  {" BGCOLOR: " ^ $2 ^ $3 }
           | INITIAL direction attribut { " INITIAL: " ^ $2 ^ $3 }
           | FINAL direction  attribut { " FINAL: " ^ $2 ^ $3 }
+          | INITIAL  attribut { " INITIAL: " ^ "none" ^ $2 }
+          | FINAL   attribut { " FINAL: " ^ "none" ^ $2}
           
         ;
 
         direction :
-        | NONE {"none"}
         | N {"Nord"}
         | S {"Sud"}
         | E {"Est"}
@@ -124,6 +127,8 @@
           | BGCOLOR vrailabel  {" BGCOLOR: " ^ $2 }
           | INITIAL direction {" INITIAL: " ^ $2 }
           | FINAL direction {" FINAL: " ^ $2 }
+          | INITIAL  {" INITIAL: " ^ "none" }
+          | FINAL  {" FINAL: " ^ "none" }
           | SIZE numero  {" SIZE: " ^ $2}
           | AT numero numero {" X: " ^ $2 ^ " Y: " ^ $3 }
 
@@ -132,6 +137,8 @@
           | BGCOLOR vrailabel attributen {" BGCOLOR: " ^ $2 ^ $3 }
           | INITIAL direction attributen{" INITIAL: " ^ $2 ^ $3 }
           | FINAL direction attributen{" FINAL: " ^ $2 ^ $3 }
+          | INITIAL  attributen{" INITIAL: " ^  "none"  ^ $2 }
+          | FINAL  attributen{" FINAL: " ^  "none"  ^ $2 }
           | SIZE numero  attributen {" SIZE: " ^ $2 ^ $3}
           | AT numero numero attributen {" X: " ^ $2 ^ " Y: " ^ $3 ^ $4}
 

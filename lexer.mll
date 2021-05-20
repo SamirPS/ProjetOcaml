@@ -61,7 +61,6 @@
           | p a t h {PATH}
           | n o r t h  {N}
           | s o u t h {S}
-          | n o n e {NONE}
           | e a s t {E}
           | w e s t {O}
           | n o r t h tiret w e s t {NW}
