@@ -923,7 +923,7 @@ let yyact = [|
     let _6 = (Parsing.peek_val __caml_parser_env 0 : 'attributet) in
     Obj.repr(
 # 161 "parser.mly"
-                                              ( Printf.printf "Il faut rajouter le label de la transition :o")
+                                              ( Printf.printf "Il faut rajouter le label de la transition :o \n")
 # 928 "parser.ml"
                : unit))
 ; (fun __caml_parser_env ->
