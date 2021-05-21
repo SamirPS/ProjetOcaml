@@ -911,7 +911,7 @@ let createframesvg nombrechemin =
   let cssdebut = "<style type=\"text/css\">\n" in 
   let tempstoal = float_of_int (List.length nombrechemin) *. 1.5 in
   let cssm = ".frame {visibility:hidden;animation:frames " ^ isinteger(tempstoal)^"s linear infinite}\n" in 
-  let fin = "@keyframes frames {0% {visibility:visible} 20% {visibility:hidden}} </style>\n" in 
+  let fin = "@keyframes frames {0% {visibility:visible} 33.34% {visibility:hidden}} </style>\n" in 
   let milieucss = ref "" in 
   for i=0 to List.length nombrechemin - 1 do
     milieucss := !milieucss^"#_frame_"^string_of_int(i)^"{ animation-delay:"^isinteger(float_of_int(i)*.1.5)^"s}\n";

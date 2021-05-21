@@ -26,7 +26,7 @@
 #_frame_0{ animation-delay:0s}
 #_frame_1{ animation-delay:1.5s}
 #_frame_2{ animation-delay:3s}
-@keyframes frames {0% {visibility:visible} 20% {visibility:hidden}} </style>
+@keyframes frames {0% {visibility:visible} 33.34% {visibility:hidden}} </style>
 <g id="_frame_2" class="frame">
   <g stroke="green" stroke-width="2" fill="lightGreen"> <circle cx="300" cy="300" r="30 " > </circle> 
 <text x="300" y="300" dominant-baseline="middle " fill="green" >f</text> 
