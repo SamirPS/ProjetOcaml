@@ -158,6 +158,7 @@
           | CREATEFROM ID TO ID   attributf LABEL vrailabel { transition := !transition @ ( add (Edge(createid $2,createid $4,$7,$5)) !nodelist !transition)   }
           | CREATEFROM ID TO ID   attributf LABEL vrailabel  attributf { transition := !transition @ (add (Edge(createid $2,createid $4,$7,$5 ^ (" "^ $8))) !nodelist !transition)   }
 
+          | EDITEDGE ID TO ID WITH attributet { Printf.printf "Il faut rajouter le label de la transition :o \n"}
           | EDITEDGE ID TO ID LABEL vrailabel WITH attributet { transition := editt (createid $2) ( createid $4) $8 $6 !transition }
           | EDIT ID WITH attributen {nodelist := editn (createid $2) $4 !nodelist }
 
