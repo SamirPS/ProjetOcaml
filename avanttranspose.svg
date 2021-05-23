@@ -1,0 +1,24 @@
+ <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="600" viewBox="0 0 800 600"> 
+<circle cx="300" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="300" y="300" dominant-baseline="middle " fill="black" >f</text> 
+<circle cx="200" cy="200" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="200" y="200" dominant-baseline="middle " fill="black" >u</text> 
+<circle cx="200" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="200" y="300" dominant-baseline="middle " fill="black" >z</text> 
+<circle cx="100" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
+<text x="100" y="300" dominant-baseline="middle " fill="black" >i</text> 
+<path fill="none"  d="M230 300 L 270 300" stroke="black"></path> 
+ <text x="250" y="295" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="black"  d="M270,300l -8,-8 l 0,16 Z" stroke="black"></path> 
+<path fill="none"  d="M200 230 L 200 270" stroke="black"></path> 
+ <text x="195" y="250" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="M200,270 l 8 -8 m -16 0 l 8 8" stroke="black"></path> 
+<path fill="none"  d="M200 270 Q 185 250 200 230" stroke="black"></path> 
+ <text x="195" y="250" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="M200,230 l -8 8 m 16 0 l -8 -8" stroke="black"></path> 
+<path fill="none"  d="M130 300 L 170 300" stroke="black"></path> 
+ <text x="150" y="295" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="black"  d="M170,300l -8,-8 l 0,16 Z" stroke="black"></path> 
+<path stroke="black" d="M 300 330 l 0 30"></path><path fill="black"  d="M300,330 l -8 8 m 16 0 l -8 -8" stroke="black"></path> 
+<path stroke="black" d="M 70 300 l-30 0"></path><path fill="black"  d="M70,300l -8,-8 l 0,16 Z" stroke="black"></path> 
+</svg>

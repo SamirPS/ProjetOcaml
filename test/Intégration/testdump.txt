@@ -3,9 +3,10 @@ create node z at 200 300
 create node u at 200 200
 create node f at 300 300 FINAL Initial north
 CREATE EDGE FROM i TO z LABEL "a" 
-create edge from z to u label "b" 
+CREATE EDGE FROM z TO i LABEL "b" 
+create edge from z to z label "a" 
 create edge from u to z label "b" 
-create edge from z to f label "a" 
+create edge from f to z label "a" 
 dump
 dump  "testdump"
 Show "aa"
