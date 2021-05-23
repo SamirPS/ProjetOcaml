@@ -6,10 +6,6 @@ CREATE EDGE FROM i TO z LABEL "a"
 create edge from z to u label "b" 
 create edge from u to z label "b" 
 create edge from z to f label "a" 
-create edge from u to i label "a" 
-create edge from i to u label "a" 
-
-
 dump
 dump  "testdump"
 Show "aa"
