@@ -518,7 +518,7 @@ let rec initfinal listenoeud monstr color fill =
 
 
                                                     (* fleche direction *)
-                                                    if (direct = "Nord-West" ) then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(-. sizeun)^isinteger(-.sizeun)^"\">";
+                                                    if (direct = "Nord-West" ) then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun )^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(-. sizeun)^isinteger(-.sizeun)^"\">";
 
                                                     if (direct = "Nord-Est") then  myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1 +. sizeun *. 2.)^" l"^ isinteger(sizeun)^isinteger(-.sizeun)^"\">";
 
