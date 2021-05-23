@@ -5,9 +5,5 @@ create node f at 300 300 FINAL Initial north
 CREATE EDGE FROM i TO z LABEL "a" 
 create edge from z to u label "b" 
 create edge from u to z label "b" 
-create edge from z to f label "a" 
-dump
+create edge from u to f label "a" 
 dump  "testdump"
-Show "aa"
-IS reconnu "aa"
-dump  "testdumps" with "aa"
