@@ -18,7 +18,7 @@
         %token <string> LIST
 
         %token SHOW ISRECONNU ISDETERMINISTIC COMPLETE ISCOMPLETE CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH 
-        %token EOL N S E O NW NE SW SE  DETERMINISTIC DELETEALL
+        %token EOL N S E O NW NE SW SE  DETERMINISTIC DELETEALL TRANSPOSE
         
                 
         
@@ -72,8 +72,8 @@
           | BGCOLOR vrailabel  {" BGCOLOR: " ^ $2 }
           | INITIAL direction {" INITIAL: " ^ $2 }
           | FINAL direction {" FINAL: " ^ $2 }
-          | INITIAL  {" INITIAL: " ^ "" }
-          | FINAL  {" FINAL: " ^ "" }
+          | INITIAL  {" INITIAL: " ^ "none" }
+          | FINAL  {" FINAL: " ^ "none" }
           | SIZE numero  {" SIZE: " ^ $2}
 
           | LABEL vrailabel attribut  {" LABEL: " ^ $2 ^ $3 }
@@ -82,8 +82,8 @@
           | BGCOLOR vrailabel attribut  {" BGCOLOR: " ^ $2 ^ $3 }
           | INITIAL direction attribut { " INITIAL: " ^ $2 ^ $3 }
           | FINAL direction  attribut { " FINAL: " ^ $2 ^ $3 }
-          | INITIAL  attribut { " INITIAL: " ^ "" ^ $2 }
-          | FINAL   attribut { " FINAL: " ^ "" ^ $2}
+          | INITIAL  attribut { " INITIAL: " ^ "none" ^ $2 }
+          | FINAL   attribut { " FINAL: " ^ "none" ^ $2}
           
         ;
 
@@ -127,8 +127,8 @@
           | BGCOLOR vrailabel  {" BGCOLOR: " ^ $2 }
           | INITIAL direction {" INITIAL: " ^ $2 }
           | FINAL direction {" FINAL: " ^ $2 }
-          | INITIAL  {" INITIAL: " ^ "" }
-          | FINAL  {" FINAL: " ^ "" }
+          | INITIAL  {" INITIAL: " ^ "none" }
+          | FINAL  {" FINAL: " ^ "none" }
           | SIZE numero  {" SIZE: " ^ $2}
           | AT numero numero {" X: " ^ $2 ^ " Y: " ^ $3 }
 
@@ -137,8 +137,8 @@
           | BGCOLOR vrailabel attributen {" BGCOLOR: " ^ $2 ^ $3 }
           | INITIAL direction attributen{" INITIAL: " ^ $2 ^ $3 }
           | FINAL direction attributen{" FINAL: " ^ $2 ^ $3 }
-          | INITIAL  attributen{" INITIAL: " ^  ""  ^ $2 }
-          | FINAL  attributen{" FINAL: " ^  ""  ^ $2 }
+          | INITIAL  attributen{" INITIAL: " ^  "none"  ^ $2 }
+          | FINAL  attributen{" FINAL: " ^  "none"  ^ $2 }
           | SIZE numero  attributen {" SIZE: " ^ $2 ^ $3}
           | AT numero numero attributen {" X: " ^ $2 ^ " Y: " ^ $3 ^ $4}
 
@@ -171,4 +171,5 @@
 
           | RENAME ID WITH ID {nodelist:= renamen (createid $2) (createid $4) !nodelist ; transition:= renamet (createid $2) (createid $4) !transition ;}
           | DELETEALL {nodelist:= [] ; transition:= [];}
+          | TRANSPOSE {nodelist:= transpoenode !nodelist;transition:= transpoeedge !transition;}
         ;

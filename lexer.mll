@@ -74,6 +74,7 @@
           | c o m p l e t e {COMPLETE}
           | s h o w {SHOW}
           | d e l e t e spa a l l {DELETEALL}
+          | t r a n s p o s e  {TRANSPOSE}
           | ['"']['a'-'z' 'A'-'Z' '0'-'9' ' ' ',' '.']*['"'] as lxm {LABELN(lxm)}
           | ['+' '-']?['0'-'9']+['.']?['0'-'9']* as lxm { NUM(lxm) }
           | ['a'-'z' 'A'-'Z']['a'-'z' 'A'-'Z' '0'-'9' '_' ]* as lxm {ID(lxm)}

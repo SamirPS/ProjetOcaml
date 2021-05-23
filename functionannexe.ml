@@ -144,8 +144,8 @@ let rec printlist e  =
   match e with
  [] -> Printf.printf "\n"
 | h :: t -> (match h with 
-          |Noeud(x,y,z,k)  -> Printf.printf "%s %s %s %s \n " x y z  k ; printlist t 
-          |Edge(x,y,z,k)  -> Printf.printf "%s %s %s %s \n" x y z k ; printlist t ) ;;
+          |Noeud(x,y,z,k)  -> Printf.printf "ID:%s (X,Y):(%s,%s) Args: %s \n " x y z  k ; printlist t 
+          |Edge(x,y,z,k)  -> Printf.printf "TO(%s,%s) Label:%s Args:%s \n" x y z k ; printlist t ) ;;
 (*pour enlever le warning*)
 
 let getx node = 
@@ -504,13 +504,13 @@ let rec initfinal listenoeud monstr color fill =
                                                     let myinfo = ref "" in 
                                                     
                                                     (*fleche pour la direction*)
-                                                    if (direct = "Ouest" || direct = "") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
+                                                    if (direct = "Ouest" || direct = "none") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
                                                     if (direct = "Nord") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
                                                     if (direct = "Sud") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
                                                     if (direct = "Est") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
                                                     
                                                     (* fleche *)
-                                                    if (direct = "Ouest" || direct = "") then flecheref := "M"^isinteger(x1-.sizeun)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
+                                                    if (direct = "Ouest" || direct = "none") then flecheref := "M"^isinteger(x1-.sizeun)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
                                                     if (direct = "Nord") then flecheref := "M"^isinteger(x1)^","^isinteger (y1+.sizeun)^" l -8 8 m 16 0 l -8 -8";
                                                     if (direct = "Sud") then flecheref := "M"^isinteger(x1)^","^isinteger (y1-.sizeun)^" l 8 -8 m -16 0 l 8 8";
 
@@ -547,13 +547,13 @@ let rec initfinal listenoeud monstr color fill =
                                                     let myinfo = ref "" in 
                                                     
                                                     (*fleche pour la direction*)
-                                                    if (direct = "Est" || direct = "") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
+                                                    if (direct = "Est" || direct = "none") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 +. sizeun)^" "^isinteger(y1)^" l"^ isinteger(sizeun)^" 0\">";
                                                     if (direct = "Nord") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1-. sizeun)^" l 0 "^ isinteger(-.sizeun)^"\">";
                                                     if (direct = "Sud") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1)^" "^isinteger(y1+. sizeun)^" l 0 "^ isinteger(sizeun)^"\">";
                                                     if (direct = "Ouest") then myinfo := "<path stroke=\""^color^"\" d=\"M "^isinteger(x1 -. sizeun)^" "^isinteger(y1)^" l"^ isinteger(-.sizeun)^" 0\">";
                                                     
                                                     (* fleche *)
-                                                    if (direct = "Est" || direct = "") then flecheref := "M"^isinteger(x1+.sizeun*.2.)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
+                                                    if (direct = "Est" || direct = "none") then flecheref := "M"^isinteger(x1+.sizeun*.2.)^","^isinteger (y1)^"l -8,-8 l 0,16 Z";
                                                     if (direct = "Nord") then flecheref := "M"^isinteger(x1)^","^isinteger (y1-.sizeun*.2.)^" l -8 8 m 16 0 l -8 -8";
                                                     if (direct = "Sud") then flecheref := "M"^isinteger(x1)^","^isinteger (y1+.sizeun *. 2.)^" l 8 -8 m -16 0 l 8 8";
 
@@ -700,7 +700,68 @@ let renamet  ancien nouveau l =
 
     in go l [];;
 
+  (*transpose*)
+  let transpoenode listenoeud =
+    let rec go l acc = match l with
+      | [] ->  List.rev acc 
+      | Noeud(a,b,c,t)::xs when (contains t "FINAL") && (contains t "INITIAL") ->
+                                                        let label = getvalue "LABEL:" "" (python_split ' ' t) in
+                                                        let color = getvalue "COLOR:" "" (python_split ' ' t) in
+                                                        let bgcolor = getvalue "BGCOLOR:" "" (python_split ' ' t) in
+                                                        let size = getvalue "SIZE:" "" (python_split ' ' t) in
+                                                        let initial = getvalue "INITIAL:" "" (python_split ' ' t) in
+                                                        let final = getvalue "FINAL:" "" (python_split ' ' t) in
 
+                                                        let attfinal = ref "" in 
+                                                        if  not (label = "") then attfinal:= " LABEL: " ^ label ^ !attfinal; 
+                                                        if not (color = "") then attfinal:= " COLOR: " ^ color ^ !attfinal;
+                                                        if not (bgcolor = "") then attfinal:= " BGCOLOR: " ^ bgcolor ^ !attfinal;
+                                                        if  not (size = "") then attfinal:= " SIZE: " ^ size ^ !attfinal; 
+                                                        attfinal:= " INITIAL: " ^ final ^ !attfinal;
+                                                        attfinal:= " FINAL: " ^ initial ^ !attfinal;
+                                                        go xs ((Noeud(a,b,c,!attfinal))::acc)
+
+      | Noeud(a,b,c,t)::xs when (contains t "FINAL") ->
+                                                        let label = getvalue "LABEL:" "" (python_split ' ' t) in
+                                                        let color = getvalue "COLOR:" "" (python_split ' ' t) in
+                                                        let bgcolor = getvalue "BGCOLOR:" "" (python_split ' ' t) in
+                                                        let size = getvalue "SIZE:" "" (python_split ' ' t) in
+                                                        let final = getvalue "FINAL:" "" (python_split ' ' t) in
+                                                        let attfinal = ref "" in 
+
+                                                        if  not (label = "") then attfinal:= " LABEL: " ^ label ^ !attfinal; 
+                                                        if not (color = "") then attfinal:= " COLOR: " ^ color ^ !attfinal;
+                                                        if not (bgcolor = "") then attfinal:= " BGCOLOR: " ^ bgcolor ^ !attfinal;
+                                                        if  not (size = "") then attfinal:= " SIZE: " ^ size ^ !attfinal; 
+                                                        attfinal:= " INITIAL: " ^ final ^ !attfinal;
+                                                        go xs ((Noeud(a,b,c,!attfinal))::acc)
+
+      | Noeud(a,b,c,t)::xs when (contains t "INITIAL")  ->let label = getvalue "LABEL:" "" (python_split ' ' t) in
+                                                          let color = getvalue "COLOR:" "" (python_split ' ' t) in
+                                                          let bgcolor = getvalue "BGCOLOR:" "" (python_split ' ' t) in
+                                                          let size = getvalue "SIZE:" "" (python_split ' ' t) in
+                                                          let initial = getvalue "INITIAL:" "" (python_split ' ' t) in
+                                                          let attfinal = ref "" in 
+
+                                                          if  not (label = "") then attfinal:= " LABEL: " ^ label ^ !attfinal; 
+                                                          if not (color = "") then attfinal:= " COLOR: " ^ color ^ !attfinal;
+                                                          if not (bgcolor = "") then attfinal:= " BGCOLOR: " ^ bgcolor ^ !attfinal;
+                                                          if  not (size = "") then attfinal:= " SIZE: " ^ size ^ !attfinal; 
+                                                          attfinal:= " FINAL: " ^ initial ^ !attfinal;
+                                                          go xs ((Noeud(a,b,c,!attfinal))::acc)
+      | x::xs -> go xs  (x::acc)
+
+    in go listenoeud [];;
+
+    let transpoeedge transitionlist =
+      let rec go l acc = match l with
+        | [] ->  List.rev acc 
+        | Edge(a,b,c,t)::xs -> go xs ((Edge(b,a,c,t))::acc)
+        | _::xs -> go xs acc
+  
+      in go transitionlist [];;
+
+    
 
 (* LASF *)
 
