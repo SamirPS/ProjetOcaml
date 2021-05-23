@@ -1020,7 +1020,7 @@ let dumpwithstring name listenoeud listtransition mot =
   
   let i = List.length chemin - 1 in 
   noeudcourant := getnode (List.nth chemin i) listenoeud;
-  strmodifier := "<g id=\"_frame_"^string_of_int(i)^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal !noeudcourant "" !color !color) ^ "\n"  ^ "</g></g> "^ !strmodifier;
+  strmodifier := "<g id=\"_frame_"^string_of_int( i )^"\" class=\"frame\">\n"^debut^" "^(nodefilev !noeudcourant "" !color) ^ (initfinal !noeudcourant "" !color !color) ^ "\n"  ^ "</g></g> "^ !strmodifier;
   
   output_string fic2 (mystrfinal^(createframesvg chemin)^ !strmodifier ^ "</svg>" );
   close_out fic2;;
