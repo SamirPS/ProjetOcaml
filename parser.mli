@@ -37,6 +37,7 @@ type token =
   | SW
   | SE
   | DETERMINISTIC
+  | DELETEALL
 
 val main :
   (Lexing.lexbuf  -> token) -> Lexing.lexbuf -> unit 

@@ -73,6 +73,7 @@
           | i s spa r e c o n n u {ISRECONNU}
           | c o m p l e t e {COMPLETE}
           | s h o w {SHOW}
+          | d e l e t e spa a l l {DELETEALL}
           | ['"']['a'-'z' 'A'-'Z' '0'-'9' ' ' ',' '.']*['"'] as lxm {LABELN(lxm)}
           | ['+' '-']?['0'-'9']+['.']?['0'-'9']* as lxm { NUM(lxm) }
           | ['a'-'z' 'A'-'Z']['a'-'z' 'A'-'Z' '0'-'9' '_' ]* as lxm {ID(lxm)}

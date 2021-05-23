@@ -18,7 +18,7 @@
         %token <string> LIST
 
         %token SHOW ISRECONNU ISDETERMINISTIC COMPLETE ISCOMPLETE CREATENODE CREATEFROM AT LABEL COLOR SIZE TO INITIAL FINAL BGCOLOR DUMP REMOVE REMOVEEDGE MOVE RENAME WITH EDIT EDITEDGE PATH 
-        %token EOL N S E O NW NE SW SE  DETERMINISTIC
+        %token EOL N S E O NW NE SW SE  DETERMINISTIC DELETEALL
         
                 
         
@@ -170,5 +170,5 @@
           |  MOVE glist numero numero {nodelist := movelistid $2 $3 $4 !nodelist}
 
           | RENAME ID WITH ID {nodelist:= renamen (createid $2) (createid $4) !nodelist ; transition:= renamet (createid $2) (createid $4) !transition ;}
-          
+          | DELETEALL {nodelist:= [] ; transition:= [];}
         ;
