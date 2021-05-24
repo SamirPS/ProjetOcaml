@@ -8,8 +8,17 @@
 <circle cx="100" cy="300" r="30 " stroke="black" stroke-width="2" fill="none" > </circle> 
 <text x="100" y="300" dominant-baseline="middle " fill="black" >i</text> 
 <path fill="none"  d="M270 300 Q 250 215 230 200" stroke="black"></path> 
- <text x="240" y="250" fill="black" text-anchor="middle"> a  </text> 
+ <text x="265" y="250" fill="black" text-anchor="middle"> b  </text> 
  <path fill="black"  d="M230,200l 10 4 l -10 9 Z" stroke="black"></path> 
+<path fill="none"  d="M230 200 Q 250 285 270 300" stroke="black"></path> 
+ <text x="250" y="250" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="M270,300 l -10 -4 l 10 -9 Z" stroke="black"></path> 
+<path fill="none"  d="M170 200 Q 150 315 130 300" stroke="black"></path> 
+ <text x="150" y="250" fill="black" text-anchor="middle"> b  </text> 
+ <path fill="black"  d="M130,300l 10 4 l -10 9 Z" stroke="black"></path> 
+<path fill="none"  d="M130 300 Q 150 185 170 200" stroke="black"></path> 
+ <text x="150" y="185" fill="black" text-anchor="middle"> a  </text> 
+ <path fill="black"  d="M170,200 l -10 -4 l 10 -9 Z" stroke="black"></path> 
 <path fill="none"  d="M200 230 Q 215 250 200 270" stroke="black"></path> 
  <text x="215" y="250" fill="black" text-anchor="middle"> b  </text> 
  <path fill="black"  d="M200,270 l 11,-2 l -9,-9 Z" stroke="black"></path> 
