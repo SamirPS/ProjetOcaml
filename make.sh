@@ -5,6 +5,6 @@ ocamlc -c  -g parser.mli str.cma
 ocamlc -c -g lexer.ml str.cma
 ocamlc -c -g parser.ml str.cma
 ocamlc -c -g main.ml str.cma
-ocamlc -g -o calc lexer.cmo functionannexe.cmo parser.cmo main.cmo
+ocamlc -g -o rendu lexer.cmo functionannexe.cmo parser.cmo main.cmo
 rm *.cmo
 rm *.cmi
