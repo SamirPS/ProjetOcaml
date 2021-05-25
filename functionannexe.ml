@@ -9,18 +9,22 @@ type 'a arbre =
 Fonction annexe
 *)
 
+(*
+Permet de transformer un string en liste en séparant par rapport en x
+*)
 let python_split sep x =
   String.split_on_char  sep x
   |> List.filter (fun x -> x <> "")
 ;;
 
+(* Permet de renvoyer la valeur associé à l'argument *)
 let rec getvalue valeur default liste =
   match liste with
   |[] -> default 
   |h::q when h = valeur-> if List.length q != 0 then List.hd q else getvalue valeur default q
   |h::q -> getvalue valeur default q;;
 
-
+(* Permet de savoir si s1 contient s2  *)
 let contains s1 s2 =
 try
   let len = String.length s2 in
@@ -30,12 +34,13 @@ try
   false
 with Exit -> true;;
 
-
+(* Permet de couper l'id a 15 caractéres *)
 let createid id =
   if (String.length id) <= 15
     then begin id end
     else begin (String.sub id 0 14 ) end;;
 
+(* permet de récuperer le node associé à indun *) 
 let getnode idun l =
   let rec search l acc = match l with
     | [] ->  List.rev acc
@@ -43,15 +48,18 @@ let getnode idun l =
     | _::xs -> search xs  acc
   in search l [];;
 
+(* permet de savoir si le node d'id x existe dans la liste l  *) 
 let rec containsele x l = match l with
   | [] -> false
   | Noeud(a,b,c,d)::q when (a = createid x) -> true
   | t::q -> containsele x q ;;
 
+(* permet de savoir si le edge d'id x d'id y et label t  existe dans la liste l  *) 
 let rec containsedge x y t l = match l with
   | [] -> false
   | Edge(a,b,c,d)::q when (a= createid x) && (b=createid y ) && (c=createid t) -> true
   | t::q -> containsele x q ;;
+(* permet de savoir si il existe une transition de x à y dans la  liste l  *) 
 
   let rec containstrans x y l = match l with
   | [] -> false
@@ -59,7 +67,7 @@ let rec containsedge x y t l = match l with
   | t::q -> containsele x q ;;
 
 
-(* fonction pour create *)
+(* Les deux fonctions sont là pour ajouter un noeud/transition et rajoute les parametres par défaut s'il existe pas *)
 
   let add_aux elem = 
       match elem with 
@@ -78,7 +86,7 @@ let rec containsedge x y t l = match l with
     | _ -> failwith "Ajout impossible" ;;
 
 
-(*edit *)
+(*La fonction est là pour edit une transition, la seconde est pour édit un noeud  *)
 let editt  idun iddeux  attributd lettre l =
 let rec go l acc = match l with
   | [] ->  List.rev acc
@@ -140,6 +148,7 @@ let rec go l acc = match l with
 in go l [];;
 
 (* DUMP *)
+(*La fonction est là pour dump une liste de transition/edge*)
 let rec printlist e  = 
   match e with
  [] -> Printf.printf "\n"
@@ -147,28 +156,32 @@ let rec printlist e  =
           |Noeud(x,y,z,k)  -> Printf.printf "ID:%s (X,Y):(%s,%s) Args: %s \n " x y z  k ; printlist t 
           |Edge(x,y,z,k)  -> Printf.printf "TO(%s,%s) Label:%s Args:%s \n" x y z k ; printlist t ) ;;
 (*pour enlever le warning*)
-
+(*recuperer la position x d'un noeud*)
 let getx node = 
   match node with
   | Noeud(a,b,c,d) -> b
   | _ -> "";;
-
+ 
+(*recuperer la position y d'un noeud*)
 let gety node = 
   match node with
   | Noeud(a,b,c,d) -> c
   | _ -> "";;
+  
+ (*recuperer arguments d'un noeud*)
 
 let getargs node valeur defaut  = 
   match node with
   | Noeud(a,b,c,d) -> getvalue valeur defaut (python_split ' ' d)
   | _ -> defaut;;
 
+(* converti en str un nombre *)
 let isinteger numero = 
   match Float.is_integer numero with
   | true -> string_of_int (int_of_float numero)
   | false -> string_of_float numero;;
 
-
+(* compte le nombre de transition entre a et b, b et a *)
 let counttransi idun iddeux listtransition =
   let rec go listtransition acc = 
     match listtransition  with
@@ -178,6 +191,7 @@ let counttransi idun iddeux listtransition =
     | _::q -> go q acc
   in go listtransition 0 ;;
 
+(* recuperer les labels des transitions entre idun et iddeux*)
 let getlabel idun iddeux listtransition =
   let rec go listtransition acc = 
     match listtransition  with
@@ -187,7 +201,7 @@ let getlabel idun iddeux listtransition =
   in go listtransition "" ;;
   
 
-
+(* fait le calcul des arcs si jamais on a pas de path*)
 let calcularc idun ideux l transi label argstransi=
   let nodeun = List.hd (getnode idun l) in
   let nodedeux = List.hd (getnode ideux l) in 
@@ -300,6 +314,7 @@ let calcularc idun ideux l transi label argstransi=
  
   curveedebut^ !curve ^curvefin^infox^isinteger(!c1x +. xajout)^infoy^isinteger(!c1y +. yajout)^ infoatt ^label^ labelinfo^fleche^ !flecheref^flechefin;;
 
+(* renvoie le str pour le svg pour les noeuds*)
 let rec nodefile noeud monstr =
   match noeud with 
   |[] -> monstr;
@@ -310,6 +325,8 @@ let rec nodefile noeud monstr =
                         nodefile q ( ( "<circle cx=\"" ^y^ "\" cy=\"" ^ z ^ "\" r=\""^size^" \" stroke=\"" ^ color ^ "\" stroke-width=\"2\" fill=\""^bgcolor^"\" > </circle> \n")  ^ 
                         ("<text x=\"" ^y^ "\" y=\"" ^ z ^ "\" dominant-baseline=\"middle \" fill=\"" ^ color ^"\" >"^ label ^"</text> \n") ^ monstr)
   | _ -> ""^monstr;;
+  
+ (*renvoie le str pour le svg pour les transitions*)
       
 let rec transitionfile noeud transi l monstr  = 
       match transi with 
@@ -422,6 +439,7 @@ let rec transitionfile noeud transi l monstr  =
                             transitionfile noeud  q l (  (fill ^label) ^ monstr)
       | _ -> ""^monstr;;
 
+(* Fait le svg pour les fleches des états initaux et final*)
 let rec initfinal listenoeud monstr color fill = 
   match listenoeud with
   | [] -> monstr
@@ -514,6 +532,7 @@ let rec initfinal listenoeud monstr color fill =
  | _::q -> initfinal q monstr color fill
 ;;
 
+(*crée le fichier svg et son contenu*)
 let createfile name liste secondl =
   let fic2 = open_out (name^".svg") in
   let mystrfinal=" <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"800\" height=\"600\" viewBox=\"0 0 800 600\"> \n"^(nodefile liste "") ^ (transitionfile liste secondl secondl "") ^ (initfinal liste "" "black" "black") ^ "</svg>" in
@@ -529,6 +548,7 @@ let createfile name liste secondl =
 
 (* Remove *)
 
+(*Permet de supprimer un noeud *)
 let deleten e l =
   let rec go l acc = match l with
     | [] ->  List.rev acc
@@ -536,11 +556,13 @@ let deleten e l =
     | x::xs -> go xs (x::acc)
   in go l [];;
 
+(*verifie si le noeud existe si oui on le supprime sinon erreur*)
 let removenoeud e l = 
   match containsele e l with
   |false ->failwith "Impossible à supprimer" 
   | _ -> deleten e l ;;
 
+(*supprime les transitions associée a un noeud supprimé*)
 let removetransitionafternode e l =
   let rec go l acc = match l with
     | [] -> List.rev acc
@@ -549,18 +571,22 @@ let removetransitionafternode e l =
   in go l [];;
 
 (* remove pour transition *)
+(*permet de savoir si la transition existe entre x et y*)
 let rec containte x y l  = 
   match l with
   | [] -> false
   | Edge(a,b,c,d)::q when a=x && b=y -> true
   | t::q -> containte x y q ;;
 
+(* permet de supprimer une transition*)
 let deletee e f  l =
   let rec go l acc = match l with
     | [] -> List.rev  acc
     | Edge(a,b,c,d)::xs when (e = a) && (f = b)  -> go xs acc
     | x::xs -> go xs (x::acc)
   in go l [];;
+
+(*verifie si la transition existe si oui on le supprime sinon erreur*)
 
 let removetransition e f  l =
   match containte e f l with
@@ -569,9 +595,11 @@ let removetransition e f  l =
 
 (* MOVE *)
 
+(* permet de renvoyer le string de l'addition pour move*)
 let getnumber numero stringnu = 
   string_of_float( float_of_string(numero) +. float_of_string(stringnu) );;
 
+(*move tout les noeuds de numun numdeux*)
 let moveall numun numdeux l =
   let rec go l acc = match l with
     | [] ->  List.rev acc
@@ -579,7 +607,7 @@ let moveall numun numdeux l =
     | Edge (_, _, _, _)::xs -> go xs  acc
   in go l [];;
 
-
+(*move le noeud dont l'id est donnée*)
 let moveallid  id numun numdeux l =
   let rec go l acc = match l with
     | [] ->  List.rev acc
@@ -587,18 +615,20 @@ let moveallid  id numun numdeux l =
     | x::xs -> go xs  (x::acc)
 
   in go l [];;
-
+(*si le noeud existe on le move sinon erreur*)
 let moveallid_aux id numun numdeux l =
   match containsele (id) l with
   | false -> failwith "Noeud existe pas"
   | true -> moveallid id numun numdeux l;;
 
+(*verifie si l'id existe dans la liste donné par l'user*)
 let rec containscreateid a l = 
       match l with
     |[] -> false
     | x::xs when (createid x = a) -> true
     | _::xs -> containscreateid a xs;;
 
+(* permet de move les noeuds d'une liste donnée , si noeud existe pas alors on fait une erreur*)
 let movelistid  id numun numdeux l =
   let mylist = l in
   let rec go l acc = match l with
@@ -610,6 +640,7 @@ let movelistid  id numun numdeux l =
 
 (*RENAME*)
 
+(* rename un noeud si existe déjà alors une erreur*)
 let renamen  ancien nouveau l =
   let mylist=l in 
   let rec go l acc = match l with
@@ -620,6 +651,7 @@ let renamen  ancien nouveau l =
 
   in go l [];;
 
+(*rename les transitions associé au noeud renommé*)
 let renamet  ancien nouveau l =
     let mylist=l in
     let rec go l acc = match l with
@@ -631,7 +663,7 @@ let renamet  ancien nouveau l =
 
     in go l [];;
 
-  (*transpose*)
+    (*Les deux fonctions calcule la transposé d'un automate la premiere inverse les etats finaux et intiaux et l'autre inverse les transitions*)
   let transpoenode listenoeud =
     let rec go l acc = match l with
       | [] ->  List.rev acc 
@@ -698,6 +730,7 @@ let renamet  ancien nouveau l =
 
 (*function annexe*)
 
+(*récupere tout les labels de l'automate sans doublon*)
 let getlettre listtransition =
   let rec go listtransition acc = match listtransition with
     | [] -> List.rev acc
@@ -706,12 +739,14 @@ let getlettre listtransition =
 
   in go listtransition [];;
 
+(*permet de savoir si il existe une transition partant de nomnoeud avec la lettre lettre*)
 let rec existe nomnoeud transitionlist lettre =
   match transitionlist with 
   | [] -> false
   | Edge(a,b,c,d)::q when (a = nomnoeud) && ( c = lettre) -> true
   | _::q -> existe nomnoeud q lettre;;
-  
+ 
+ (* permet de savoir si il existe une transition pour chaque lettre et chaque noeud*)
 let rec check nomnoeud transitionlist listeletter = 
   match listeletter with 
   | [] -> true
@@ -719,18 +754,20 @@ let rec check nomnoeud transitionlist listeletter =
   | _::q -> check nomnoeud transitionlist q;;
 
   (* IS COMPLETE*)
-
+(*Regarde si il existe une moins une transition par lettre pour chaque noeud*)
 let rec is_completeaux listenoeud listtransition =
   match listenoeud with 
     | [] -> true
     | Noeud(a,b,c,d)::q when (check a listtransition (getlettre listtransition) = false) -> false
     | _::q -> is_completeaux q listtransition;;
 
+(*retourne vrai si l'automate est complet*)
 let is_complete listenoeud listtransition = 
   if (List.length listenoeud = 0 ) || (List.length listtransition = 0 ) then false
   else (is_completeaux listenoeud listtransition);;
 
 (* Show complete *)
+(*recupere les sommets non complet*)
 let showcompleteaux listenoeud listtransition =
   let rec go listenoeud acc = 
     match listenoeud  with
@@ -738,7 +775,7 @@ let showcompleteaux listenoeud listtransition =
     | Noeud(a,b,c,d)::q when (check a listtransition (getlettre listtransition) = false) -> go q (a::acc)
     | _::q -> go q acc
   in go listenoeud [];;
-
+(*change la couleur de ces sommets non complet*)
 let changecolor color listenoeud listtransition nodepascomplet  = 
   let rec go listenoeud acc listakeep= 
       match listenoeud  with
@@ -747,14 +784,14 @@ let changecolor color listenoeud listtransition nodepascomplet  =
 
       | _::q -> go q acc listakeep
     in go listenoeud [] listenoeud;;
-  
+ (*main des deux fonctions au dessus*)  
 let showcomplet color listenoeud listtransition =
   let nodeamodifier = showcompleteaux listenoeud listtransition in 
   changecolor color listenoeud listtransition nodeamodifier;;
 
 
 (*Complete le truc *)
- 
+ (* Crée les transitions là ou les noeuds ne sont pas complet*)
 let gettransicreeaux a identifiant listtransition listeletter =
   let rec go listeletter acc = 
     match listeletter  with
@@ -763,6 +800,7 @@ let gettransicreeaux a identifiant listtransition listeletter =
     | _::q -> go q acc
   in go listeletter [];;
 
+(* Crée les transitions là ou les noeuds ne sont pas complet*)
 let gettransicree identifiant listtransition listenoeud =
   let rec go listenoeud acc = match listenoeud with
     | [] ->  acc
@@ -772,16 +810,18 @@ let gettransicree identifiant listtransition listenoeud =
   in go listenoeud [];;
 
 
-  
+ (* Ajoute les transtions de la fonction d'avant à notre liste de transition*)
 let transiajouter identifiant listenoeud listtransition =
   let ajout = gettransicree  identifiant listtransition listenoeud in 
   listtransition@ajout;;
 
+(*complete notre automate*)
 let complete identifiant listenoeud listtransition =
   if (is_complete listenoeud listtransition = false) && (containsele identifiant listenoeud = true ) then
     transiajouter identifiant listenoeud listtransition
   else listtransition;;
 
+(*ajoute le noeud puit a notre liste de noeud*)
 let completeaux identifiant numun numdeux listenoeud listtransition = 
   if (is_complete listenoeud listtransition = false) && (containsele identifiant listenoeud = false ) then
       listenoeud @ ( add (Noeud(identifiant,numun,numdeux,"")) listenoeud listtransition)
@@ -789,6 +829,7 @@ let completeaux identifiant numun numdeux listenoeud listtransition =
   
 (*Deterministe*)
 
+(*vérifie si le nombre d'états initial est de 1*)
 let numberinitial listenoeud  =
   let rec go listenoeud acc = match listenoeud with
     | [] -> acc
@@ -796,6 +837,7 @@ let numberinitial listenoeud  =
     | _::xs -> go xs acc
   in (go listenoeud 0) = 1;;
 
+(*compte le nombre de transition partant de a avec la lettre c*)
 let countnumberlettre identifiant listtransition lettre =
   let rec go listtransition acc = 
     match listtransition  with
@@ -803,25 +845,27 @@ let countnumberlettre identifiant listtransition lettre =
     | Edge(a,b,c,d)::q when (a=identifiant ) && (c= lettre) -> go q (acc+1)
     | _::q -> go q acc
   in (go listtransition 0) = 1 ;;
-
+(*renvoie faux si on a plus d'une transition par noeud pour la meme lettre*)
 let rec countallletter nomnoeud transitionlist listeletter = 
   match listeletter with 
   | [] -> true
   | x::q when (countnumberlettre nomnoeud transitionlist x = false ) -> false 
   | _::q -> check nomnoeud transitionlist q;;
 
+(* Renvoie faux si un noeud n'est pas determininste*)
 let rec is_deterministicaux listenoeud listtransition =
   match listenoeud with 
   | [] -> true
   | Noeud(a,b,c,d)::q when countallletter a listtransition (getlettre listtransition) = false -> false
   | _::q -> is_deterministicaux q listtransition;;
 
+(*renvoie vrai si l'automate est deterministe*)
 let is_deterministic listenoeud listtransition = 
   if (List.length listenoeud = 0 ) || (List.length listtransition = 0 ) then false
   else (is_deterministicaux listenoeud listtransition) && (numberinitial listenoeud = true) ;;
 
 (* Show determinste *)
-
+(* récupere les noeuds qui empeche que l'automate soit deterministe*)
 let showdeterminsteaux listenoeud listtransition =
   let rec go listenoeud acc = 
     match listenoeud  with
@@ -830,6 +874,7 @@ let showdeterminsteaux listenoeud listtransition =
     | _::q -> go q acc
   in go listenoeud [];;
 
+(* change la couleurs des noeuds récuperer au dessus *)
 let changecolord color listenoeud listtransition nodepascomplet  = 
   let rec go listenoeud acc listakeep= 
       match listenoeud  with
@@ -838,42 +883,43 @@ let changecolord color listenoeud listtransition nodepascomplet  =
 
       | _::q -> go q acc listakeep
     in go listenoeud [] listenoeud;;
-  
+ (* modifie la couleur des noeud qui empeche l'automate d'être deterministe*)
 let showcompletd color listenoeud listtransition =
   let nodeamodifier = showdeterminsteaux listenoeud listtransition in 
   changecolord color listenoeud listtransition nodeamodifier;;
 
 (* mot reconnu *)
-
+(* permet de récuperer le noeud initial*)
 let rec getnodeinitial listenoeud = 
   match listenoeud with
   | [] -> Noeud("","","","")
   | Noeud(a,b,c,d)::xs  when (contains d "INITIAL:")->Noeud(a,b,c,d)
   | _::xs -> getnodeinitial xs;;
-
+(*recuper les arguments d'un noeud*)
 let getargs noeud = 
   match noeud with
   |Noeud(a,b,c,d) -> d
   | _ -> "";;
-
+(*recupere l'id du noeud*)
 let getid noeud = 
   match noeud with
   |Noeud(a,b,c,d) -> a
   | _ -> "";;
 
+(* permet de savoir l'autre id de la transition qui part de a avec la lettre x*)
 let rec getautresommet transitionlist identifiant x = 
   match transitionlist with
   | [] -> ""
   | Edge(a,b,c,d)::q when (a = identifiant) && (c=x) -> b
   | _::q -> getautresommet q identifiant x;;
-
+(*renvoie le noeud qui a l'id egal à identifiant*)
 let rec getnodecourant identifiant listenoeud =
   match listenoeud with
   | [] -> Noeud("","","","")
   | Noeud(a,b,c,d)::xs  when (a=identifiant)->Noeud(a,b,c,d)
   | _::xs -> getnodecourant identifiant xs;;
 
-
+(*renvoie vrai si le mot est accepté par l'automate*)
 let is_accepted listenoeud listtransition mot = 
   let noeudcourant = ref (getnodeinitial listenoeud) in
   let lettre = ref ' ' in 
@@ -885,6 +931,7 @@ let is_accepted listenoeud listtransition mot =
   if ((contains (getargs !noeudcourant) "FINAL:") ) then result:=true else result:=false; 
   !result ;;
 
+(*renvoie le chemin du mot dans l'automate*)
 let getchemin listenoeud listtransition mot =
   let noeudcourant = ref (getnodeinitial listenoeud) in
   let lettre = ref ' ' in 
@@ -898,7 +945,9 @@ let getchemin listenoeud listtransition mot =
   (!chemin) ;; 
 
 (*dump string*)
+(*cree le sgv pour la commande dump string*)
 
+(*cree le fichier css*)
 let createframesvg nombrechemin =
   let cssdebut = "<style type=\"text/css\">\n" in 
   let tempstoal = float_of_int (List.length nombrechemin) *. 1.5 in
@@ -910,13 +959,14 @@ let createframesvg nombrechemin =
   done;
   cssdebut^cssm^ !milieucss^fin;;
 
+(*recupere le edge qui part de idun avec la lettre lettre*)
 let rec gettransiv idun lettre liste =
   match liste with 
   | [] -> []
   |Edge(a,b,c,d)::q when (a=idun) && (lettre=c) -> [Edge(a,b,c,d)]
   | _::q -> gettransiv idun lettre q;;
 
-
+(*renvoie le str pour le svg pour les noeuds*)
 let rec nodefilev noeud monstr color =
   match noeud with 
   |[] -> monstr;
@@ -925,7 +975,8 @@ let rec nodefilev noeud monstr color =
                         nodefilev q ( ( "<circle cx=\"" ^y^ "\" cy=\"" ^ z ^ "\" r=\""^size^" \" > </circle> \n")  ^ 
                         ("<text x=\"" ^y^ "\" y=\"" ^ z ^ "\" dominant-baseline=\"middle \" fill=\"" ^ color ^"\" >"^ label ^"</text> \n") ^ monstr) color
   | _ -> ""^monstr;;
-  
+ 
+(*crée le svg*)
 let dumpwithstring name listenoeud listtransition mot =
   let fic2 = open_out (name^".svg") in
 
