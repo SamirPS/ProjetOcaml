@@ -1,4 +1,4 @@
-cd "/home/samir/CompilExampleCandOcmal/Project/test"
+cd "test"
 for entry in "Unitaires"/*
 do
   echo "$entry"
