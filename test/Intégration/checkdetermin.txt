@@ -1,5 +1,5 @@
-CREATE NODE zero  AT 100 300 INITIAL none
-create node un at 200 300 FINAL none
+CREATE NODE zero  AT 100 300 INITIAL
+create node un at 200 300 FINAL
 
 CREATE EDGE FROM zero to zero LABEL "b"
 CREATE EDGE FROM zero to un LABEL "a"
