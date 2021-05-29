@@ -844,13 +844,13 @@ let countnumberlettre identifiant listtransition lettre =
     | [] ->  acc
     | Edge(a,b,c,d)::q when (a=identifiant ) && (c= lettre) -> go q (acc+1)
     | _::q -> go q acc
-  in (go listtransition 0) = 1 ;;
+  in (go listtransition 0) <= 1 ;;
 (*renvoie faux si on a plus d'une transition par noeud pour la meme lettre*)
 let rec countallletter nomnoeud transitionlist listeletter = 
   match listeletter with 
   | [] -> true
-  | x::q when (countnumberlettre nomnoeud transitionlist x = false ) -> false 
-  | _::q -> check nomnoeud transitionlist q;;
+  | x::q when (countnumberlettre nomnoeud transitionlist x = false ) ->  false 
+  | _::q -> countallletter nomnoeud transitionlist q;;
 
 (* Renvoie faux si un noeud n'est pas determininste*)
 let rec is_deterministicaux listenoeud listtransition =

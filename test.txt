@@ -1,0 +1,11 @@
+create node A at 200 300
+create node B at 300 300
+create node C at 300 200
+create edge from A to C label "ab"
+create edge from A to B label "a"
+create edge from B to C label "b"
+create edge from B to A label "b"
+
+IS deterministic
+edit A with INITIAL
+IS deterministic
