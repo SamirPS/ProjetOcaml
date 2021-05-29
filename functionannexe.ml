@@ -58,13 +58,13 @@ let rec containsele x l = match l with
 let rec containsedge x y t l = match l with
   | [] -> false
   | Edge(a,b,c,d)::q when (a= createid x) && (b=createid y ) && (c=createid t) -> true
-  | t::q -> containsele x q ;;
+  | p::q -> containsedge x y t q ;;
 (* permet de savoir si il existe une transition de x à y dans la  liste l  *) 
 
   let rec containstrans x y l = match l with
   | [] -> false
   | Edge(a,b,c,d)::q when (a= createid x) && (b=createid y ) -> true
-  | t::q -> containsele x q ;;
+  | t::q -> containstrans x y  q ;;
 
 
 (* Les deux fonctions sont là pour ajouter un noeud/transition et rajoute les parametres par défaut s'il existe pas *)
@@ -181,15 +181,7 @@ let isinteger numero =
   | true -> string_of_int (int_of_float numero)
   | false -> string_of_float numero;;
 
-(* compte le nombre de transition entre a et b, b et a *)
-let counttransi idun iddeux listtransition =
-  let rec go listtransition acc = 
-    match listtransition  with
-    | [] ->  acc
-    | Edge(a,b,c,d)::q when (a=idun && b=iddeux) -> go q (acc+1)
-    | Edge(a,b,c,d)::q when (a=iddeux && b=idun) -> go q (acc+1)
-    | _::q -> go q acc
-  in go listtransition 0 ;;
+
 
 (* recuperer les labels des transitions entre idun et iddeux*)
 let getlabel idun iddeux listtransition =
